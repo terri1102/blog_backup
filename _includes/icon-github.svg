@@ -1,0 +1,9 @@
+<a href="...">
+  <span class="icon  icon--github">
+    <svg viewBox="0 0 16 16">
+      <path .../>
+    </svg>
+  </span>
+
+  <span>...</span>
+</a>
