@@ -1,5 +1,0 @@
-## 
-
-### 1. 다양하게 Seaborn plot 다루기
-
-<kbd>N</kbd><kbd>I</kbd><kbd>C</kbd><kbd>E</kbd>
