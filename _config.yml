@@ -26,7 +26,7 @@ sass:
   style:            compressed
 
 # Comments
-disqus_shortname:   taylantatli
+disqus_shortname:   terri1102
 
 # Social
 # if you don't have any of social below, comment the line.
@@ -71,6 +71,8 @@ gems:
 
 jekyll-mentions:
     base_url: #https://github.com
+    
+category_list: [TIL, Post, Projects, Statistics]
 
 # Exclude list
 exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile]
