@@ -60,7 +60,7 @@ scipy.stats.variation(arr, axis=0, nan_policy='propagate')
 
 **z스코어 값**이 -2에서 2, -3에서 3 사이의 범위를 벗어나는 것을 특이값으로 생각
 $$
-z-score: (data - mean) / std
+z-score: (x_i - \bar{x}) / std
 $$
 
 ```
@@ -82,47 +82,11 @@ zscore(a_region, axis=0, ddof=0, nan_policy='propagate')
 
 ### 2)연속형 자료의 선형적 관계
 
-#### 공분산(Covariance)
+#### 공분산(Covariance): 2개의 확률변수의 상관정도
 
 1. 모집단 공분산
 $$
-Cov(X,Y)
-​	
-  
-=σ 
-XY
-​	
- 
-= 
-
-(1/N)*
-
-​	
-  
-∑
-
-​	
- (X 
-i
-​	
- −μ 
-X
-​	
- )(Y 
-i
-​	
- −μ 
-Y
-​	
- )
-=E{(X−μ 
-X
-​	
- )(Y−μ 
-Y
-​	
- )}
-​
+Cov(X,Y) = σ_{XY} = \frac{1}{n}\sum_{i=1}^{n}(x_i −μ_x)(y_i−μ_y)=E{(X−μX )(Y−μY )}
 $$
 σ_XY > 0 : X와 Y는 양의 선형적 관계
 
@@ -145,7 +109,7 @@ numpy.cov(m, y=None, rowvar=True, bias=False, ddof=None, fweights=None, aweights
 
 **피어슨상관계수(Pearson correlation coefficient)**: 두 숫자형 변수 사이의 선형적 강도를 나타내기 위한 통계량으로 공분산을 각 변수의 표준편차로 나눈 것
 $$
-pXY = σXY / (σX * σY)
+\rho _{XY} = \frac{σ_{XY}}{σ_X * σ_Y}
 $$
 
 [^ ]:  σXY:(X,Y)의 모집단공분산, σX, σY: X와 Y의 표준편차
@@ -161,7 +125,7 @@ scipy.stats.pearsonr(x, y)         #x,y = array
 
 **X와 Y의 모집단상관계수 성질**
 $$
--1 ≤ pXY ≤ 1
+-1 ≤ \rho _{XY} ≤ 1
 $$
 
 - 모집단상관계수는 단위가 없다.
@@ -174,10 +138,8 @@ $$
 
 **X와 Y의 표본상관계수**
 $$
-r_(xy_) = s_(xy_) / (std_x * std_y)
+\gamma_{xy} = \frac{s_{xy}}{std_x * std_y}
 $$
-[^ ]: s_(xy_)는 (x,y)의 표본공분산
-
-
+[^ ]: s_{xy}는 (x,y)의 표본공분산 
 
 **간단한 계산인 분산, 표준편차, 공분산은 scipy에서 deprecate할 거라 함**
