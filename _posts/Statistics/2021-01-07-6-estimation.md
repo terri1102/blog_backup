@@ -35,27 +35,52 @@ $$
 $$
 \hat{\theta}
 $$
-
-
 이라고 하면 추정량의 표집오차는 
 $$
 \theta - \hat{\theta}
 $$
 로 정의되고, 이는 변동과 편향으로 분해될 수 있다.
 
-> 추정량의 표집오차 = <img src="https://render.githubusercontent.com/render/math?math=\hat{\theta}"> - <img src="https://render.githubusercontent.com/render/math?math=\theta"> = 변동 + 편향
+> 추정량의 표집오차 = 
+> $$
+> \hat{\theta}-\theta
+> $$
+> = 변동 + 편향
 >
-> 변동 = <img src="https://render.githubusercontent.com/render/math?math=\hat{\theta}"> - E(<img src="https://render.githubusercontent.com/render/math?math=\hat{\theta}">)
+> 변동 = 
+> $$
+> \hat{\theta}-E(\hat{\theta})
+> $$
+> 편향 = 
 >
-> 편향 = E(<img src="https://render.githubusercontent.com/render/math?math=\hat{\theta}">) - <img src="https://render.githubusercontent.com/render/math?math=\theta">
+> $$
+> E(\hat{\theta})-\theta
+> $$
+> 
 >
 > 비편향추정량: 편향이 0인 추정량
 
-**비편향추정량**: 만약 E(<img src="https://render.githubusercontent.com/render/math?math=\hat{\theta}">) = <img src="https://render.githubusercontent.com/render/math?math=\theta">이면, <img src="https://render.githubusercontent.com/render/math?math=\hat{\theta}">은 <img src="https://render.githubusercontent.com/render/math?math=\theta">에 대한 비편향추정량이다. 
+**비편향추정량**: 만약 
+$$
+E(\hat{\theta})-\theta
+$$
+이면, 
+$$
+\hat{\theta}
+$$
+은 
+$$
+\theta
+$$
+에 대한 비편향추정량이다. 
 
 일치하지 않으면 편향추정량. 
 
-* 표본분산 S^2 를 정의할 때 n으로 나누지 않고 n-1로 나누는 이유는, n으로 나누면 편향추정량이 되고 n-1로 나누어야지만 비편향추정량이 되기 때문이다. *표본분산: <img src="https://render.githubusercontent.com/render/math?math=\frac{n}{n-1}\sigma^2">
+* 표본분산 S^2 를 정의할 때 n으로 나누지 않고 n-1로 나누는 이유는, n으로 나누면 편향추정량이 되고 n-1로 나누어야지만 비편향추정량이 되기 때문이다. *표본분산: 
+
+$$
+\frac{n}{n-1}\sigma^2
+$$
 
 
 
@@ -69,11 +94,23 @@ $$
 
 #### 3. 일치성(consistency): 추정량의 모수로의 확률적 수렴성
 
-**확률적 수렴**은 임의 양의 상수 $\epsilon$에 대하여 lim Pr(|<img src="https://render.githubusercontent.com/render/math?math=\hat{\theta}">- theta|> epsilon) = 0 이 성립하는 것
+**확률적 수렴**은 임의 양의 상수 
+$$
+\epsilon
+$$
+에 대하여 
+$$
+lim_{n->\infty}Pr(|\hat{\theta}-\theta|)>\epsilon) =0
+$$
+이 성립하는 것
 
-[^ ]: n이 무한대로 갈 때 Pr()가 1이 되는 <img src="https://render.githubusercontent.com/render/math?math=\hat{\theta}">은 일치추정량임
+[^ ]: n이 무한대로 갈 때 Pr()가 1이 되는 theta_hat은 일치추정량임
 
-표본평균, 표본중위수 또는 n-1로 나눈 평균은 모두 <img src="https://render.githubusercontent.com/render/math?math=\mu">에 대한 일치추정량
+표본평균, 표본중위수 또는 n-1로 나눈 평균은 모두 
+$$
+\mu
+$$
+에 대한 일치추정량
 
 
 
@@ -87,7 +124,11 @@ $$
 
 **신뢰구간 및 신뢰수준의 의미!**  신뢰수준이란 신뢰구간이 모수를 포함할 비율<->~~모수가 구간에 포함될 확률~~(모수는 불변이니까)
 
-95%의 신뢰수준일 때 똑같은 방법으로 100차례 표본을 추출하여 신뢰구간을 구하면 그 100개의 신뢰구간 중 95개가 모수 <img src="https://render.githubusercontent.com/render/math?math=mu">를 포함하게 됨.
+95%의 신뢰수준일 때 똑같은 방법으로 100차례 표본을 추출하여 신뢰구간을 구하면 그 100개의 신뢰구간 중 95개가 모수 
+$$
+\mu
+$$
+를 포함하게 됨.
 
 
 
@@ -122,10 +163,21 @@ $$
 (\bar{X}-z_{a/2}\frac{\sigma}{\sqrt(n)}, \bar{X}+z_{a/2}\frac{\sigma}{\sqrt(n)})
 $$
 
+**t분포**: 모분산을 모르는 경우 t-score
+$$
+\frac{\bar{X}-\mu}{s/\sqrt{n}}
+$$
+ (s는 표준편차)는 z-score 
+$$
+\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}
+$$
+와 달리 표준정규분포와 조금 다른 형태인 t분포를 따르는데, 이 t분포는 표본수에 따라 분포 모양이 조금씩 달라진다.  s는 표준편차(여기선 **t-score**로 구하는 것)고 sigma는 **z-score**로 구하는 것 의미 . s는 sigma보다 덜 편향적임. sigma는 주로 모집단의 표준편차 의미.
 
-**t분포**: 모분산을 모르는 경우 t-score <img src="https://render.githubusercontent.com/render/math?math=\frac{\bar{X}-\mu}{s/\sqrt{n}}">(s는 표준편차)는 z-score <img src="https://render.githubusercontent.com/render/math?math=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}">와 달리 표준정규분포와 조금 다른 형태인 t분포를 따르는데, 이 t분포는 표본수에 따라 분포 모양이 조금씩 달라진다.  s는 표준편차(여기선 **t-score**로 구하는 것)고 sigma는 **z-score**로 구하는 것 의미 . s는 sigma보다 덜 편향적임. sigma는 주로 모집단의 표준편차 의미.
-
-이는 자유도 <img src="https://render.githubusercontent.com/render/math?math=(\nu=n-1)>=30">에 의해 t분포 모양이 결정되기 때문이다. 표본수가 어느정도 큰 경우 표준정규분포와 비슷해지며 n>인 경우 표준정규분포를 이용해 확률을 구해도 큰 차이를 보이진 않는다. t분포는 표준정규분포와 전체적인 형태는 같으나 옆으로 넓게 퍼진 형태를 취하고 있다.
+이는 자유도
+$$
+(\nu=n-1)\geq30
+$$
+에 의해 t분포 모양이 결정되기 때문이다. 표본수가 어느정도 큰 경우 표준정규분포와 비슷해지며 n>30인 경우 표준정규분포를 이용해 확률을 구해도 큰 차이를 보이진 않는다. t분포는 표준정규분포와 전체적인 형태는 같으나 옆으로 넓게 퍼진 형태를 취하고 있다.
 
 
 
