@@ -52,9 +52,9 @@ comments: true
 
 ### 베이즈 정리 증명
 
-P(A|B)=A given B: B일 때 A인 조건부확률을 구하는 방법 이며, 아래에서는 이해를 위해 A, -A 두 가지 사건만 일어난다고 가정한다.
+P(AlB)=A given B: B일 때 A인 조건부확률을 구하는 방법 이며, 아래에서는 이해를 위해 A, -A 두 가지 사건만 일어난다고 가정한다.
 
-<img src="C:\Users\Boyoon Jang\Pictures\베이지안.png" style="zoom:50%;" />
+<img src="C:\Users\Boyoon Jang\Desktop\Repository\terri1102.github.io\assets\img\베이지안.png" style="zoom:67%;" />
 
 **1.식1**
 $$
@@ -110,9 +110,10 @@ $$
 $$
 
 
+
 ### 가설검정의 입장에서 생각해보기
 
-가설(H)을 검정하기 위해 데이터(E:evidence)를 수집했을 때 우리가 알고싶은 확률은 P(H|E) :  P(Hypoothesis given the evidence) 이다. 이때  P(H), P(E|H), P(E|-H)를 가지고 조건부확률을 구하게 된다. 즉, 어떤 조건부확률을 구할 때 그 조건 상황이 역으로 되어 있는 확률을 이용하게 된다.
+가설(H)을 검정하기 위해 데이터(E:evidence)를 수집했을 때 우리가 알고싶은 확률은 P(HㅣE) :  P(Hypoothesis given the evidence) 이다. 이때  P(H), P(EㅣH), P(Eㅣ-H)를 가지고 조건부확률을 구하게 된다. 즉, 어떤 조건부확률을 구할 때 그 조건 상황이 역으로 되어 있는 확률을 이용하게 된다.
 
 
 
@@ -120,14 +121,14 @@ $$
 
 1. 사전확률(사전확률의 비율) Prior ->P(H)
 
-2.  가설과 조건을 만족하는 데이터 비율: Likelihood ->P(E|H) 
-3.  조건을 만족시키지만 가설이 아닌 비율: P(E|~H)
+2.  가설과 조건을 만족하는 데이터 비율: Likelihood ->P(EㅣH) 
+3.  조건을 만족시키지만 가설이 아닌 비율: P(Eㅣ~H)
 
 $$
 P(H|E) = \frac{P(H)P(E|H)}{P(H)P(E|H)+P(-H)P(E|-H)}
 $$
 
-<img src="C:\Users\Boyoon Jang\Pictures\bayes theorem.PNG" style="zoom:60%;" />
+<img src="C:\Users\Boyoon Jang\Desktop\Repository\terri1102.github.io\assets\img\bayes theorem.PNG" style="zoom:60%;" />
 
 위의 세가지 확률을 알면 사후확률 P(H|E)을 알 수 있으며 새로운 데이터를 얻어 다시 추론을 하게 될 경우 기존 데이터에서 얻은 사후확률은 사전확률로 반영된다.
 
@@ -168,6 +169,6 @@ MCMC --->좀 더 개념 공부하고 적기
 
 복잡한 문제는 수형도로 그리면 더 알아보기 쉬워진다. 
 
-<img src="C:\Users\Boyoon Jang\Pictures\tngudeh.PNG" style="zoom: 67%;" />
+<img src="C:\Users\Boyoon Jang\Desktop\Repository\terri1102.github.io\assets\img\tngudeh.PNG" style="zoom:60%;" />
 
 
