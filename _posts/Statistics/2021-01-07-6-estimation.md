@@ -28,7 +28,20 @@ comments: true
 
 표본으로부터 얻어지는 점추정에는 항상 표집오차(sampling error)가 존재한다. 모집단 관심 모수 
 
- <img src="https://render.githubusercontent.com/render/math?math=\theta">에 대한 추정량을 <img src="https://render.githubusercontent.com/render/math?math=\hat{\theta}">이라고 하면 추정량의 표집오차는 <img src="https://render.githubusercontent.com/render/math?math=\hat{\theta}"> - <img src="https://render.githubusercontent.com/render/math?math=\theta">로 정의되고, 이는 변동과 편향으로 분해될 수 있다.
+$$
+\theta
+$$
+에 대한 추정량을 
+$$
+\hat{\theta}
+$$
+
+
+이라고 하면 추정량의 표집오차는 
+$$
+\theta - \hat{\theta}
+$$
+로 정의되고, 이는 변동과 편향으로 분해될 수 있다.
 
 > 추정량의 표집오차 = <img src="https://render.githubusercontent.com/render/math?math=\hat{\theta}"> - <img src="https://render.githubusercontent.com/render/math?math=\theta"> = 변동 + 편향
 >
@@ -42,7 +55,7 @@ comments: true
 
 일치하지 않으면 편향추정량. 
 
-* 표본분산 <img src="https://render.githubusercontent.com/render/math?math=\S^2">를 정의할 때 n으로 나누지 않고 n-1로 나누는 이유는, n으로 나누면 편향추정량이 되고 n-1로 나누어야지만 비편향추정량이 되기 때문이다. *표본분산: <img src="https://render.githubusercontent.com/render/math?math=\frac{n}{n-1}\sigma^2">
+* 표본분산 S^2 를 정의할 때 n으로 나누지 않고 n-1로 나누는 이유는, n으로 나누면 편향추정량이 되고 n-1로 나누어야지만 비편향추정량이 되기 때문이다. *표본분산: <img src="https://render.githubusercontent.com/render/math?math=\frac{n}{n-1}\sigma^2">
 
 
 
