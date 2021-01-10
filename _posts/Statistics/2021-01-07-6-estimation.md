@@ -41,24 +41,23 @@ $$
 $$
 로 정의되고, 이는 변동과 편향으로 분해될 수 있다.
 
-> 추정량의 표집오차 = 
-> $$
-> \hat{\theta}-\theta
-> $$
-> = 변동 + 편향
->
-> 변동 = 
-> $$
-> \hat{\theta}-E(\hat{\theta})
-> $$
-> 편향 = 
->
-> $$
-> E(\hat{\theta})-\theta
-> $$
-> 
->
-> 비편향추정량: 편향이 0인 추정량
+추정량의 표집오차 = 
+$$
+\hat{\theta}-\theta
+$$
+= 변동 + 편향
+
+변동 = 
+$$
+\hat{\theta}-E(\hat{\theta})
+$$
+
+편향 = 
+$$
+E(\hat{\theta})-\theta
+$$
+
+비편향추정량: 편향이 0인 추정량
 
 **비편향추정량**: 만약 
 $$
@@ -136,7 +135,11 @@ $$
 
 ![](C:\Users\Boyoon Jang\Pictures\모평균 구간추정에 사용하는 통계량.PNG)
 
-*  <img src="https://render.githubusercontent.com/render/math?math=\sigma">를 알 경우: z-score 사용 
+* $$
+  \theta
+  $$
+
+를 알 경우: z-score 사용 
 
 $$
 (\bar{X}-z_{\alpha/2}\frac{\sigma}{\sqrt{n}}, \bar{X}+z_{\alpha/2}\frac{\sigma}{\sqrt{n}})
@@ -150,7 +153,11 @@ $$
 
 [^ ]: 표본평균값(<img src="https://render.githubusercontent.com/render/math?math=\bar{X}">의 실측치  <img src="https://render.githubusercontent.com/render/math?math=\bar{x}">)으로 대체한 것
 
-* <img src="https://render.githubusercontent.com/render/math?math=\sigma">를 모를 경우: t-score 사용
+* $$
+  \theta
+  $$
+
+를 모를 경우: t-score 사용
 
 $$
 (\bar{x}-t_{\alpha/2}\frac{\sigma}{\sqrt{n}}, \bar{x}+t_{\alpha/2}\frac{\sigma}{\sqrt{n}})

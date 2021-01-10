@@ -20,6 +20,10 @@ comments: true
 
 **최빈값(mode)**: 빈도수가 최대인 값, 명목형 자료에서 사용
 
+```python
+df.discribe() #count, mean, std, min, quartiles, max
+```
+
 
 
 ## 2. 변동성 척도
@@ -37,7 +41,7 @@ comments: true
   
 
 * **분산(variance)과 표준편차(standard deviation)**: 모든 자료가 그 평균으로부터 떨어져 있는 거리를 제곱한 것의 평균값 & 그것의 제곱근이 표준편차
-```
+```python
 numpy.var(arr) # 분산
 numpy.std(arr) # 표준편차
 ```
@@ -48,7 +52,7 @@ $$
 (std/mean) * 100 %
 $$
 
-```
+```python
 scipy.stats.variation(arr, axis=0, nan_policy='propagate')
 ```
 
@@ -63,7 +67,7 @@ $$
 z-score: (x_i - \bar{x}) / std
 $$
 
-```
+```python
 from scipy.stats import zscore
 zscore(a_region, axis=0, ddof=0, nan_policy='propagate')
 ```
@@ -99,7 +103,7 @@ $$
 2. 표본공분산
    <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/4d158b1ec5a3c6d1de84b9d59f604d8170a51407" alt=" q_{jk}=\frac{1}{N-1}\sum_{i=1}^{N}\left(  x_{ij}-\bar{x}_j \right)  \left( x_{ik}-\bar{x}_k \right), " style="zoom:67%;" />
 
-```
+```python
 numpy.cov(m, y=None, rowvar=True, bias=False, ddof=None, fweights=None, aweights=None)
 ```
 
@@ -116,7 +120,7 @@ $$
 
 - 공분산은 계측단위에 따라 그 크기가 달라질 수 있으나 상관계수는 표준화된 척도로 계측단위에 영향을 받지 않는다.
 
-```
+```python
 scipy.stats.pearsonr(x, y)         #x,y = array 
                                    #>>피어슨상관계수, pvalue 출력
 ```
