@@ -14,6 +14,10 @@ comments: true
 
 
 
+유의성 검정: 샘플이 모수를 얼마나 반영하는지 검정
+
+
+
 # 1. 점추청
 
 ---
@@ -75,7 +79,8 @@ $$
 
 일치하지 않으면 편향추정량. 
 
-* 표본분산 S^2 를 정의할 때 n으로 나누지 않고 n-1로 나누는 이유는, n으로 나누면 편향추정량이 되고 n-1로 나누어야지만 비편향추정량이 되기 때문이다. *표본분산: 
+* 표본분산 S^2 를 정의할 때 n으로 나누지 않고 n-1로 나누는 이유는, n으로 나누면 편향추정량이 되고 n-1로 나누어야지만 비편향추정량이 되기 때문이다. 
+* *표본분산: 
 
 $$
 \frac{n}{n-1}\sigma^2
@@ -135,10 +140,9 @@ $$
 
 ![](C:\Users\Boyoon Jang\Pictures\모평균 구간추정에 사용하는 통계량.PNG)
 
-* $$
-  \theta
-  $$
-
+$$
+* \theta
+$$
 를 알 경우: z-score 사용 
 
 $$
@@ -151,12 +155,12 @@ $$
 (\bar{x}-z_{\alpha/2}\frac{\sigma}{\sqrt{n}}, \bar{x}+z_{\alpha/2}\frac{\sigma}{\sqrt{n}})
 $$
 
-[^ ]: 표본평균값(<img src="https://render.githubusercontent.com/render/math?math=\bar{X}">의 실측치  <img src="https://render.githubusercontent.com/render/math?math=\bar{x}">)으로 대체한 것
+[^ ]: 표본평균값X_bar의 실측치  x_bar으로 대체한 것
 
-* $$
-  \theta
-  $$
 
+$$
+* \theta
+$$
 를 모를 경우: t-score 사용
 
 $$
@@ -165,7 +169,10 @@ $$
 
  
 
-**신뢰구간(CI)**: 
+
+
+#### 신뢰구간(CI) 
+
 $$
 (\bar{X}-z_{a/2}\frac{\sigma}{\sqrt(n)}, \bar{X}+z_{a/2}\frac{\sigma}{\sqrt(n)})
 $$
@@ -185,6 +192,24 @@ $$
 (\nu=n-1)\geq30
 $$
 에 의해 t분포 모양이 결정되기 때문이다. 표본수가 어느정도 큰 경우 표준정규분포와 비슷해지며 n>30인 경우 표준정규분포를 이용해 확률을 구해도 큰 차이를 보이진 않는다. t분포는 표준정규분포와 전체적인 형태는 같으나 옆으로 넓게 퍼진 형태를 취하고 있다.
+
+```python
+from scipy import stats
+
+def confidence_interval(data, confidence = 0.95):
+      data = np.array(data)
+  mean = np.mean(data)
+  n = len(data)
+  
+  # std / sqrt(n)
+  stderr = stats.sem(data) 
+  # Standard Error of Mean (https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.sem.html)
+  # s / sqrt(n)
+
+  # length_of_one_interval
+  interval = stderr * stats.t.ppf( (1 + confidence) / 2 , n - 1) # ppf : inverse of cdf     n-1:dof
+  return (mean, mean - interval, mean + interval)
+```
 
 
 
