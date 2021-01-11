@@ -8,16 +8,6 @@ tags: [sample post, images, test]
 comments: true
 ---
 
-반투명한 글자상자 `letter`
-키보드 <kbd>N</kbd><kbd>I</kbd><kbd>C</kbd><kbd>E</kbd>
-
-<p>Some Markdown text with <span style="color:blue">some <em>blue</em> text</span>.</p>
-
-
-$$
-k_n^2 \Sigma_n \frac{n!}{k!(n-k)!} \binom{n}{k} \frac{\frac{x}{1}}{x - y}  ^3/_7 \sum_{i=1}^{n} t_i \frac{1}{n} 	\prod  	\bigoplus\coprod 	\bigodot \oint 	\iiint 	\sum_{\substack{0<i<m\0<j<n}} P(i, j) \bar{a} \acute{a}\grave{a}	a’’a` a^{\prime}
-$$
-
 
 
 # 1. 연속형 확률변수

@@ -41,7 +41,11 @@ comments: true
 
 # T-Tests 
 
----
+T-검정: 두 집단의 평균차이를 검정
+
+**독립변수**: 정성적 변수(명목, 서열 척도)
+
+**종속변수**: 정량적 변수(등간, 비율 척도)
 
 1. 귀무가설 설정
 2. 대안 가설 설정
@@ -133,13 +137,17 @@ p value 값이**(1-Confidence)** 보다 작으면 귀무가설을 기각한다.
 
 ![{\displaystyle \sigma =\pm {\sqrt {\frac {\Sigma (x-{\bar {x}})^{2}}{n(n-1)}}}=\pm {\sqrt {\frac {\Sigma \nu ^{2}}{n(n-1)}}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/61735ebe993a9679c0dd7d468d67ba03a4f282c7)
 
-표준편차 / sqart(n)
-
 (n-1로 나누는 거는 불편 추정량인 표본분산으로 구해서)
 
- 편의 추정량은 n으로 나누지만 불편 추정량은 n-1로 나누며 통계분석에서는 일반적으로 편의 추정량 보다는 불편 추정량 사용
+표준편차: 모집단에 속해 있는 하나의 자료가 가지고 있는 흩어짐의 정도. 모분산의 제곱근
 
-![Standard Error of the Sample Mean](https://jungminded.weebly.com/uploads/1/3/5/8/13582285/7285766_orig.jpeg?160)
+표준오차:표본에서 얻은 추정량이 가지고 있는 흩어짐의 정도. 추정량 분산의 제곱근
+
+
+
+ *편의 추정량은 n으로 나누지만 불편 추정량은 n-1로 나누며 통계분석에서는 일반적으로 편의 추정량 보다는 불편 추정량 사용
+
+<img src="https://jungminded.weebly.com/uploads/1/3/5/8/13582285/7285766_orig.jpeg?160" alt="Standard Error of the Sample Mean" style="zoom:50%;" />
 
 1. we can calculate the critical t-value and if our t-statistic is greater than the critical value we reject the null hypothesis
 2. We can calculate the P-value from our T-statistic and we can reject the null hypothesis if the P-value is smaller than our chosen Alpha level.
