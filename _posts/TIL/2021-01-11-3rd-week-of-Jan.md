@@ -6,6 +6,7 @@ category: [TIL]
 excerpt: "2021.01.11-2021.01.17까지 TIL"
 tags: [ANOVA, levene, one-hot coding]
 comments: true
+typora-copy-images-to: ..\..\assets\img
 ---
 
 ## 2021.01.11(월)
@@ -86,6 +87,8 @@ cf)tf.Tensor 객체의 랭크는 그 차원의 수이지만 수학에서 쓰는 
 $$
 MSE = E [ (X - \hat{X})^2] = \frac{1}{N}\Sigma(X-\hat{X})^2
 $$
+
+
 **MAE**(mean absolute error, 평균절대오차) : 모든 절대오차의 평균
 $$
 MAE = \frac{1}{N}\Sigma(|X-\hat{X}|)
