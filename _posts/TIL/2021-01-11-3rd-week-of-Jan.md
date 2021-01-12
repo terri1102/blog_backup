@@ -2,8 +2,9 @@
 layout: post
 title: "2021년 1월 셋째주 TIL"
 date: 2021-01-11
-category: [TIL]
+categories: [TIL]
 excerpt: "2021.01.11-2021.01.17까지 TIL"
+permalink: /categories/
 tags: [ANOVA, levene, one-hot coding]
 comments: true
 typora-copy-images-to: ..\..\assets\img
@@ -89,10 +90,11 @@ MSE = E [ (X - \hat{X})^2] = \frac{1}{N}\Sigma(X-\hat{X})^2
 $$
 
 
-**MAE**(mean absolute error, 평균절대오차) : 모든 절대오차의 평균
+**MAE**(mean absolute error, 평균절대오차) : 모든 절대오차의 평균</br>
 $$
 MAE = \frac{1}{N}\Sigma(|X-\hat{X}|)
 $$
+
 
 
 **사용례**
