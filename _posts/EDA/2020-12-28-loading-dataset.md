@@ -1,14 +1,12 @@
 ---
 layout: post
-title:  "20.12.28 TIL"
+title:  "데이터셋 불러오기"
 date:   2020-12-28
-excerpt: "Just about everything you'll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more."
+excerpt: "pandas로 데이터셋 불러오기"
 tag:
-- blog
-- TIL
 - EDA
 - csv
-- pandasl
+- pandas
 comments: true
 ---
 
