@@ -4,7 +4,7 @@ title: "2021년 1월 셋째주 TIL"
 date: 2021-01-11
 categories: [TIL]
 excerpt: "2021.01.11-2021.01.17까지 TIL"
-permalink: /TIL/
+permalink: /TIL/2021-01-11-3rd-week-of-Jan/
 tags: [ANOVA, levene, one-hot coding]
 comments: true
 typora-copy-images-to: ..\..\assets\img
