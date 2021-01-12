@@ -22,13 +22,6 @@ layout: compress
                     </a>
                 </div>
                 <div class="post-list">
-                    {% assign category = page.title %}
-                    {% for post in site.categories[category] %} 
-                           <ul>
-                           
-                           </ul>
-                    {% endfor %}
-</div>
                     {% for post in site.posts %} 
                         {% if post.project == null %}
                     <ul>
@@ -40,6 +33,13 @@ layout: compress
                     </ul>
                         {% endif %}
                     {% endfor %}
+                    {% assign category = page.title %}
+                    {% for post in site.categories[category] %}
+                        <ul>
+              <!-- post 제목 나열 -->              
+                        </ul>
+                    {% endfor %}
+</div>
                 </div>
             </div>
         </div>
