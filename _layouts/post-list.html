@@ -49,3 +49,21 @@ layout: compress
     <script type="text/javascript">(new WOW).init();</script>
 </body>
 </html>
+<p>Posts in category "TIL" are:</p>
+
+<ul>
+  {% for post in site.categories.TIL %}
+    {% if post.url %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+<p>Posts in category "Statistics" are:</p>
+
+<ul>
+  {% for post in site.categories.Statistics %}
+    {% if post.url %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
