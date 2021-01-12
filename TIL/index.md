@@ -1,5 +1,5 @@
 ---
-layout: post-list
+layout: category
 title: TIL
 category: [TIL]
 excerpt: "Today I learned"
