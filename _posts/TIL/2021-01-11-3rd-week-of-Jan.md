@@ -57,13 +57,15 @@ git hub 블로그 너무너무 어렵다...마크다운 편집기에서 작성�
 
 **Fact**: 오늘은 선형대수(기초 행렬, 벡터)를 numpy로 구현하는 법을 배웠다.
 
-**Feeling**: :2nd_place_medal:통계학을 배울 때처럼 헷갈리는 개념은 별로 없었다.  gem도 깔고 config도 수정했는데 jemoji를 넣는 길은 요원하다...
+**Feeling**: :2nd_place_medal:통계학을 배울 때처럼 헷갈리는 개념은 별로 없었다.  ~~gem도 깔고 config도 수정했는데 jemoji를 넣는 길은 요원하다...~~일단 넣었는데 이제 크기가 이상해!
 
 **Finding**: 다른 분이 질문해주신 벡터 차원 관련 질문에서 tensor라는 개념을 새로 알게되었다!
 
 * **tensor:** 선형관계를 나타내는 다중선형대수학의 대상
 
 vector는 항상 1 tensor의 형태로 나타나지만, 다양한 차원을 가질 수 있다. 예를 들어 좌표평면에서 x,y를 표현할 때 주로 쓰는 2x1 벡터는 2차원이다.
+
+
 $$
 \vec{V1}= [0,1,1,3] \quad 1차원
 $$
@@ -79,6 +81,8 @@ cf)tf.Tensor 객체의 랭크는 그 차원의 수이지만 수학에서 쓰는 
 * **MAE와 MSE**
 
 **MSE**(mean squared error, 평균 제곱 오차): 잔차(오차)의 제곱에 대한 평균을 취한 값 
+
+
 $$
 MSE = E [ (X - \hat{X})^2] = \frac{1}{N}\Sigma(X-\hat{X})^2
 $$
@@ -97,3 +101,4 @@ $$
 **Future action** 선형대수 정리한 것 복습
 
 **Feedback** :woman_shrugging:
+
