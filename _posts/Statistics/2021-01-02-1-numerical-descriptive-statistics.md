@@ -40,7 +40,9 @@ df.discribe() #count, mean, std, min, quartiles, max
 
   
 
-* **분산(variance)과 표준편차(standard deviation)**: 모든 자료가 그 평균으로부터 떨어져 있는 거리를 제곱한 것의 평균값 & 그것의 제곱근이 표준편차
+* **분산(variance)과 표준편차(standard deviation)**: 모든 자료가 그 평균으로부터 떨어져 있는 거리를 제곱한 것의 평균값 
+
+& 그것의 제곱근이 표준편차
 ```python
 numpy.var(arr) # 분산
 numpy.std(arr) # 표준편차
