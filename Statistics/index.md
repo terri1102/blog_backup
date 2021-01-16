@@ -1,5 +1,5 @@
 ---
-layout: post-list
+layout: Statistics
 title: Statistics
 category: [Statistics]
 excerpt: "Statistics 101"
