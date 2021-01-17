@@ -3,7 +3,7 @@ layout: post
 title: "7. 가설검정(1)(Hypothesis Testing)"
 date: 2021-01-11
 categories: [Statistics]
-excerpt: "가설검정의 요소, t-test, One sample testing, Two sample Testing"
+excerpt: "가설검정의 요소, t-test, One sample testing, Two sample Testing, ANOVA"
 tags: [가설검정,t-test, z-score, 유의수준]
 comments: true
 ---
@@ -212,7 +212,7 @@ P값: 특정 값이 확률분포의 어딘가에 해당하는지 나타내는 �
 
 
 
-
+**세 개 이상의 집단을 분석하고 싶다면->ANOVA**
 
 
 

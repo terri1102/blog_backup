@@ -44,7 +44,16 @@ df = pd.read_excel('users.xlsx', sheet_name = None)
 df.to_csv(file_name, encoding='utf-8')
 ```
 
+* **한글이 들어있는 데이터셋 불러올 때 오류나면 인코딩**
+
+```python
+df = pd.read_csv('file_name.csv', encoding='cp949') 
+```
+
+
+
 ## 2. preprocessing
+
 * Transpose하고 첫번째 row를 column_header로 정하기
 ```python
 def clean(file_name):
