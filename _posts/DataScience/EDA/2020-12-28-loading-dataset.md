@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "데이터셋 불러오기"
+title:  "[EDA] 데이터셋 불러오기"
 date:   2020-12-28
 excerpt: "pandas로 데이터셋 불러오기"
 Category: [EDA]
