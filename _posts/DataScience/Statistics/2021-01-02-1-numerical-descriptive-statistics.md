@@ -41,9 +41,8 @@ df.discribe() #count, mean, std, min, quartiles, max
 
   
 
-* **분산(variance)과 표준편차(standard deviation)**: 모든 자료가 그 평균으로부터 떨어져 있는 거리를 제곱한 것의 평균값 
+* **분산(variance)과 표준편차(standard deviation)**: 모든 자료가 그 평균으로부터 떨어져 있는 거리를 제곱한 것의 평균값 & 그것의 제곱근이 표준편차
 
-& 그것의 제곱근이 표준편차
 ```python
 numpy.var(arr) # 분산
 numpy.std(arr) # 표준편차
@@ -92,14 +91,20 @@ zscore(a_region, axis=0, ddof=0, nan_policy='propagate')
 #### 공분산(Covariance): 2개의 확률변수의 상관정도
 
 1. 모집단 공분산
+
+
 $$
 Cov(X,Y) = σ_{XY} = \frac{1}{n}\sum_{i=1}^{n}(x_i −μ_x)(y_i−μ_y)=E{(X−μX )(Y−μY )}
 $$
+
+
 σ_XY > 0 : X와 Y는 양의 선형적 관계
 
 σ_XY < 0 : X와 Y는 음의 선형적 관계
 
 σ_XY = 0 : X와 Y는 선형적 관계를 갖지 않는다.
+
+
 
 
 
@@ -134,6 +139,8 @@ scipy.stats.pearsonr(x, y)         #x,y = array
 
 
 
+
+
 **X와 Y의 모집단상관계수 성질**
 $$
 -1 ≤ \rho _{XY} ≤ 1
@@ -144,6 +151,8 @@ $$
 - -1 ≤ pXY < 0: X와 Y는 음의 선형적 관계
 - pXY = 0:  X와 Y는 선형적 관계가 존재하지 않음
 - 상관계수를 구할 때, 산점도는 항상 그려보아야 한다!
+
+
 
 
 
