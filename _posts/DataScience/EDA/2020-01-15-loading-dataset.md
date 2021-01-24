@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[EDA] 데이터셋 불러오기"
-date:   2020-12-28
+date:   2020-01-15
 excerpt: "pandas로 데이터셋 불러오기"
 Category: [EDA]
 DataScience: true

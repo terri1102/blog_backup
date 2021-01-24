@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Statistics] 1. 수치적 기술통계"
-date: 2021-01-06
+date: 2021-01-02
 excerpt: "수치적 기술통계에서 사용하는 중심위치 척도, 변동성 척도, 특이값, 연관성 척도, 분산"
 DataScience: true
 tags: [statistics, 수치적 기술통계, 통계]

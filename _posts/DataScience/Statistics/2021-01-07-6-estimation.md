@@ -141,16 +141,19 @@ $$
 
 ![](C:\Users\Boyoon Jang\Pictures\모평균 구간추정에 사용하는 통계량.PNG)
 
+
+
+
+
 $$
-* \theta
+\theta
 $$
 를 알 경우: z-score 사용 
-
 $$
 (\bar{X}-z_{\alpha/2}\frac{\sigma}{\sqrt{n}}, \bar{X}+z_{\alpha/2}\frac{\sigma}{\sqrt{n}})
 $$
 
-[^ ]: 모집단의 정규분포 구간을 모평균에 대한 구간처럼 만든 것
+[^ ]: 모집단의 정규분포 구/간을 모평균에 대한 구간처럼 만든 것
 
 $$
 (\bar{x}-z_{\alpha/2}\frac{\sigma}{\sqrt{n}}, \bar{x}+z_{\alpha/2}\frac{\sigma}{\sqrt{n}})
@@ -159,8 +162,9 @@ $$
 [^ ]: 표본평균값X_bar의 실측치  x_bar으로 대체한 것
 
 
+
 $$
-* \theta
+\theta
 $$
 를 모를 경우: t-score 사용
 
