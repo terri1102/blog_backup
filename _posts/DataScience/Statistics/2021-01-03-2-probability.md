@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Statistics] 2. 확률과 베이즈 정리"
-date: 2021-01-08
+date: 2021-01-03
 category: [Statistics]
 DataScience: true
 excerpt: "빈도론자와 베이지안의 차이와 베이즈 정리의 이해"

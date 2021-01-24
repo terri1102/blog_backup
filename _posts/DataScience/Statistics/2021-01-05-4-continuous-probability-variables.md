@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "[Statistics] 4. 연속형 확률변수(Continuous probability varaibles)"
-date: 2021-01-06
+title: "[Statistics] 4. 연속형 확률변수"
+date: 2021-01-05
 category: [Statistics]
 DataScience: true
-excerpt: "Examples and code for displaying images in posts."
-tags: [sample post, images, test]
+excerpt: "연속형 확률변수의 확률밀도함수(pdf)와 누적분포함수(cdf), 균일분포, 정규분포"
+tags: [연속형 확률변수, 확률밀도함수, pdf, cdf]
 comments: true
 ---
 

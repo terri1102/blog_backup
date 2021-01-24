@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Statistics] 3. 이산형 확률변수"
-date: 2021-01-08
+date: 2021-01-04
 category: [Statistics]
 DataScience: true
 excerpt: "확률변수와 이산형 확률분포, 평균과 표준편차, 이항분포, 포아송분포"
