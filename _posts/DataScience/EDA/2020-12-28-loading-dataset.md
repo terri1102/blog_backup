@@ -3,6 +3,8 @@ layout: post
 title:  "데이터셋 불러오기"
 date:   2020-12-28
 excerpt: "pandas로 데이터셋 불러오기"
+Category: [EDA]
+DataScience: true
 tag:
 - EDA
 - csv
@@ -20,6 +22,19 @@ comments: true
 data_url = 'https://raw.githubusercontent.com/mwaskom/seaborn-data/master/car_crashes.csv'
 df = pd.read_csv(data_url, error_bad_lines=False) #error_bad_lines=False: 오류나는 데이터는 불러오지 않음
 df.head
+```
+
+* 데이터셋 바로 열기
+
+```python
+#1
+!pip install palmerpenguins
+from palmerpenguins import load_penguins_raw 
+penguins = load_penguins_raw()
+
+#2
+from sklearn.datasets import load_iris
+iris = load_iris()
 ```
 
 * 로컬 파일
@@ -63,3 +78,15 @@ def clean(file_name):
   df.columns = column_head
 return df                                                                    #마지막 row만 return하고 싶으면 df[-1:]
 ```
+
+* 결측치 처리
+
+```python
+df.info() #non-null object의 개수 정리해서 column별로 알려줌
+
+df.isnall().sum() #결측치의 개수를 column별로 알려줌
+np.sum(pd.isnull(df))
+
+df.fillna(0) #결측치를 0으로 채워줌
+```
+

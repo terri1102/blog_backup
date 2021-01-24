@@ -6,6 +6,7 @@ categories: [TIL]
 excerpt: "2021.01.11-2021.01.17까지 TIL"
 permalink: /TIL/2021-01-11-3rd-week-of-Jan/
 tags: [ANOVA, levene, one-hot coding]
+TIL: true
 Jan21: true
 comments: true
 typora-copy-images-to: ..\..\assets\img
@@ -213,11 +214,4 @@ print(score_dataset(imputed_X_train, imputed_X_test, y_train, y_test))
 
 ---
 
-
-
-# 21.01.17(일)
-
----
-
-kaggle
 
