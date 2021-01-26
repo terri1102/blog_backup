@@ -56,7 +56,9 @@ typora-copy-images-to: ..\..\assets\img
 
 P(AlB)=A given B: B일 때 A인 조건부확률을 구하는 방법 이며, 아래에서는 이해를 위해 A, -A 두 가지 사건만 일어난다고 가정한다.
 
-<img src="C:\Users\Boyoon Jang\Desktop\Repository\terri1102.github.io\assets\img\베이지안.png" style="zoom:67%;" />
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/img/%EB%B2%A0%EC%9D%B4%EC%A7%80%EC%95%88.png?raw=true" alt="bayesian square" style="zoom:67%;" />
+
+
 
 
 
@@ -98,6 +100,8 @@ $$
 
 
 
+
+
  **2. 식2**
 $$
 P(A|B) = \frac{P(B|A)*P(A)}{P(B|A)*P(A)+P(B|-A)*P(-A)}
@@ -112,6 +116,8 @@ $$
 $$
 		 P(A_i|B) = \frac{P(B|A_i)*P(A_i)}{P(B|A_1)*P(A_1)+P(B|A_2)*P(A_2)+P(B|A_3)*P(A_3)+ ...+ P(B|A_n)*P(A_n)}
 $$
+
+
 
 
 
@@ -132,7 +138,9 @@ $$
 P(H|E) = \frac{P(H)P(E|H)}{P(H)P(E|H)+P(-H)P(E|-H)}
 $$
 
-<img src="C:\Users\Boyoon Jang\Desktop\Repository\terri1102.github.io\assets\img\bayes theorem.PNG" style="zoom:60%;" />
+![bayesian inference](https://github.com/terri1102/terri1102.github.io/blob/master/assets/img/bayes%20theorem.PNG?raw=true)
+
+
 
 위의 세가지 확률을 알면 사후확률 P(H|E)을 알 수 있으며 새로운 데이터를 얻어 다시 추론을 하게 될 경우 기존 데이터에서 얻은 사후확률은 사전확률로 반영된다.
 
@@ -173,6 +181,5 @@ MCMC --->좀 더 개념 공부하고 적기
 
 복잡한 문제는 수형도로 그리면 더 알아보기 쉬워진다. 
 
-<img src="C:\Users\Boyoon Jang\Desktop\Repository\terri1102.github.io\assets\img\tngudeh.PNG" style="zoom: 67%;" />
-
+![tree diagram](https://github.com/terri1102/terri1102.github.io/blob/master/assets/img/tngudeh.PNG?raw=true)
 

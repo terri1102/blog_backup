@@ -62,7 +62,7 @@ https://stackoverflow.com/questions/39684548/convert-the-string-2-90k-to-2900-or
 
 여기에 나랑 똑같은 문제에 직면한 사람이 있어서 답변을 복붙했더니..에러 난다.
 
-\1. 문제 원인: df.dtypes해도 object이라고 나왔지만 replace('-', 0)으로 바꾼 column들의 replace된 데이터들 이미 float로 바뀌어 있음. 
+문제 원인: df.dtypes해도 object이라고 나왔지만 replace('-', 0)으로 바꾼 column들의 replace된 데이터들 이미 float로 바뀌어 있음. 
 
 즉, 한 column 안에 데이터형이 섞여있게 됨. 근데 dtypes로 보면 object라고 뜸
 
@@ -70,13 +70,13 @@ https://stackoverflow.com/questions/39684548/convert-the-string-2-90k-to-2900-or
 
 
 
-float(series[:-1]) #series 값이 '452M' 이런 식이어도 마지막 자리 빼고 typecast되니 float으로 바꿀 수 있음
+* float(series[:-1]) #series 값이 '452M' 이런 식이어도 마지막 자리 빼고 typecast되니 float으로 바꿀 수 있음
 
-return은 def 안에서 쓰인다. 
+* return은 def 안에서 쓰인다. 
 
-int, float : for loop 안에 못 들어가? 'int' object is not iterable 
+* int, float : for loop 안에 못 들어가? 'int' object is not iterable 
 
-(list, dictionary, set, string, tuple, bytes가 iterable한 타입입니다.)
+​      (list, dictionary, set, string, tuple, bytes가 iterable한 타입입니다.)
 
 **Future Action** regex 공부하기, 너무 어렵다.  기본 문법암기랑 compile 해서 쓰는 법이랑 pattern으로 쓰는 법 두개라도 익히자
 
@@ -122,11 +122,11 @@ https://scikit-learn.org/stable/auto_examples/impute/plot_iterative_imputer_vari
 
 ### 21.01.23(토)
 
-Fact: 오늘 할 거- for loop, regex 공부, 소프트웨어 개발 3강
+**Fact:** 오늘 할 거- for loop, regex 공부, 소프트웨어 개발 3강
 
-Feeling:
+**Feeling:**
 
-Finding:
+**Finding:**
 
 ```python
 map(변환 함수, 순회 가능한 데이터)
@@ -145,11 +145,9 @@ count += 1   #count = count+1
 print('Case #{}:'.format(x), A+B)
 ```
 
+**Future Action:**
 
-
-Future Action:
-
-Food for thought:
+**Food for thought:**
 
 
 
