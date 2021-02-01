@@ -80,6 +80,7 @@ E(X) = \frac{a+b}{2}, \quad V(X)=\frac{(b-a)^2}{12}
 $$
 
 
+
 # 3. 정규분포(Normal distribution)
 
 ---

@@ -40,6 +40,14 @@ comments: true
 
 ------
 
+데이터의 종류에 따라 
+
+
+
+
+
+---
+
 
 
 # T-Tests 
@@ -65,7 +73,7 @@ T-검정: 두 집단의 평균차이를 검정
 
    표본수 30미만일 경우 정규성 검정을 실시한다. (표본수가 10 이하면 윌콕슨순위합검정)
 ```python
-# scipy.stats.normaltest(sample, axis=0, nan_policy='propagate')
+#scipy.stats.normaltest(sample, axis=0, nan_policy='propagate')
 from scipy.stats import normaltest
 import numpy as np
 
