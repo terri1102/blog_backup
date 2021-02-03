@@ -1,19 +1,35 @@
 ---
 layout: post
-title: "Ridge regression"
+title: "정규화 선형회귀"
 date: 2021-02-01
 category: [Machine Learning]
 MachineLearning : true 
-excerpt: " "
-tags: [단순선형회귀모형, 다중회귀모형, OLS]
+excerpt: "Ridge Regression, Lasso Regression, Elastic Net Regression"
+tags: [SelectKBest, Ridge, Lasso, Ealstic, lambda]
 comments: true
 ---
 
-SelectKBest
+
+
+# Regularized Regression
+
+
+
+# Regularized Regression(정규화 선형회귀)
+
+정규화 선형회귀 방법은 선형회귀 계수에 대한 제약 조건을 추가해서 bias를 높이고, variance를 줄이는 방식으로 과적합을 막는 방법이다. 여기서는 Ridge regression, Lasso regression, Elastic net에 대해 정리하겠다.
+
+
+
+# Ridge Regression
+
+
+
+## Feature selection
+
+**SelectKBest**
 
 ```python
-# target(Price)와 가장 correlated 된 features 를 k개 고르는 것이 목표입니다.
-
 ## f_regresison, SelectKBest
 from sklearn.feature_selection import f_regression, SelectKBest       #f_regression은 selectKbest 안에서 쓰는 거, regression 모델 쓸 때 사용 <->f_classification
 
@@ -186,7 +202,9 @@ for alpha in [0.001, 0.005, 0.01, 0.02, 0.03, 0.1, 0.15, 0.17, 0.2, 100.0, 1000.
 Ridge Regression에서 lambda값을 정하는 데 사용됨
 
 ```python
+from sklearn.linear_model import RidgeCV
 
+RidgeCV(alphas=0.1, 1.0, 10.0, *, fit_intercept=True, normalize=False, scoring=None, cv=None, gcv_mode=None, store_cv_values=False, alpha_per_target=False)
 ```
 
 

@@ -24,7 +24,11 @@ EDA의 목적 및 기능
 
 ## 1. 데이터 셋 불러오기
 
-* URL
+* pd.read_csv
+```python
+pd.read_csv()
+```
+*  URL
 
 ```python
 data_url = 'https://raw.githubusercontent.com/mwaskom/seaborn-data/master/car_crashes.csv'
