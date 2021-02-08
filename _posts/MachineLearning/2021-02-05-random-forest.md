@@ -11,13 +11,9 @@ comments: true
 
 
 
-
-
 # Random Forest
 
-앙상블 방법 중 하나. 기본모델(weak base learner)를 만들어 그 모델의 예측결과를 다수결이나 평균을 내어 예측하는 방법 
-
-
+랜덤포레스트 모델은 앙상블 방법 중 하나로 기본모델(weak base learner)를 만들어 그 모델의 예측결과를 다수결이나 평균을 내어 예측하는 방법이다. 데이터가 선형이든 비선형이든 분류 문제에 사용가능하다.
 
 
 
@@ -132,4 +128,16 @@ MDS를 그릴 수도 있음
 레이블이 0일 때 범주1, 레이블이 1일 때 범주 2를 달게 되었다고 하자
 
 3)위에서 쓴 방법으로 트리들이 범주1, 레이블0으로 투표한 수와 범주2, 레이블1로 투표한 수를 비교해서 결측치가 있는샘플을 분류한다
+
+
+
+Sklearn
+
+1) train 데이터를 훈련/검증 세트로 분리
+
+```python
+from sklearn.model_selection import train_test_split
+train, val = train_test_split(train, train_size = 0.8, test_size = 0.2, stratify= train['target'], random_state =1) 
+#stratify는 classification 문제를 불 때 중요한 옵션값이다. 지정하지 않으면 특정 label이 train이나 val에 쏠려서 분배될 수 있어 모델 성능 차이가 많이 나게 된다.
+```
 

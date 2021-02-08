@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "[Machine Learning]Decision Trees"
+title: "[Machine Learning]의사결정트리 모델"
 date: 2021-02-04
 category: [Machine Learning]
 MachineLearning : true 
-excerpt: "L"
-tags: [lo]
+excerpt: "의사결정트리 모델"
+tags: [불순도, impurity, 지니지수, gini index,information gain]
 comments: true
 ---
 
@@ -100,6 +100,8 @@ scikit learn dafault는 지니계수 많이 씀(더 빠름)
 
 
 
+트리 모델에서는 nominal을 ordinal로 encode해도 별 문제 안 생김
+
 
 
 과적합을 줄이기 위해 가지치기
@@ -109,3 +111,23 @@ scikit learn dafault는 지니계수 많이 씀(더 빠름)
 어느 노드에서 불순도가 엄마 노드보다 높더라도 가중합이 감소하면 분기한다.
 
 https://colab.research.google.com/github/random-forests/tutorials/blob/master/decision_tree.ipynb#scrollTo=vrxZN08SgNiW
+
+
+
+중요 특성들 그래프로 알아보기
+
+```python
+import matplotlib.pyplot as plt
+from sklearn.pipeline import make_pipeline
+
+#name_steps: 유사 딕셔너리 객체, 파이프라인 내 과정에 접근하게 해줌
+pipe.name_steps #파이프라인에 들어간 함수들 출력해줌
+
+model = pipe.named_steps['logisticregression']
+enc = pipe.named_steps['onehotencoder']
+encoded_columns = enc.transform(X_val).columns
+coefficients = pd.Series(model_lr.coef_[0], encoded_columns)
+plt.figure(figsize=(10,30))
+coefficients.sort_values().plot.barh();
+```
+
