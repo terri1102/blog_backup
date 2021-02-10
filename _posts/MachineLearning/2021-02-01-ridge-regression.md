@@ -13,7 +13,7 @@ comments: true
 
 # Regularized Regression
 
-
+![regularization1]
 
 # Regularized Regression(정규화 선형회귀)
 

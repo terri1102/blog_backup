@@ -49,13 +49,13 @@ sns.heatmap(confusion_matrix, annot=True)
 
 
 
-Performance Measures
+### Performance Measures
 
 Classification: Simple Accuracy, Precision, Recall, F-beta measure, ROC(and AUC)
 
-
-
 Regression: Sum of Squares Error, Mean Absolute Error, RMS Error
+
+
 
 ### Accuracy(정확도)
 
@@ -66,6 +66,8 @@ $$
 Accuracy = \frac{TP+TN}{TP+TN+FP+FN}
 $$
 
+
+
 **장점** 이해하기 쉽고 간편해서 많이 사용된다
 
 **단점**: 정확도 역설(Accuracy Paradox) 실제 정답이 한쪽으로 치우쳐 있다면 하나로 찍는 모델의 점수가 높게 나오게 된다.
@@ -74,15 +76,16 @@ $$
 
 ### Recall(재현율)(=Sensitivity)
 
-실제 True일 때 모델이 True로 예상한 비율. 맞다고 분류해야 하는 건수 중에서 분류기가 몇 개나 제대로 분류했는가.
-
+`실제` True일 때 모델이 True로 예상한 비율. 맞다고 분류해야 하는 건수 중에서 분류기가 몇 개나 제대로 분류했는가. 양성 항목 검출율.
 
 $$
 Recall = \frac{TP}{TP+FN}
 $$
-**장점:**  실제 데이터에 Negative 비율이 높아서 희박한 가능성으로 발생할 상황에 대한 분류에 적합하다. 
 
-좀 관대하게 암이라고 예측함. recall 을 높이면 암이 아닌 사람들도 암이라고 하게 된다.
+
+**장점:**  실제 데이터에 Negative 비율이 높아서 희박한 가능성으로 발생할 상황에 대한 분류에 적합하다.  왜냐하면 실제 데이터에 Positive만 엄청 많으면 Precision이 엄청 높게 나오게 된다. 
+
+FN의 비용이 높을 때 사용된다.  즉 암인데 암이 아니라고 판정하는 것이 더 심각한 문제이기 때문에, 좀 관대하게 암이라고 예측한다. recall 을 높이면 암이 아닌 사람들도 암이라고 하게 된다. 
 
 **단점:** 항상 True로 예상하는 모델의 recall은 1이다.
 
@@ -90,13 +93,15 @@ $$
 
 ### Precision(정밀도)
 
-모델이 True로 예상한 데이터 중 실제 True인 것의 비율. 분류기가 맞다고 분류한 건수 중에서 실제로 맞는 건수의 개수
+모델이 True로 `예상`한 데이터 중 실제 True인 것의 비율. 분류기가 맞다고 분류한 건수 중에서 실제로 맞는 건수의 개수. 양성 항목 정답률. 주로 모델의 관점에서 모델 평가할 때 쓰임
 $$
 Precision = \frac{TP}{TP+FP}
 $$
+
+
 Recall과 trade-off 관계
 
-**장점:** 실제 데이터에 Positive 비율이 높을 때 더 잘 맞는다.
+**장점:** 실제 데이터에 Positive 비율이 높을 때 더 잘 맞는다. FP의 비용이 높을 때 사용한다. 예시로 이메일 스팸을 검출하는 것이 있다. (스팸인 것: Positive) 중요 이메일을 스팸으로 분류하는 것의 비용이 높기 때문에, precision을 높여서 검출한다. 
 
 **단점:**  항상 Negative로 예상하는 모델의 Precision은 0/0(not defined) 이다.
 
@@ -110,7 +115,7 @@ $$
 F_\beta = (1+\beta^2)* \frac{precision*recall}{(\beta^2*precision)+recall}
 $$
 
-beta가 0.5: precision보다 recall 중시
+beta가 0.5: precision을 recall 보다 중시
 
 beta가 2.0: recall이 precision보다 중시
 
@@ -129,6 +134,10 @@ Precision과 Recall의 조화평균을 낸 것
 Precision과 Recall 둘 다 사용하기 때문에 두 지표의 단점을 보완한다.
 $$
 F1 score = 2*\frac{Precision*Recall}{Precision+Recall}
+$$
+
+$$
+F1 score = \frac{2TP}{2TP+FP+FN}
 $$
 
 
@@ -154,9 +163,51 @@ print(f1_score(y_true, y_pred))
 
 ## ROC(and AUC)
 
-AUC 점수는 주로 n_estimator나 threshold 바꿔가며 모델 튜닝할 때 많이 쓰는 것 같고 f1 score는 모델이 완성된 후에 최종 평가할 때 주로 쓰는 것 같다. 물론 f1 score로 threshold 모델 튜닝해도 된다. 생각보다 AUC 점수가 의미있는 게 n_estimator를 
+AUC 점수는 주로 n_estimator나 threshold 바꿔가며 모델 튜닝할 때 많이 쓰는 것 같고 f1 score는 모델이 완성된 후에 최종 평가할 때 주로 쓰는 것 같다. 물론 f1 score로 threshold 모델 튜닝해도 된다. 생각보다 AUC 점수가 의미있는 게 n_estimator를 바꿔가며 모델 비교할 때 검증 정확도(accuracy)가 낮은데도 AUC 점수가 높아서 테스트 데이터의 f1 score를 보니 더 높았다????
 
 
+
+**ROC 그래프**
+
+y축: True Positive Rate(Sensitivity)
+
+x축: False Positive Rate(1-Specificity)
+$$
+TRP = Sensitivity = \frac{TP}{TP+FN}
+$$
+
+$$
+FPR = 1 - Specificity = \frac{FP}{FP+TN}
+$$
+
+|                     | Actual_True | Actual_False |
+| ------------------- | ----------- | ------------ |
+| **Predicted_True**  | TP          | FP           |
+| **Predicted_False** | FN          | TN           |
+
+모든 값을 True로 예측할 때(역치는 0) FN은 0이기 때문에 TPR = 1
+
+모든 값을 True로 예측할 때 TN은 0이기 때문에 FPR = 1
+
+![roc1]
+
+역치를 높히면 True로 분류될 확률이 떨어지기 때문에 FP이 감소하고, TN이 증가한다. 따라서 FPR이 감소한다. 
+
+하지만 역치가 너무 올라가면 TPR이 떨어지게 된다. 역치가 1이면 FP=0
+
+![roc2]
+
+ROC 그래프는 역치별 혼동행렬을 요약해서 보여준다.
+
+
+
+AUC: ROC 아래 면적을 의미. 모델별 ROC 비교를 쉽게 해준다.  랜덤포레스트와 로지스틱 모델도 비교 가능
+
+
+
+FPR를 Precision으로 바꾼 PPV(Positive Predictive Value)를 쓰기도 한다.
+
+Precision: Negative가 많을 때? TN을 포함하지 않음->불균형에 영향을 안 받음
 
 [^ ]: 출처: https://eunsukimme.github.io/ml/2019/10/21/Accuracy-Recall-Precision-F1-score/
 [^ ]: http://hleecaster.com/ml-accuracy-recall-precision-f1/

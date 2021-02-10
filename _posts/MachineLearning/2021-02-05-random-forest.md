@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Machine Learning]랜덤 포레스트 모형"
+title: "[Machine Learning] 랜덤 포레스트 모형"
 date: 2021-02-04
 category: [Machine Learning]
 MachineLearning : true 
@@ -17,18 +17,43 @@ comments: true
 
 
 
-순서
+**Bagging**: **B**ootstrapping(무작위 복원추출) the data plus using the **ag**gregate to make a decision
+
+배깅: 앙상블 학습법의 메타 알고리즘. 배깅은 분산을 줄이고 과적합을 피하도록 해준다. 결정 트리 학습법이나 랜덤 포레스트에 주로 적용된다. 부트스트랩세트로 만들어진 기본 모델들을 합치는 과정을 Aggregation이라고 한다.
+
+[^ ]: StatQuest: Random Forests Part 1- Building, Using and Evaluating
+
+
+
+## 과정
 
 1. bootstrapped dataset을 만든다
-2. bootstrapped dataset을 이용해서 랜덤하게 선택한 특성(복원추출)들로 구성한 subset으로 decision tree를 만든다. 
-3. 처음으로 돌아가서 새로운 bootstrap dataset을 만들고(복원추출) 다시 그 subset으로 decision tree를 만든다.
-4. 여러 트리를 만든 후에 트리들끼리 투표를 해서 더 많은 표를 받은 쪽으로 결정한다.
 
-이렇게 100회 이상 시행한 다양한 트리로 인해서 랜덤포레스트모형은 결정트리모형보다 더 효과적이다 
+[그림1] 
 
 
 
-이렇게 만든 랜덤포레스트 모형이 정확한지 확인하는 법
+1. bootstrapped dataset을 이용해서 랜덤하게 선택한 특성(복원추출)들로 구성한 subset으로 결정트리를 만든다.
+
+
+
+[그림2]
+
+
+
+1. 처음으로 돌아가서 새로운 bootstrap dataset을 만들고(복원추출) 다시 그 subset으로 decision tree를 만든다.
+
+[그림3]
+
+1. 여러 트리를 만든 후에 트리들끼리 투표를 해서 더 많은 표를 받은 쪽으로 결정한다.
+
+
+
+이렇게 100회 이상 시행한 다양한 트리로 인해서 랜덤포레스트모형은 결정트리모형보다 더 효과적이다.  
+
+
+
+## 이렇게 만든 랜덤포레스트 모형이 정확한지 확인하는 법 (oob score)
 
 5. 한 번도 bootstrapped dataset에 들어가지 못한 샘플들을 out-of-bag dataset으로 만든다.
 6. out-of-bag dataset의 샘플들을 위에서 만든 모든 트리들에 넣어서 돌려서 트리들이 정확한 label로 분류하는지 보고, 마찬가지로 트리들끼리 투표해서 더 많은 쪽으로 label한다. 
@@ -46,14 +71,6 @@ comments: true
 3) 1번으로 돌아가서 특성의 개수를 바꿔서 다시 시행
 
 4) 보통 모든 특성의 개수의 제곱근의 개수로 시행하고 그 상하로 바꿔가며 테스트해서 가장 최적의 개수를 찾는다
-
-
-
-**Bagging**: **B**ootstrapping(무작위 복원추출) the data plus using the **ag**gregate to make a decision
-
-배깅: 앙상블 학습법의 메타 알고리즘. 배깅은 분산을 줄이고 과적합을 피하도록 해준다. 결정 트리 학습법이나 랜덤 포레스트에 주로 적용된다. 
-
-[^ ]:StatQuest: Random Forests Part 1- Building, Using and Evaluating
 
 
 
@@ -101,11 +118,13 @@ weighted\;average = value \;of\;a\; sample_1 *\frac{weighted\;average\;of\;a\;co
 $$
 
 
+
 샘플 4가 결측치 일 때 샘플1의 가중평균은
 $$
 weighted \;average \;of\; sample1 = 샘플1의 \;값 *\frac{0.1}{0.1+0.1+0.8}
 +샘플2의\;값*\frac{0.1}{0.1+0.1+0.8}+샘플3의 \;값 *\frac{0.8}{0.1+0.1+0.8}
 $$
+
 
 
 proximity matrix를 distance matrix로 변환 후 히트맵을 그릴 수 있음
@@ -141,3 +160,12 @@ train, val = train_test_split(train, train_size = 0.8, test_size = 0.2, stratify
 #stratify는 classification 문제를 불 때 중요한 옵션값이다. 지정하지 않으면 특정 label이 train이나 val에 쏠려서 분배될 수 있어 모델 성능 차이가 많이 나게 된다.
 ```
 
+```python
+RandomForestClassifier(n_estimators=100, *, criterion='gini', max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features='auto', max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, bootstrap=True, oob_score=False, n_jobs=None, random_state=None, verbose=0, warm_start=False, class_weight=None, ccp_alpha=0.0, max_samples=None)
+```
+
+
+
+n_estimator
+
+https://datascience.stackexchange.com/questions/19901/does-increasing-the-n-estimators-parameter-in-decision-trees-always-increase-acc
