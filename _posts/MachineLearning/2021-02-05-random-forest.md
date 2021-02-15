@@ -25,6 +25,12 @@ comments: true
 
 
 
+회귀문제일 경우 기본모델의 결과들을 **평균**
+
+분류문제일 경우 기본모델들끼리 투표해 **다수결**로 결정
+
+
+
 ## 과정
 
 1. bootstrapped dataset을 만든다
@@ -162,6 +168,11 @@ train, val = train_test_split(train, train_size = 0.8, test_size = 0.2, stratify
 
 ```python
 RandomForestClassifier(n_estimators=100, *, criterion='gini', max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features='auto', max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, bootstrap=True, oob_score=False, n_jobs=None, random_state=None, verbose=0, warm_start=False, class_weight=None, ccp_alpha=0.0, max_samples=None)
+```
+
+```python
+rf_model = RandomForestClassifier(n_estimator = 500, criterion='entropy', max_depth = 10, min_samples_leaf = 10, oob_score= True, n_jobs = -1, verbose=1, class_weight='balanced')
+#n_estimator: 트리의 개수, n_jobs = -1 cpu 모두 사용, class_weight = 'balanced'
 ```
 
 

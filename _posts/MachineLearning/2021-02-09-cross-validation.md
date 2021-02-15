@@ -4,8 +4,8 @@ title: "[Machine Learning] Cross Validation"
 date: 2021-02-09
 category: [Machine Learning]
 MachineLearning : true 
-excerpt: ""
-tags: []
+excerpt: "교차검증을 하는 이유와 방법 이해"
+tags: [CV, RandomSearchCV, GridSearchCV]
 comments: true
 ---
 
@@ -13,11 +13,235 @@ comments: true
 
 
 
-Cross Validation
+# Cross Validation
 
-여러 다른 머신러닝 모델을 비교하고 성능을 평가할 수 있게 해준다
+여러 다른 머신러닝 모델을 비교하고 성능을 평가할 수 있게 해주고 하이퍼 파리미터 튜닝도 도와준다.
 
 
+
+## 1. 교차검증 모델 만들기
+
+:실전에서 모델이 얼마나 잘 작동할지 평가할 수 있다.
+
+```python
+from sklearn import datasets
+from sklearn import metrics
+from sklearn.model_selection import KFold, cross_val_score
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StatndardScaler
+from category_encoders import OrdinalEncoder
+from sklearn.impute import SimpleImputer
+from sklearn.feature_selection import SelectKBest, f_classif
+```
+
+```python
+digits = datasets.load_digits()
+
+features = digits.data  #특성 행렬
+
+target = digits.target  #타겟 벡터
+
+scaler = StandardScaler() 
+
+logit = LogisticRegression()  #모델 인스턴스(객체)
+
+pipe = make_pipeline(OrdinalEncoder(),
+                     SimpleImputer(),
+                     scaler,
+                     SelectKBest(f_classif, k = 20)
+                     logit) 
+
+kf = KFold(n_splits = 10, shuffle=True, random_state = 2)  #내 컴퓨터를 생각한다면 최대 5로 하자...
+
+cv_results = cross_val_score(pipe,         #파이프라인
+                            features,      #특성 행렬
+                            target,        #타겟 벡터
+                            cv=kf          #교차 검증
+                            scoring = 'f1' #평가 지표
+                            n_jobs=-1)     #모든 CPU 코어 사용
+cv_results.mean()      #그냥 cv_results하면 fold가 10개니까 값이 10개 나온다
+```
+
+
+
+**K-Fold CV의 장점**
+
+Hold-out 기법의 단점인
+
+1) 모델 성능은 테스트 세트로 나뉜 일부 샘플에 의해 결정되는 것
+
+2) 전체 가용 데이터를 사용하여 모델을 훈련하고 테스트하지 못하는 것(hold-out은 샘플 데이터가 적을 때 충분히 훈련을 못 시킨다)
+
+을 극복하게 해준다.
+
+
+
+**K-Fold CV를 수행시 고려할 점**
+
+1) KFCV는 각 샘플이 다른 샘플과 독립적으로 생성되었다고 가정한다. (데이터는 독립동일분포: IID) 데이터가 IID라면 폴드를 나누기 전에 샘플을 섞어야 한다. (shuffle=True) 
+
+2) K-Fold CV를 사용해 classifier를 평가할 때 각 타긱 클래스의 샘플이 같은 비율로 폴드에 담기는 것이 좋다. (KFold의 클래스를 StratifiedKFold로 바꾸면 된다.)
+
+3) 검증 세트나 교차검증을 사용시 훈련세트에서 데이터를 전처리하고 이 변환을 훈련 세트, 테스트 세트에 모두 적용하기(훈련 데이터엔 fit_transform, 테스트 데이터엔 transform)
+
+
+
+LeaveOneOutCV: n_splits = n인 K-Fold라고 할 수 있다.
+
+
+
+**ShuffleSplit**
+
+반복횟수에 상관없이 훈련 폴드와 테스트 폴드 크기를 임의로 지정할 수 있다. 반복마다 복원추출하기 때문에 샘플이 여러번 테스트 폴드에 포함될 수 있다.
+
+```python
+from sklearn.model_selection import ShuffleSplit
+
+ss = ShuffleSplit(n_split=10, train_size = 0.5, test_size=0.2, random_state = 2)
+
+cv_results = cross_val_score(pipe, features, target, cv=ss, scoring = 'accuracy', n_jobs=-1)
+```
+
+RepeatedKFold: 교차검증을 반복하여 실행
+
+```python
+from sklearn.model_selection import RepeatedKFold
+
+rfk = RepeatedKFold(n_splits = 10, n_repeats = 5, random_state = 2) #50개의 교차검증 개수 생김
+
+cv_results = cross_val_score(pipe, features, target, cv=rfk, scoring='accuracy',n_jobs=-1)
+
+
+```
+
+
+
+## 2. 기본 회귀 모델
+
+**DummyRegressor 사용한 기본 모델**: 우리가 만들 모델과 비교할만한 baseline을 제공해준다
+
+```python
+from sklearn.dummy import DummyRegressor
+
+dummy = DummyRegressor(strategy='mean')
+#clf = DummyRegressor(strategy='constant', constant = 20)  #모든 샘플 20으로 예상하는 모델
+
+dummy.fit(X_train, y_train)
+
+dummy.score(X_test, y_test) #r2 점수
+```
+
+
+
+## 3. 기본 분류 모델 
+
+**DummyClassifier**
+
+```python
+from sklearn.datasets import load_iris
+from sklearn.dummy import DummyClassifier
+from sklearn.model_selection import train_test_split
+
+iris = load_iris()
+X_train, y_train = iris.data, iris.target #iris.data는 feature_names 없이 타겟이 분리된 값이다.
+
+X_train, X_test, y_train, y_test = train_test_split(X_train, y_train, random_state = 0)
+
+#기본 분류 모델
+dummy = DummyClassifier(strategy='uniform', random_state = 0) #uniform: 클래스 비중이 균등하도록 랜덤하게 예측(1과 0을 50% 비중으로 예측)
+
+#'most_frequent' : 가장 많은 값으로 예측
+dummy.fit(X_train, y_train)
+
+dummy.score(X_test, y_test)
+
+```
+
+**진짜 만들고 싶은 모델 만들어서 Dummy 모델과 비교**
+
+```python
+clf = RandomForestClassifier()
+
+clf.fit(X_train, y_train)
+
+clf.score(X_test, y_test)
+```
+
+
+
+## 4. 이진 분류기의 성능 평가
+
+**cross_val_score**
+
+```python
+#cross_val_score : 정확도(accuracy), 정밀도(precision), 재현율(recall), f1 가능
+from sklearn.metrics import cross_val_score
+
+model = RandomForestClassifier()
+
+cross_val_score(model, X, y, scoring= 'accuracy') #cv 매개변수를 지정하지 않으면 회귀일 때는 KFold, 분류일 때는 StratifiedFold 분할기 사용됨
+```
+
+```python
+#실제 타겟 값과 예측 값을 안다면 직접 계산 가능
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+accuracy_score(y_test,y_pred) #위에 cross_val_score랑 들어가는 값이 다름
+```
+
+**cross_validate**: scoring의 매개변수에 여러 평가 지표 추가 가능
+
+```python
+from sklearn.model_selection import cross_validate
+
+cross_validate(model, X, y, scoring=['accuracy','f1'])
+```
+
+
+
+## 5. 이진 분류기 임곗값 평가
+
+ROC(Receiving Operating Characteristic) curve는 이진분류기의 품질을 평가하는 데 널리 쓰이는 방법이다.
+
+ROC 곡선은 확률 임곗값마다 진짜 양성과 거짓 양성 개수를 비교한다. 랜덤하게 예측하는 분류기는 대각선으로 나타난다.
+
+```python
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import roc_curve, roc_auc_score
+from sklearn.model_selection import train_test_selection
+
+X_train, X_test, y_train, y_test = train_test_split(X_train, y_train, test_size = 0.2, random_state =2)
+
+logit = LogisticRegression() #모델 객체 생성
+logit.fit(X_train, y_train)  #모델 학습
+
+y_proba = logit.predict_proba(y_test)[:.1]
+
+false_positive_rate, true_positive_rate, threshold = roc_curve(y_test, y_probabilities)
+
+#ROC 곡선
+plt.title('ROC curve')
+plt.plot(false_positive_rate, true_positive_rate)
+plt.plot([0,1], ls = '--')
+plt.plot([0,0],[1,0], c='.7'), plt.plot([1,1], c='.7')
+plt.ylabel('True Positive Rate')
+plt.xlabel('False Positive Rate')
+plt.show()
+```
+
+```python
+#예측 확률 계산
+logit.predict_proba(X_test)[0:1] #첫 번째 샘플에 대한 예측 확률
+#>>array([[0.777, 0.223]])
+
+#class 확인
+logit.classes_
+#>>array([0,1])   #즉 0일 확률이 0.777
+```
+
+임곗값을 조절해서 모델을 편향되게 만들어야 할 때: 거짓 양성이 큰 비용을 치르게 한다면 확률 임곗값을 높여야 한다. 일부 양성 샘플을 예측하지 못하더라도 예측한 샘플은 양성이라고 강하게 확신할 수 있기 때문                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 
 우리가 수집한 타겟 데이터 컬럼
 
@@ -93,3 +317,100 @@ f beta score : beta가 크면 recall의 영향을 많이 받게 스코어가 나
 
 
 선형모델에서는 다중공선성 조심. 트리모델에는 그런 고민이 좀더 적어짐.
+
+
+
+### 검증 곡선 
+
+하이퍼파라미터 값의 영향을 시각화
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import validation_curve
+
+param_range = np.arange(1,250, 10)
+train_scores, test_scores = validation_curve(RandomForestClassifier(),
+                                            X_train,
+                                            y_train,
+                                             #조사할 하이퍼 파라미터
+                                            param_name = "n_estimators",
+                                             #하이퍼파라미터 값의 범위
+                                             param_range=param_range,
+                                             cv=3,
+                                             scoring ='accuracy',
+                                             n_jobs = -1)
+
+train_mean = np.mean(train_scores, axis=1)
+train_std = np.std(train_scores, axis =1)
+
+test_mean = np.mean(test_scores, axis =1)
+test_std = np.std(test_scores, axis =1)
+plt.plot(param_range, train_mean, label="Training score", color='black')
+plt.plot(param_range, test_mean, label="cross_validation score", color = 'dimgrey')
+
+
+plt.fill_between(param_range, train_mean - train_std, train_mean + train_std, color = 'gray')
+plt.fill_between(param_range, test_mean-test_std, test_mean + test_std, color='gainsboro')
+
+#그래프 출력
+plt.title("validation curve w/ RF")
+plt.xlabel('number of trees')
+plt.ylabel('accuracy score')
+plt.tight_layout()
+plt.lagend(loc='best')
+plt.show()
+```
+
+
+
+# 모델 선택
+
+## 1. GridSearchCV
+
+GreidSearchCV는 교차검증을 사용하여 모델을 선택하는 브루트포스한 방법이다. 사용자가 하이퍼 파라미터로 테스트 해보고 싶은 값들을 입력하면 GridSearchCV는 모든 값의 조합에 대해 모델을 훈련한다.
+
+```python
+hyperparameters = dict(C=C, penalty=penalty)
+
+#그리드 서치 객체를 만든다
+gridsearch = GridSearchCV(model, hyperparameters, cv = 5, verbose =1, n_jobs=-1)
+
+#그리드 서치 수행
+best_model = gridsearch.fit(X_train, y_train)
+```
+
+
+
+**최선의 하이퍼파라미터 출력**
+
+```python
+best_model.best_estimator_.get_params()['penalty'] #가장 좋은 패널티
+```
+
+**타깃 벡터를 예측**
+
+```python
+best_model.predict(X_train)
+```
+
+
+
+
+
+
+
+
+
+## 모델 선택 후 성능 평가
+
+중복 교차검증(nested cross-validation)을 사용하여 편향된 평가를 피한다.
+
+
+
+**Reference**
+
+파이썬을 활용한 머신러닝 쿡북 Chapter 11 모델 평가, 12 모델 선택
+
+https://robjhyndman.com/hyndsight/crossvalidation/
