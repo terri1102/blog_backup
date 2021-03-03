@@ -1,28 +1,40 @@
+// stylelint-disable selector-max-specificity, selector-max-id, selector-max-type, selector-no-qualifying-type, primer/no-override,
+
 @media print {
-  body {
-    background-image: none !important;
-    background-color: $white;
+  .site-footer,
+  .site-button,
+  #edit-this-page,
+  #back-to-top,
+  .site-nav,
+  .main-header {
+    display: none !important;
   }
-  .wrapper {
-    box-shadow: none;
+
+  .side-bar {
     width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
+    height: auto;
+    border-right: 0 !important;
   }
-  .container {
-    box-shadow: none;
+
+  .site-header {
+    border-bottom: 1px solid $border-color;
   }
-  .feature {
-      padding: 0;
+
+  .site-title {
+    font-size: $root-font-size !important;
+    font-weight: 700 !important;
   }
-  .social-btn, .btn {
-    border-color: $color_mischka;
+
+  .text-small {
+    font-size: 8pt !important;
   }
-  .post-title .btn,
-  .reading-time,
-  #dl-menu,
-  #disqus_thread,
-  .goup-container {
-    display: none;
+
+  pre.highlight {
+    border: 1px solid $border-color;
+  }
+
+  .main {
+    max-width: none;
+    margin-left: 0;
   }
 }

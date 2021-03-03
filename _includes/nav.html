@@ -1,104 +1,99 @@
-	<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
-		<button class="dl-trigger">Open Menu</button>
-		<ul class="dl-menu">
-			<li><a href="{{ site.url }}/">Home</a></li>
-			<li>
-				<a href="#">About</a>
-				<ul class="dl-submenu">
-					<li>
-						<img src="{{ site.url }}/{{ site.logo }}" alt="{{ site.title }} photo" class="author-photo">
-						<h4>{{ site.title }}</h4>
-						<p>{{ site.description }}</p>
-					</li>
-					<li><a href="{{ site.url }}/about/"><span class="btn btn-inverse">Learn More</span></a></li>
-					{% if site.email %}<li>
-                        <a href="mailto:{{ site.email }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-envelope-square"></i> Email</a>
-                    </li>{% endif %}
-                    {% if site.twitter %}<li>
-                        <a href="http://twitter.com/{{ site.twitter }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-twitter-square"></i> Twitter</a>
-                    </li>{% endif %}
-                    {% if site.facebook %}<li>
-                        <a href="http://facebook.com/{{ site.facebook }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-facebook-square"></i> Facebook</a>
-                    </li>{% endif %}
-                    {% if site.google.plus %}<li>
-                        <a href="http://plus.google.com/+{{ site.google.plus }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-google-plus-square"></i> Google+</a>
-                    </li>{% endif %}
-                    {% if site.linkedin %}<li>
-                        <a href="http://linkedin.com/in/{{ site.linkedin }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-linkedin-square"></i> LinkedIn</a>
-                    </li>{% endif %}
-                    {% if site.xing %}<li>
-                        <a href="http://www.xing.com/profile/{{ site.xing }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-xing-square"></i> Xing</a>
-                    </li>{% endif %}
-                    {% if site.instagram %}<li>
-                        <a href="http://instagram.com/{{ site.instagram }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-instagram"></i> Instagram</a>
-                    </li>{% endif %}
-                    {% if site.tumblr %}<li>
-                        <a href="http://{{ site.tumblr }}.tumblr.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-tumblr-square"></i> Tumblr</a>
-                    </li>{% endif %}
-                    {% if site.github-url %}<li>
-                        <a href="http://github.com/{{ site.github-url }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-github"></i> Github</a>
-                    </li>{% endif %}
-                    {% if site.stackoverflow %}<li>
-                        <a href="http://stackoverflow.com/users/{{ site.stackoverflow }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-stack-overflow"></i> StackOverflow</a>
-                    </li>{% endif %}
-                    {% if site.lastfm %}<li>
-                        <a href="http://lastfm.com/user/{{ site.lastfm }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-music"></i> LastFm</a>
-                    </li>{% endif %}
-                    {% if site.dribbble %}<li>
-                        <a href="http://dribbble.com/{{ site.dribbble }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-dribbble"></i> Dribble</a>
-                    </li>{% endif %}
-                    {% if site.pinterest %}<li>
-                        <a href="http://www.pinterest.com/{{ site.pinterest }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-pinterest"></i> Pinterest</a>
-                    </li>{% endif %}
-                    {% if site.foursquare %}<li>
-                        <a href="http://foursquare.com/{{ site.foursquare }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-foursquare"></i> Foursquare</a>
-                    </li>{% endif %}
-                    {% if site.steam %}<li>
-                        <a href="http://steamcommunity.com/id/{{ site.steam }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-steam-square"></i> Steam</a>
-                    </li>{% endif %}
-                    {% if site.youtube %}<li>
-                        <a href="https://youtube.com/user/{{ site.youtube }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-youtube-square"></i> Youtube</a>
-                    </li>{% endif %}
-                    {% if site.youtube-channel %}<li>
-                        <a href="https://youtube.com/channel/{{ site.youtube-channel }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-youtube"></i> Youtube</a>
-                    </li>{% endif %}
-                    {% if site.soundcloud %}<li>
-                        <a href="http://soundcloud.com/{{ site.soundcloud }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-soundcloud"></i> SoundCloud</a>
-                    </li>{% endif %}
-                    {% if site.weibo %}<li>
-                        <a href="http://www.weibo.com/{{ site.weibo }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-weibo"></i> Weibo</a>
-                    </li>{% endif %}
-                    {% if site.flickr %}<li>
-                        <a href="http://www.flickr.com/{{ site.flickr }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-flickr"></i> Flickr</a>
-                    </li>{% endif %}
-                    {% if site.codepen %}<li>
-                        <a href="http://codepen.io/{{ site.codepen }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-codepen"></i> Codepen</a>
-                    </li>{% endif %}
-                    {% if site.keybase %}<li>
-                        <a href="https://keybase.io/{{ site.keybase }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-key"></i> Keybase</a>
-                    </li>{% endif %}
-                    {% if site.xmpp %}<li>
-                        <a href="xmpp:{{ site.xmpp }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-lightbulb-o"></i> XMPP</a>
-                    </li>{% endif %}
-                    {% if site.hackernews %}<li>
-                        <a href="https://news.ycombinator.com/user?id={{ site.hackernews }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-hacker-news"></i> Hacker News</a>
-                    </li>{% endif %}
-				</ul><!-- /.dl-submenu -->
-			</li>
-			<li>
-				<a href="#">Posts</a>
-				<ul class="dl-submenu">
-					<li><a href="{{ site.url }}/posts/">All Posts</a></li>
-					<li><a href="{{ site.url }}/tags/">All Tags</a></li>
-				</ul>
-			</li>
-			{% for link in site.data.navigation %}
-		    {% if link.url contains 'http' %}
-		        {% assign domain = '' %}
-		        {% else %}
-		        {% assign domain = site.url %}
-		    {% endif %}
-		    <li><a href="{{ domain }}{{ link.url }}" {% if link.url contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a></li>
-		  {% endfor %}
-		</ul><!-- /.dl-menu -->
-	</nav><!-- /.dl-menuwrapper -->
+<ul class="nav-list">
+  {%- assign titled_pages = include.pages
+        | where_exp:"item", "item.title != nil" -%}
+
+  {%- comment -%}
+    The values of `title` and `nav_order` can be numbers or strings.
+    Jekyll gives build failures when sorting on mixtures of different types,
+    so numbers and strings need to be sorted separately.
+
+    Here, numbers are sorted by their values, and come before all strings.
+    An omitted `nav_order` value is equivalent to the page's `title` value
+    (except that a numerical `title` value is treated as a string).
+
+    The case-sensitivity of string sorting is determined by `site.nav_sort`.
+  {%- endcomment -%}
+  
+  {%- assign string_ordered_pages = titled_pages
+        | where_exp:"item", "item.nav_order == nil" -%}
+  {%- assign nav_ordered_pages = titled_pages
+        | where_exp:"item", "item.nav_order != nil"  -%}
+
+  {%- comment -%}
+    The nav_ordered_pages have to be added to number_ordered_pages and
+    string_ordered_pages, depending on the nav_order value.
+    The first character of the jsonify result is `"` only for strings.
+  {%- endcomment -%}
+  {%- assign nav_ordered_groups = nav_ordered_pages
+        | group_by_exp:"item", "item.nav_order | jsonify | slice: 0" -%}
+  {%- assign number_ordered_pages = "" | split:"X" -%}
+  {%- for group in nav_ordered_groups -%}
+    {%- if group.name == '"' -%}
+      {%- assign string_ordered_pages = string_ordered_pages | concat: group.items -%}
+    {%- else -%}
+      {%- assign number_ordered_pages = number_ordered_pages | concat: group.items -%}
+    {%- endif -%}
+  {%- endfor -%}
+  
+  {%- assign sorted_number_ordered_pages = number_ordered_pages | sort:"nav_order" -%}
+  
+  {%- comment -%}
+    The string_ordered_pages have to be sorted by nav_order, and otherwise title
+    (where appending the empty string to a numeric title converts it to a string).
+    After grouping them by those values, the groups are sorted, then the items
+    of each group are concatenated.
+  {%- endcomment -%}
+  {%- assign string_ordered_groups = string_ordered_pages
+        | group_by_exp:"item", "item.nav_order | default: item.title | append:''" -%}
+  {%- if site.nav_sort == 'case_insensitive' -%}
+    {%- assign sorted_string_ordered_groups = string_ordered_groups | sort_natural:"name" -%}
+  {%- else -%}
+    {%- assign sorted_string_ordered_groups = string_ordered_groups | sort:"name" -%}
+  {%- endif -%}
+  {%- assign sorted_string_ordered_pages = "" | split:"X" -%}
+  {%- for group in sorted_string_ordered_groups -%}
+    {%- assign sorted_string_ordered_pages = sorted_string_ordered_pages | concat: group.items -%}
+  {%- endfor -%}
+
+  {%- assign pages_list = sorted_number_ordered_pages | concat: sorted_string_ordered_pages -%}
+  
+  {%- for node in pages_list -%}
+    {%- if node.parent == nil -%}
+      {%- unless node.nav_exclude -%}
+      <li class="nav-list-item{% if page.url == node.url or page.parent == node.title or page.grand_parent == node.title %} active{% endif %}">
+        {%- if node.has_children -%}
+          <a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>
+        {%- endif -%}
+        <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
+        {%- if node.has_children -%}
+          {%- assign children_list = pages_list | where: "parent", node.title -%}
+          <ul class="nav-list ">
+          {%- for child in children_list -%}
+            {%- unless child.nav_exclude -%}
+            <li class="nav-list-item {% if page.url == child.url or page.parent == child.title %} active{% endif %}">
+              {%- if child.has_children -%}
+                <a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>
+              {%- endif -%}
+              <a href="{{ child.url | absolute_url }}" class="nav-list-link{% if page.url == child.url %} active{% endif %}">{{ child.title }}</a>
+              {%- if child.has_children -%}
+                {%- assign grand_children_list = pages_list | where: "parent", child.title | where: "grand_parent", node.title -%}
+                <ul class="nav-list">
+                {%- for grand_child in grand_children_list -%}
+                  {%- unless grand_child.nav_exclude -%}
+                  <li class="nav-list-item {% if page.url == grand_child.url %} active{% endif %}">
+                    <a href="{{ grand_child.url | absolute_url }}" class="nav-list-link{% if page.url == grand_child.url %} active{% endif %}">{{ grand_child.title }}</a>
+                  </li>
+                  {%- endunless -%}
+                {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </li>
+            {%- endunless -%}
+          {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </li>
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+</ul>
