@@ -18,7 +18,7 @@ typora-copy-images-to: ..\..\assets\img
 
 **Feeling:** 블로그...:sassy_woman:
 
-**Finding:** 동기분께서 숫자만 추출하는 코드를 공유해주셔서 공부했다.
+**Finding:** 동기분께서 공유해준 코드에 모르는 부분 공부했다.
 
 ```python
 #zfill: zeros fill, zfill의 attribute가 숫자의 자릿수보다 모자라면 숫자 앞에 0 붙여줌
@@ -39,11 +39,9 @@ typora-copy-images-to: ..\..\assets\img
 #>>"aa123"
 ```
 
-
-
 **Future Action:** 블로그 공사...더 늦기 전에 테마 바꾸기
 
-**Food for thought:** :shallow_pan_of_food: 
+**Food for thought:** :shallow_pan_of_food: 이번에 새로 설치한 프로그램들 언제 쓰는 건지 생각해보기
 
 
 
@@ -51,12 +49,34 @@ typora-copy-images-to: ..\..\assets\img
 
 ## 2021.03.03(수)
 
-Fact:
+**Fact:** 오늘도 블로그 정리...:construction_worker_woman:
 
-Feeling:
+**Feeling:** :expressionless:
 
-Finding:
+**Finding:** 
 
-Future Action:
+블로그 파일 push하려는데 원격저장소에 있는 파일이 로컬에 없다면서 에러가 나서, git force push를 처음 써봤다. 나중에 협업할 때는 이런식으로 쓰면 안 된다는데...그건 그때 가서 알아봐야지^^
 
-Food for thought: :pancakes:
+```python
+git push -f origin master
+```
+
+
+
+Git 에러 CRLF will be replaced by LF
+
+맥 또는 리눅스를 쓰는 개발자와 윈도우를 쓰는 개발자가 협업할 때 white space 때문에 나는 오류
+
+이 테마를 만든 사람이 맥이나 리눅스를 썼나 보다.
+
+```python
+git config --global core.autocrlf true #이 프로젝트에서만 쓸 거면 global 빼기
+```
+
+바꿨는데도 여전히 서버 구동이 안 되네ㅠㅠㅠ
+
+https://ychae-leah.tistory.com/14
+
+**Future Action:** 
+
+**Food for thought: :pancakes:**
