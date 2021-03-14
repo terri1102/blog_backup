@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Color
+nav_exclude: true
+search_exclude: true
 parent: Utilities
 ---
 

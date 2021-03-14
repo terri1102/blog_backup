@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Customization
+nav_exclude: true
+search_exclude: true
 nav_order: 6
 ---
 
