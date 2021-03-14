@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Configuration
+title: 
 nav_exclude: true
 search_exclude: true 
 nav_order: 2
