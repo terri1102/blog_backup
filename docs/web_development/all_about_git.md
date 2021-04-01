@@ -1,3 +1,9 @@
+---
+layout: default
+title: git 명령어 및 오류 정리
+parent: Web Development
+nav_order: 2
+---
 # git 명령어 정리
 
 ```bash
@@ -69,36 +75,40 @@ git checkout master
 ```
 
 my-idea에서 새 브랜치 생성
+```bash
 
-my-idea로 checkout된 상태에서 git branch my-another-idea
+#my-idea로 checkout된 상태에서 
+$ git branch my-another-idea
+```
 
 
+merge 하기
+```bash
 
-merge 
+#1. 마스터 브랜치로 돌아오기 
+$ git checkout master
 
-마스터 브랜치로 돌아오기 git checkout master
+#(파생된 브랜치는 마스터 브랜치의 변화가 이미 적용되어 있음)
 
-(파생된 브랜치는 마스터 브랜치의 변화가 이미 적용되어 있음)
-
+#2.
 git merge my-another-idea
+```
 
 
-
+여러 분기에서의 작업내역 보기
+```bash
 git log --graph --all --decorate
-
-여러 분기에서의 작업내역 볼 수 있음
+```
 
 두 브랜치의 같은 파일에 같은 수정을 한다면 conflict
 
-
-
-rebase
-
-분기들이 한 줄로 합쳐짐
+rebase: 분기들이 한 줄로 합쳐짐
 
 브랜치 삭제
-
+```bash
 git branch -D old-branch
+```
+<br>
 
 ## 오류
 
@@ -125,6 +135,17 @@ q
 :wq #저장하고 종료
 
 :q  #편집 종료
+```
+
+윈도우와 맥, 리눅스 호환 문제
+- 윈도우의 경우
+```bash
+warning: LF will be replaced by CRLF in docs/web_development.md.
+The file will have its original line endings in your working directory
+```
+```bash
+$ git config --global core.autocrlf true 
+#해당 프로젝트에만 적용하고 싶으면 --global 부분을 빼기
 ```
 # 해결 못한 build fail
 github 블로그의 테마를 바꾸고 또 다른 시련이 찾아왔는데...
