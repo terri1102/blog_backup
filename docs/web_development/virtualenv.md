@@ -108,6 +108,7 @@ $ python -m pip install -r requirements.txt
 - 패키지를 설치/삭제하면, 자동으로 Pipfile에서 추가/삭제한다.
 - 자동으로 .env 파일을 인식한다.
   
+
 출처: https://medium.com/@erish/python-pipenv-%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80-961b00d4f42f
 
 conda 가상환경과 차이는 conda로 가상환경을 만들면 경로가 anaconda3>envs>new_env 이런식으로 anaconda 디렉토리 아래로 들어가는데, (설정을 통해서 위치를 바꿀 수 있긴 하다.) pipenv는 가상환경을 만드는 폴더 안에서 가상환경이 생성된다. 즉, 프로젝트 폴더 안에 가상환경 폴더가 생성된다.

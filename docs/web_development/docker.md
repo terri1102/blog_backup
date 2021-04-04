@@ -103,6 +103,10 @@ TRACE: 클라이언트의 요청을 그대로 반환
 
 포트는 숫자로 된 번호로서 서버 프로그램마다 구분되는 포트 번호를 사용하며, 클라이언트는 IP주소와 함께 포트 번호를 사용해서 원하는 서버 프로그램에 연결하게 된다.
 
+
+
+curl 명령어를 사용하면 POSTMAN 같은 GUI 말고 CLI에서 바로 요청 가능
+
 ---
 
 
@@ -113,11 +117,62 @@ TRACE: 클라이언트의 요청을 그대로 반환
 
 https://www.freecodecamp.org/news/docker-quick-start-video-tutorials-1dfc575522a0/
 
+## 가상화
 
+ex) 리눅스 컨테이너
+
+x86 서버의 한계로 인해 많은 IT 조직이 오늘날의 높은 스토리지 및 처리 요구를 충족하는 데 필요한 용량을 운영하기 위해서는 용량의 일부분만 활용하는 서버를 여러 대 구축해야 하며, 그 결과 엄청난 비효율성과 과도한 운영 비용이 발생하게 되었습니다.
+
+여기에 가상화가 도입되면 소프트웨어로 하드웨어 기능을 시뮬레이션하여 가상 컴퓨터 시스템을 생성하며, 이를 통해 IT 조직은 하나의 서버에서 둘 이상의 가상 시스템과 다수의 운영 체제 및 애플리케이션을 실행할 수 있게 됩니다. 이에 따라 규모의 경제성, 높은 효율성과 같은 이점을 누릴 수 있습니다.
+
+
+
+**가상환경**: 개발 환경 설정
+
+**가상머신**: 어플리케이션 환경 설정
+
+
+
+## 가상머신
+
+“가상 머신”(VM)이란 가상 컴퓨터 시스템을 의미하며, 내부에 운영 체제와 애플리케이션을 갖춘 완전히 분리된 소프트웨어 컨테이너입니다. 자체적으로 완전한 각각의 가상 머신은 완벽하게 독립되어 있습니다. 컴퓨터 한 대에 여러 가상 머신을 생성하여 단 하나의 물리적 서버, 즉 "호스트"에서 여러 운영 체제와 애플리케이션을 실행할 수 있습니다.
+
+“하이퍼바이저”라는 소프트웨어의 씬 계층이 가상 머신을 호스트에서 분리하고 필요에 따라 동적으로 각 가상 머신에 컴퓨팅 리소스를 할당합니다. 
+
+가상머신의 장점
+
+**파티셔닝**
+
+- 하나의 물리적 시스템에서 여러 운영 체제 실행
+- 가상 머신 간에 시스템 리소스 분배
+
+**분리성**
+
+- 하드웨어 수준에서 장애 및 보안 격리 제공
+- 우수한 리소스 제어로 성능 유지
+
+**캡슐화**
+
+- 가상 머신의 전체 상태를 파일에 저장
+- 파일을 이동하고 복사하는 것처럼 손쉽게 가상 머신을 이동 및 복사
+
+**하드웨어 독립성**
+
+- 원하는 물리적 서버로 원하는 가상 머신을 프로비저닝 또는 마이그레이션
+
+https://www.vmware.com/kr/solutions/virtualization.html
+
+
+
+아직도 가상화 개념 이해가 어렵다. 뭔가 gui 로 찾아보고 싶어서 파일탐색기에서 파일 위치를 찾아봤는데, docker에서 /usr/bin 같은 디렉토리들이 여기에 다 있더라. 근데 정확하게 맞진 않았다. 
+
+윈도우 파일 탐색기에서 위치 찾아보기: 주소창에  \\WSL$ 치면 나온다.
+
+![wsl2](C:\Users\Boyoon Jang\Desktop\Repository\terri1102.github.io\assets\images\wsl2.png)
 
 ## Docker
 
-어플리케이션 실행 환경을 코드로 작성할 수 있고 OS를 격리화하여 관리하는 기술이다. 
+어플리케이션 실행 환경을 코드로 작성할 수 있고 OS를 격리화하여 관리하는 리눅스 컨테이너 기술(을 제공하는 회사의 서비스...)이다. 
 
 
 
@@ -156,8 +211,6 @@ https://www.freecodecamp.org/news/docker-quick-start-video-tutorials-1dfc575522a
 
 
 VirtualBox, VMware 와 같은 해당하는 가상머신은 내가 개발 혹은 사용하는 환경을 이미지로 저장하고 Host OS 위에 게스트 OS를 띄우는 방식입니다
-
-
 
 
 
@@ -204,9 +257,11 @@ $ conda activate new_env
 
 
 
-데몬이 켜졌나 확인하기...
+주의: 데몬이 켜졌나 확인하기...
 
 도커 데스크탑 실행하면 켜진다.
+
+
 
 ### Docker Image 읽는 법
 
@@ -357,7 +412,15 @@ $ docker info
 $ sudo docker daemon\
 -H unix//var/run/docker.sock\
 -H tcp://0.0.0.0:2375 --graph="/data/docker" #/data/docker 디렉토리로 변경
+#근데 나는 sudo 패키지 안 깔아서 sudo 명령어 안 됨
 
+-it: -i, -t를 동시에 사용한 것, 사용자와 컨테이너 간에 인터렉션이 필요하다면 해당 옵션을 사용. ctrl+d로 종료
+
+#docker image를 통해서 다양한 OS의 어플리케이션 환경 구성 가능
+
+#Echo 명령어: 문자열로 출력
+$ Echo $HOME
+#/c/Users/username
 ```
 
 ```bash
@@ -458,14 +521,6 @@ env
 
 
 
--it: -i, -t를 동시에 사용한 것, 사용자와 컨테이너 간에 인터렉션이 필요하다면 해당 옵션을 사용. ctrl+d로 종료
-
-docker image를 통해서 다양한 OS의 어플리케이션 환경 구성 가능
-
-
-
-Echo?
-
 ---
 
 
@@ -532,19 +587,21 @@ $ docker cp 991d72cb738b:/etc/xattr.conf ~/section3/ds-sa-docker
 
 Docker- Compose는 여러 개의 도커 컨테이너 관리할 수 있게 해준다.
 
-서버를 구동하기 위해서는 중간에서 동적인 기능을 처리하는 웹 서버, 데이터를 관리하기 위한 데이터베이스, 이미지 및 파일 관리를 하기 위한 파일 서버 세 가지가 있어야 한다. 
+서버를 구동하기 위해서는 중간에서 동적인 기능을 처리하는 `웹 서버`, 데이터를 관리하기 위한 `데이터베이스`, 이미지 및 파일 관리를 하기 위한 `파일 서버` 세 가지가 있어야 한다. 
 
-Docker-Compose 정의 파일은 컨테이너들의 의존관계를 설정 할 수 있습니다. 그리고 정의 파일에 구성된 내용대로 컨테이너를 관리할 수 있습니다.
+Docker-Compose 정의 파일은 컨테이너들의 의존관계를 설정 할 수 있다. 그리고 정의 파일에 구성된 내용대로 컨테이너를 관리할 수 있다.
 
 1. Web Server
 2. Database
 3. File Server
 
-위 세 개의 도커 컨테이너를 관리하기 위한 방법으로, 또 세 가지를 생각할 수 있습니다
+위 세 개의 도커 컨테이너를 관리하기 위한 방법으로, 세 가지가 있다.
 
-- 방금 전에 배운 docker run을 세 번해서 3 개의 컨테이너를 띄울 수도 있습니다. => 명령어 수행
-- docker run에 대한 쉘 스크립트를 작성해서 관리할 수도 있습니다. => 스크립트화
+- 방금 전에 배운 docker run을 세 번해서 3 개의 컨테이너를 띄움. => 명령어 수행
+- docker run에 대한 쉘 스크립트를 작성해서 관리. => 스크립트화
 - 여러 개의 도커 컨테이너를 관리하기 위해 docker-compose 를 사용하는 방법
+
+다음에 웹 배포할 때는 docker-compose로 해보고 싶다.
 
 
 
@@ -665,7 +722,7 @@ services:
 
 
 
-docker-compose 컨테이너로 실행
+**docker-compose 컨테이너로 실행**
 
 ```bash
 docker-compose up
@@ -675,21 +732,19 @@ docker-compose up
 
 
 
-docker-compose 컨테이너 종료
+**docker-compose 컨테이너 종료**
 
 ```bash
 docker-compose down
 ```
 
-
+근데 가끔 ctrl+d로 컨테이너를 종료하면 아예 kill될 때도 있고, kill은 안 돼서 docker-compose down을 해야 kill 될 때도 있다. 왜 그럴까?
 
 ---
 
 ```bash
-MSYS_NO_PATHCONV=1 docker run -it -d --env S3S1N2_Name=장보윤 --env github_username=terri1102 aibcontents/n312:1.0 python google_sheeet.py
+$ MSYS_NO_PATHCONV=1 docker run -it -d --env env1=usrname --env github_username=githubname aibcontents/n312:1.0 python google_sheeet.py
 ```
-
-docker run -it -d --env S3S1N2_Name=장보윤 --env github_username=terri1102 aibcontents/n312:1.0 python google_sheeet.py
 
 
 
@@ -701,9 +756,7 @@ https://github.com/docker/compose/issues/2176
 
 -----
 
-
-
-개념정리
+**개념정리**
 
 인터프리터
 
@@ -729,9 +782,7 @@ https://github.com/docker/compose/issues/2176
 
 시간이 되면 docker image 만드는 법 알아보기
 
-kubernates
-
-
+kubernates: 여러 개의 서버 관리할 때 사용. docker를 깔면 기본으로 깔리는 kubernates와 minikube로 까아야 하는 kubernates가 있는데, 로컬에서만 쓸 거면 기본 제공되는 kubernates만으로 충분하지만, 진짜 서비스하려면 추가로 깔아야 한다고 함.
 
 
 
@@ -791,23 +842,7 @@ AWS에서 컴퓨터를 대여받는 다고 생각하면 컨테이너를 만들�
 
 
 
-가상환경
 
-개발 환경 설정
-
- 
-
-가상머신
-
-어플리케이션 환경 설정
-
-
-
-스프린트3의 목표
-
-데이터를 모아서 어떻게 보여주나
-
-파이썬 코드 작성 연습
 
 
 
@@ -824,58 +859,6 @@ https://futurecreator.github.io/2018/11/16/docker-container-basics/
 
 
 ---
-
-레포 포크 후 클론 후 작업
-
-problem1 요구사항에 맞게 명령어 입력
-
-명령 맞게 실행하면 실행 메시지가 뜸&google sheet에 업데이트 됨
-
-->1점
-
-
-
-part2 두 개의 도커 이미지 활용
-
-docker compose yml 파일 정의
-
-docker-compose.yml이 빈 파일로 되어 있음
-
-문제에 맞게 작성 후 docker-compose up하면 
-
-컨테이너가 2개 띄워짐
-
-localhost 가면 나옴
-
-설명 페이지에 나온 아이디 비번 입력하면 됨
-
-
-
-part3 
-
-2번 과제의 컨테이너를 끄지 말고 컨테이너 안에 있는 파일을
-
-로컬로 가져오기 (postgres 이용)
-
-이를 과제 제출 폼으로 제출
-
-
-
-컨테이너를 로컬로 뽑아서 과제 제출..
-
-
-
-docker file 부분은 제외하고 정보를 습득하기. 설명 안 했으니까..
-
-
-
-submit하고 pr 날려야 함!
-
-
-
-도커는 앞으로도 다른 세션에서 계속 쓰게 될 것임
-
-
 
 aws나 lambda 같은 서버에 파일 코드 올리면 서버 구동됨
 
@@ -905,38 +888,7 @@ docker run image_name 명령어
 
 명령어를 안 주면 exited됨
 
-
-
-pg admin 웹 사이트 
-
-숫자만 있는건 localhost
-
-
-
-part2
-
-docker-compose.yaml 이 작성된 경로에서 docker-coimpose down
-
-아니면 따로따로 docker stop
-
-
-
-yml파일 수정
-
-오늘도 1번풀고 결과를 commit한다음 pr날려야되는건가요?
-
-안녕하세요 여러분. 제가 2시간동안 이거로 삽질했는데, 너무 눈물이 나서 올려요...
-
-혹시 localhost:5050 들어가시고, Chinook 로그인하려는데  could not translate host name "postgresql_codestates" to address 오류가 발생하시면
-servers.json에 있는 host가 어떻게 적용되어야하는지 찾아보시면 금방 해결하실겁니다 ㅠㅠ
-
 docker container run -e 환경변수 [images] [command] 이런 식으로요!
-
-
-
-그거 제가 그랬는데 volume탭으로 마운트가 잘 안되어서 그런거였어요!!
-
-
 
 
 
