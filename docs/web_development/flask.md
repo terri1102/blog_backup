@@ -1,14 +1,14 @@
 ---
 layout: default
-title: Docker 정리
-date: 2021-03-02
+title: Fllask
+date: 2021-03-27
 categories:
   - TIL
 tags:
   - TIL
 comments: true
-nav_order: 6
-parent: 
+nav_order: 8
+parent: Web Development
 ---
 
 

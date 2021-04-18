@@ -1,7 +1,7 @@
 ---
-layout: project
-title: All Projects
-excerpt: "A List of Projects"
+layout: default
+title: Projects
+nav_order: 6
 has_children: true
 comments: false
 ---
