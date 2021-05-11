@@ -2,13 +2,10 @@
 layout: default
 title: 파이썬 자료형
 date: 2021-03-19
-categories:
-  - TIL
-tags:
-  - TIL
+parent: Python
 comments: true
-nav_order: 6
-parent: Web Development
+nav_order: 3
+
 ---
 
 

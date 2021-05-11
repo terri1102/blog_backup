@@ -1,14 +1,11 @@
 ---
 layout: default
-title: Fllask
+title: Flask
 date: 2021-03-27
-categories:
-  - TIL
-tags:
-  - TIL
+parent: Web Development
 comments: true
 nav_order: 8
-parent: Web Development
+
 ---
 
 

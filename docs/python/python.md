@@ -1,14 +1,11 @@
 ---
 layout: default
-title: Docker 정리
+title: python 기타
 date: 2021-03-02
-categories:
-  - TIL
-tags:
-  - TIL
+parent: Python
 comments: true
-nav_order: 6
-parent: 
+nav_order: 2
+
 ---
 
 

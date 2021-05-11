@@ -2,13 +2,10 @@
 layout: default
 title: Docker 정리
 date: 2021-03-02
-categories:
-  - TIL
-tags:
-  - TIL
+parent: Web Development
 comments: true
 nav_order: 3
-parent: Web Development
+
 ---
 
 
