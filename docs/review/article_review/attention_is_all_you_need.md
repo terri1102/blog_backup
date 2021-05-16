@@ -1,6 +1,6 @@
 ---
 layout: default
-title: [논문 리뷰] Attention is all you need
+title: "[논문 리뷰] Attention is all you need"
 date: 2021-05-16
 parent: Article Reviews
 nav_order: 1
