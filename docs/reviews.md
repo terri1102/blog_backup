@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Review
+title: Reviews
 has_children: true
 nav_order: 8
 ---
