@@ -6,9 +6,11 @@ description: "Just the Docs is a responsive Jekyll theme with built-in search th
 permalink: /
 ---
 
-Table of contents
 
-아래 다 버튼 형식으로 만들기! 
+
+데이터 분석 관련 기록하는 블로그입니다.
+
+
 
 TIL 
 
