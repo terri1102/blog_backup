@@ -9,11 +9,9 @@ comments: true
 
 
 
-Table of Content
-
 # Image Classification
 
-첫 번쨰 예시는 전이학습 없이 그냥 레이어를 처음부터 쌓는 방식의 pipeline이다. 전이학습을 한다면 모델링 부분에서 이미 학습된 레이어를 새롭게 만든(분석하려는 데이터셋에 fine tuning한) 레이어와 합쳐주면 된다.
+###### 첫 번째 예시는 전이학습 없이 그냥 레이어를 처음부터 쌓는 방식의 pipeline이다. 전이학습을 한다면 모델링 부분에서 이미 학습된 레이어를 새롭게 만든(분석하려는 데이터셋에 fine tuning한) 레이어와 합쳐주면 된다.
 
 ## 1. Loading Dataset
 
@@ -127,7 +125,7 @@ generator2 = datagen.flow(X_val, y_val,
 
 
 
-#### ## 사용례3) flow _from_dataframe
+##### 사용례3) flow _from_dataframe
 
 
 
