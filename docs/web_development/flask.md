@@ -10,60 +10,11 @@ nav_order: 8
 
 
 
-df
-
-
-
-request.get()
-
-request.args.get() 차이
-
-
-For URL query parameters, use `request.args`.
-
-```py
-search = request.args.get("search")
-page = request.args.get("page")
-```
-
-For posted form input, use `request.form`.
-
-```py
-email = request.form.get('email')
-password = request.form.get('password')
-```
-
-For JSON posted with content type `application/json`, use [`request.get_json()`](https://flask.palletsprojects.com/api/#flask.Request.get_json).
-
-```py
-data = request.get_json()
-```
-
-https://stackoverflow.com/questions/10434599/get-the-data-received-in-a-flask-request
-
-
-
 flask request 종류
 
 https://velog.io/@sangmin7648/%EC%98%A4%EB%8A%98%EC%9D%98-%EB%B0%B0%EC%9B%80-045
 
 
-
-디버그
-
-----
-
-프로젝트는 트윗앱이랑 비슷할 것
-
-CRUD-db 연결해서 이게 가능한 웹 페이지 만들기
-
---미니 플라스크 문제랑 비슷함
-
-
-
-어떤 데이터를 모을지, 어떤 서비스를 제공할지 생각해보기
-
-4페이지 정도 예상
 
 
 
