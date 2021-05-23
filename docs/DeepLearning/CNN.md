@@ -214,8 +214,8 @@ plt.show()
 ```
 
 ```python
-from sklearn.metric import classification_report
-
+from sklearn.metrics import classification_report
+print(classification_report(y_true, y_pred, *, labels=None, target_names=None, sample_weight=None, digits=2, output_dict=False, zero_division='warn'))
 ```
 
 
