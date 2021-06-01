@@ -2,7 +2,7 @@
 layout: default
 title: Reviews
 has_children: true
-nav_order: 8
+nav_order: 11
 ---
 
 All kinds of reviews
