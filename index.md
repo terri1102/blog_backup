@@ -17,16 +17,18 @@ d
 ![image alt ><](/center-image.jpg)
 ```
 
-![TIL]() 
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/psd/retrospective.png?raw=true" alt="TIL" style="zoom:80%;" />{: .float-left}
 
-![Data Science]
-![Machine Learning]
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/psd/datascience.png?raw=true" alt="Data science" style="zoom:80%;" />{: .center}
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/psd/machinelearning.png?raw=true" alt="Machine Learning <" style="zoom:80%;" />
 
-![Deep Learning]
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/psd/deeplearning.png?raw=true" alt="Deep Learning alt stype="zoom:80%;" >" />
 
-![Web Development]
 
-![Projects]
+
+![Web Development ><](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/psd/webdevelopment.png?raw=true)
+
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/psd/projects.png?raw=true" alt="Projects style="zoom:80%;"  ><" />
 
 ![Database]
 
