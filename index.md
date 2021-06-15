@@ -2,24 +2,35 @@
 layout: default
 title: Home
 nav_order: 1
-description: "Just the Docs is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
+description: "main page"
 permalink: /
+comment: false
 ---
 
+d
+
+데이터 분석과 ML/DL을 공부하면서 기록하는 블로그입니다. 현재 시계열 데이터와 자연어 처리에 관심을 가지고 공부하고 있습니다. 궁금한 점이나 코멘트는 자유롭게 남겨 주세요 :smiley:
+
+```html
+![image alt >](/image-right.jpg)
+![image alt <](/image-left.jpg)
+![image alt ><](/center-image.jpg)
+```
+
+![TIL]() 
+
+![Data Science]
+![Machine Learning]
+
+![Deep Learning]
+
+![Web Development]
+
+![Projects]
+
+![Database]
+
+![Reviews]
 
 
-데이터 분석 관련 기록하는 블로그입니다.
-
-
-
-TIL 
-
-Data Science
-Machine Learning
-
-Web Development
-
-Deep Learning
-
-Projects
 

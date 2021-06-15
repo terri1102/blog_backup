@@ -1,350 +1,63 @@
 ---
 layout: default
-title: 파이썬 자료형
-date: 2021-03-19
-parent: Python
+title: VS Code Server for WSL closed unexpectedly 오류
+date: 2021-06-01
+parent: Errors
 comments: true
-nav_order: 3
-
----
-
-
-
-# Python Data types
-
-
-
-파이썬 함수
-
-함수와 메소드
-
-메소드: 메소드도 함수 안에 속함. 어떠한 객체와 관련이 있다면 메소드-> 앞에 객체를 변수화한 것을 메소드 앞에 붙여줘야 함!
-
- 메소드가 아닌 함수: 앞에 객체 불필요        
-
-```python
-#함수:
-print()
-#메소드
-element.click()
-```
-
-![method1]
-
-
-
-그냥 함수: 단순한 계산, 단순 변환   ex)함수()
-
-복잡한 객체를 만드는 함수: 외부에서 만든 복잡한 객체 생성 -> 외부모듈에서 함수를 통해 객체 소환..ex)  외부모듈.함수()
-
-메소드: 특정 객체에 대해서만 적용되는 기능 -> 실제로 동작이 일어남. ex) 객체.메소드()
-
-
-
-## 클래스
-
-클래스는 자기소개서다. 설계서다.
-
-클래스 안에 변수(attribute)와 함수(method) 있음
-
-파이썬에서 보통 함수는 소문자, 클래스는 대문자로 시작하는 경우가 많음
-
-클래스도 객체, 인스턴스도 객체
-
-모든 클래스가 오브젝트(객체)에서 상속을 받는다. 모든 것의 어머니는 오브젝트
-
-모든 것은 객체로 부터 파생된 거-python의 object 
-
-인스턴스 생성(instantiate)이 객체화
-
-```python
-class JSS:
-    def __init__(self): #init 클래스를 선언하는 순간 실행되는 함수
-        				#a = JSS() -> __init__ 함수 안의 내용 실행
-        self.name = input('이름:')
-        self.age = input("나이:")
-
-```
-
-```python
-class JSS:
-    def __init__(self):           #인스턴스 생성하는 순간 실행 #self: 클래스를 저장할 변수
-    	self.name = input("이름 : ")
-        self.age = input("나이: ")
-    
-    def show(self):               #인스턴스.매서드 해야 실행
-        print("나의 이름은 {}, 나이는 {}세 입니다.".format{self.name, self.age})
-        
-a = JSS()
-#a를 인스턴스로 선언하는 동시에 __init__ 함수 실행됨
-#이름 :  입력받는 프롬프트 뜬다 
-#나이 :
-
-a.show()
-#"나의 이름은 ㅇㅇ, 나이는 30세입니다.
-#a= JSS() 실행시 입력된 이름과 나이가 뜬다.
-
-#클래스를 선언할 때 쓴 self는 a이기 때문에 괄호 안이 비게됨 
--#class JSS:
-	#def show(self): 여기서의 self가
-    #a.show()에서 a임
-```
-
-상속을 이용해 클래스 업데이트
-
-```python
-class JSS2(JSS):   #새 클래스(상속받을 클래스)
-    def __init__(self): #새로 덮어씀
-   
-	def __init__(self):
-    	super().__init__() #->상속받은 클래스 다 들고옴
-        self.gender = input("성별 : ")
-    def show(self):               #인스턴스.매서드 해야 실행
-        print("나의 이름은 {}, 성별은 {}자, 나이는 {}세 입니다.".format{self.name, self.gender, self.age})    
-   
-    def __init__(self):
-    	pass ->JSS의 init 함수를 똑같이 들고옴
-   
-
-
-a = JSS2()
-a.name = "oo"
-a.age = 30
-a.gender = "여"
-```
-
-
-
-인수와 파라미터:
-
-파라미터: 함수를 정의할 때 들어감
-
-```python
-def new_func(파라미터):
-```
-
-인수: 함수를 실행할 때 넣어주는 값(넘기는 값)
-
-```python
-new_func('인수')
-#필수인수는 입력되지 않으면 함수 실행되지 않음
-new_func(param_2 = 'dd', param_1 = 'ee') #인수 넣을 때 파라미터 이름 직접 써서 순서 바꿀 수 있다.
-```
-
-기본인수 설정해 놓으면 값을 인수 입력 안 해도 함수 실행됨
-
-
-
-클래스의 속성을 직접 바꿀 수도 있고, 인스턴스에 속성을 overwrite 할 수도 있다.
-
-```python
-class new_class:
-    attribute1 = "속성1"
-
-aclass = new_class()
-print(aclass.attribute1)
-#속성2
-
-aclass.attribute1 = "새속성"
-
-print(aclass.attribute1)
-#새속성
-print(new_class.attribute1)  #인스턴스의 속성 바꿔도 클래스의 속성은 안 바뀜
-#속성1
-```
-
-
-
-
-
-
-
-return과 print 차이
-
-return은 실제로 값이 저장되는 거고, print는 출력만 해줌
-
-none이 나오는 경우:  return을 안 쓰거나, return 뒤에 아무것도 안 쓰거나, return None
-
-
-
-에러
-
-```python
-IndentationError
-TypeError: func() missing 1 required positional argument:
-```
-
-
-
-
-
-underscore
-
-1개
-
-2개
-
-
-
-파이썬은 클래스에서 public, private한 개념이 흐지부지함..
-
-->해결: property decorator, underscore 1개(클래스 내부에서만 사용할 거다)
-
-double underscore(underscore 2개(여러 클래스에서 사용가능, 상속받는 클래스에서도 쓸 수 있다!)
-
-_, __쓸 때 convention임
-
-
-
----
-
-파이썬에서 모듈 구분?
-
-src 디렉토리 안에 file1.py, file2.py가 있더라도 '__Init__.py' 파일이 없으면 src는 모듈로 인식이 안 됨 (init.py 안에는 아무 내용도 없어도 됨)
-
-```python
-__init__.py
-```
-
-
-
-근데 python -m pytest(pytest는 명령어임..모듈 아님, 시스템 내에서 불러올 수 있는 명령어)는 실행 됨
-
-```python
-pytest #경로를 잘 못 찾음?
-
-python -m pytest #-m이 경로를 인지해서 접근할 수 있게 해줌 
-
-#setup.cfg에서 명시해서 path 내에서 python 파일 찾을 수 있게 해줌
-```
-
-
-
-
-
-```python
-python -m pip install package #현재 쓰고 있는 pip에서 install하겠다고 명시적으로 표시
-pip install package #이렇게 해도 됨. pip이 다른 파이썬이랑 연결되었을 때 오류날 수 있음
-```
-
-
-
-
-
-인스턴스는 클래스내 속성, 인스턴스 내 속성 접근 가능
-
-클래스는 인스턴스 내의 속성에 접근불가
-
+nav_order: 1
 
 
 ---
 
 
 
-## 데이터베이스
+VS Code에서 우분투를 오랜만에 실행하려니 시작부터 에러가 떴다. 도커도 켜져 있는데 왜 안 될까 찾아봤는데 연결이 잘못 되어서 그런 것이었다.
 
-커서: 쿼리문에 의해서 반환되는 결과값들을 저장하는 메모리공간
+![ubuntu_error](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/errors/ubuntu_errors.jpg?raw=true)
 
-  	Fetch: 커서에서 원하는 결과값을 추출하는 것
-
-
-
-세션
-
-```python
-#retrieving data
-
-import psycopg2
-
-con = psycopg2.connect(database="postgres", user="postgres", password="Kaliakakya", host="127.0.0.1", port="5432")
-print("Database opened successfully")
-
-cur = con.cursor()
-cur.execute("SELECT admission, name, age, course, department from STUDENT")
-rows = cur.fetchall()
-
-for row in rows:
-    print("ADMISSION =", row[0])
-    print("NAME =", row[1])
-    print("AGE =", row[2])
-    print("COURSE =", row[3])
-    print("DEPARTMENT =", row[4], "\n")
-
-print("Operation done successfully")
-con.close()
-
-'''
-Database opened successfully
-ADMISSION = 3420
-NAME = John
-AGE = 18
-COURSE = Computer Science
-DEPARTMENT = ICT
-'''
+```bash
+[2021-06-01 11:18:20.215] Resolving wsl+docker-desktop-data, resolveAttempt: 1
+[2021-06-01 11:18:20.348] Starting VS Code Server inside WSL (docker-desktop-data)
+[2021-06-01 11:18:20.348] Extension version: 0.56.4, Windows build: 19042. Multi distro support: available. WSL path support: enabled
+[2021-06-01 11:18:20.349] No shell environment set or found for current distro.
+[2021-06-01 11:18:20.673] Probing if server is already installed: C:\WINDOWS\System32\wsl.exe -d docker-desktop-data -e sh -c "[ -d ~/.vscode-server/bin/054a9295330880ed74ceaedda236253b4f39a335 ] && printf found || ([ -f /etc/alpine-release ] && printf alpine-; uname -m)"
+[2021-06-01 11:18:20.942] Unable to detect if server is already installed: Error: Command failed: C:\WINDOWS\System32\wsl.exe -d docker-desktop-data -e sh -c "[ -d ~/.vscode-server/bin/054a9295330880ed74ceaedda236253b4f39a335 ] && printf found || ([ -f /etc/alpine-release ] && printf alpine-; uname -m)"
+[2021-06-01 11:18:20.942] 
+[2021-06-01 11:18:20.943] Launching C:\WINDOWS\System32\wsl.exe -d docker-desktop-data sh -c '"$VSCODE_WSL_EXT_LOCATION/scripts/wslServer.sh" 054a9295330880ed74ceaedda236253b4f39a335 stable .vscode-server 0  '}
+[2021-06-01 11:18:21.132] VS Code Server for WSL closed unexpectedly.
+[2021-06-01 11:18:21.132] For help with startup problems, go to
+[2021-06-01 11:18:21.132] https://code.visualstudio.com/docs/remote/troubleshooting#_wsl-tips
+[2021-06-01 11:18:21.145] WSL Daemon exited with code 0
 ```
 
 
 
-```python
-#Updating Tables
-import psycopg2
+### 원인
 
-con = psycopg2.connect(database="postgres", user="postgres", password="Kaliakakya", host="127.0.0.1", port="5432")
-print("Database opened successfully")
+현재 wsl 디폴트가 docker-desktop-data로 설정되어 있어서 이를 Ubuntu로 바꿔줘야한다. powershell에서 wslconfig의 파일들을 확인했을 때, Ubuntu가 아닌 것을 확인해보자.
 
-cur = con.cursor()
+```powershell
+#powershell
+wslconfig /L
+```
 
-cur.execute("UPDATE STUDENT set AGE = 20 where ADMISSION = 3420")
-con.commit()
-print("Total updated rows:", cur.rowcount)
+![docker-desktop-default](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/errors/docker_desktop_default.jpg?raw=true)
 
-cur.execute("SELECT admission, age, name, course, department from STUDENT")
-rows = cur.fetchall()
-for row in rows:
-    print("ADMISSION =", row[0])
-    print("NAME =", row[1])
-    print("AGE =", row[2])
-    print("COURSE =", row[2])
-    print("DEPARTMENT =", row[3], "\n")
+### 해결
 
-print("Operation done successfully")
-con.close()
+```powershell
+#powershell
+wslconfig /setdefault Ubuntu-20.04
 ```
 
 
 
-```python
-#deleting row
-import psycopg2
+이제 다시 New WSL Window를 열면 제대로 열린다!
 
-con = psycopg2.connect(database="postgres", user="postgres", password="Kaliakakya", host="127.0.0.1", port="5432")
-print("Database opened successfully")
+![image-20210602073654548](C:\Users\Boyoon Jang\AppData\Roaming\Typora\typora-user-images\image-20210602073654548.png)
 
-cur = con.cursor()
+## Reference
 
-cur.execute("DELETE from STUDENT where ADMISSION=3420;")
-con.commit()
-print("Total deleted rows:", cur.rowcount)
+https://stackoverflow.com/questions/44049070/bash-on-ubuntu-on-windows-not-starting/46147036
 
-cur.execute("SELECT admission, name, age, course, department from STUDENT")
-rows = cur.fetchall()
-for row in rows:
-    print("ADMISSION =", row[0])
-    print("NAME =", row[1])
-    print("AGE =", row[2])
-    print("COURSE =", row[3])
-    print("DEPARTMENT =", row[4], "\n")
-
-print("Deletion successful")
-con.close()
-```
-
-
-
-
-
----
-
-
-
-References
+[WSL2에서 ip 주소 확인 및 도커 데스크탑으로 서버 실행하기](https://www.44bits.io/ko/post/wsl2-install-and-basic-usage)
