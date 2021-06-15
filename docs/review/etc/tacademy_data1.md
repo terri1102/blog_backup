@@ -110,7 +110,7 @@ tmp_train['log_capital_gain'] = train['capital_gain'].map(lambda x: np.log(x) if
 
 데이터 쪼개기 train, valid, test set
 
-스케일링을 할 때 데이터를 쪼갠 후에!! 해야함. train, valid 나누기 전에 하면 validation score가 높게 나옴
+**스케일링을 할 때 데이터를 쪼갠 후에!! 해야함**. train, valid 나누기 전에 하면 validation score가 높게 나옴
 
 인코딩은 쪼개기 전에 미리 해도 해도 된다.
 
@@ -213,7 +213,9 @@ tmp_test = tmp_test.drop(columns=cat_columns)
 
 ## 4강 Scikit-Learn 기반 분류 모델
 
+### 1. 로지스틱 회귀 분석
 
+선형 회귀에서 나온 것
 
 
 
