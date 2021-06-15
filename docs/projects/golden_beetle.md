@@ -5,243 +5,86 @@ parent: Projects
 nav_order: 2
 ---
 
-## 프로젝트 소개
+## 프로젝트 배경
+
+딥러닝/머신러닝을 이용한 주식투자가 로보어드바이저로 이미 상용화되었지만, 최저 투자금 요건 등 접근성이 높지 않고 
+
+
+
+## 프로젝트 목표
+
+주식투자에 있어서 시계열 데이터 전처리 파이프라인 구축과 다양한 기법의 강화학습을 통해서 투자에 도움을 받을 수 있습니다.
+
+## 프로젝트 개요
+
+
+
+
+
+## 문제
+
+
+
+## 해결
+
+
+
+
+
+## 해결 못한 문제
 
 
 
 ## 강화학습
 
+![rlprocess]()
 
 
 
+## 결과물
 
-* 강화학습 모델 https://github.com/terri1102/rl_model_v1
-* 데이터 불러오고, 전처리하는 패키지 https://github.com/terri1102/pyloadnprep 
+* [강화학습 모델](https://github.com/terri1102/rl_model_v1)
+* [데이터 불러오고, 전처리하는 패키지](https://github.com/terri1102/pyloadnprep)
 
-신경망 모델과 강화학습 알고리즘 같은 경우는 파이썬과 케라스를 이용한 딥러닝/강화학습 주식투자의 코드를 많이 참고했고,  전처리 부분 코드는 사용한 특성이 달라서 많이 고쳤습니다.
-
-
-
-## 프로젝트 타임라인
-
-## 05.31
-
-:chad: 
-
-:heavy_check_mark: 강화학습 책 읽기 (파이썬과 케라스를 이용한 딥러닝/강화학습 주식투자)
-
-:heavy_check_mark: 도서관에 스파크/카프카 책 예약하기
+신경망 모델과 강화학습 알고리즘 같은 경우는 파이썬과 케라스를 이용한 딥러닝/강화학습 주식투자의 코드를 많이 참고했고,  전처리 부분 코드는 사용한 특성이 달라서 많이 고쳤다.
 
 
 
-문제 정의 및 개선 방안 / 해결책
+## 추후 계획
 
-| 문제 정의                                       | 개선방안 | 솔루션                                |
-| ----------------------------------------------- | -------- | ------------------------------------- |
-| 대량 데이터 적재 및 하루에 한번 업데이트 자동화 |          | kubeflow의 스케줄링(당근마켓 글 참고) |
+* **전처리패키지의 스크래핑 api**: 현재 pykrx api를 이용해서 데이터를 불러오는데,  내 패키지 안에 직접 스크래핑 코드과 있는 것과 다른 api를 통해서 데이터를 가져오는 것의 속도차이가 얼마나 나는지 궁금하다. 차이 많이 나면 내 패키지 안에 스크래핑하는 코드를 넣어야 할 듯
 
-[데브시스터즈 데이터 레이크 구축 이야기 ](https://www.slideshare.net/awskorea/data-lake-architecture-case-study-bi-gaming-on-aws-2018)
+* **전처리 패키지에 특징 추가하기:** 현재 22개 정도인데, 일부만 유효하게 쓰이기 때문에 어떤 특성을 더 넣고 뺄지 고민해봐야 한다. 또한, 1년 수익률처럼 중장기적 투자 포트폴리오 수익은 거시 지표에 영향을 많이 받는다고 하기에, 거시지표를 더 많이 넣고 싶다.  만약 특징이 너무 많아지면 (40~50개 이상) autoencoder로 특징을 줄일 것이다.
+* **전처리 패키지의 statistical 검증 기능 넣기:** heteroskedasticity, multicollinearity, serial correlation
+* **전처리 패키지와 모델의 locale 문제 해결:** 스크래핑할 때 한국어가 쓰여서 locale을 kor로 설정해야 하는데, windows가 아닌 다른 os는 설정 변경이 전처리패키지는 안 되고, 모델 돌릴 때는 된다...무슨 문제인지 찾아봐야겠다.
 
-[당근마켓 딥러닝 추천 모델 in production](https://medium.com/daangn/%EB%94%A5%EB%9F%AC%EB%8B%9D-%EC%B6%94%EC%B2%9C-%EC%8B%9C%EC%8A%A4%ED%85%9C-in-production-fa623877e56a)
+* **코드 개선**: 현재 모델 같은 경우는 책에 나온 코드를 많이 참고하였는데, 아주 간단한 신경망이기 때문에 이를 더 고도화해야 할 것 같다.
+* **실제 투자에 사용해 볼 수 있게 증권사 api와 연동하기**: my money는 소중하니 모의투자로 해보기...
+
+* **Dash로 대시보드 만들기**: 구직 공고를 보면 대시보드는 다 tableau로 만드는 것 같지만, 유료이기에...Dash로 간단하게 만들어 보려고 한다.
+
+* **데이터 적재 자동화:** 현재 api로 주가 데이터, 시장 데이터를 받아온 다음에 이를 전처리한 데이터를 이용해서 모델을 돌리는데, api로 받아오기 때문에 당일 데이터까지 받아오는 것은 문제가 없지만 너무 느려서 이를 db에 넣어서 쿼리로 불러오려고 생각중이다. 그러기 위해서는 db에 
+
+* **어떤 서비스를 만들고 싶은 건지 구체화:** 만약에 대시보드를 만든다면, 대시보드에 나타낼 데이터는 무엇인지(실시간 거래량 상위 종목?), 모델 서빙은 어떻게 할 것인지(만약에 하게 되더라도 만든 모델의 백테스팅 결과 정도만 그래프로 나타낼 수 있을텐데, 지금 당장 이 모델을 팔 수 있는 것도 아니고 어떻게 서비스를 해야할지...)
+* **배포:** 주소도 샀기 때문에 무조건 한달 안에 배포합니다! kubernates로 배포하려고 생각중인데, 너무 어려우면 docker로 할 것 같다. 근데 요즘엔 yaml 파일 자동으로 만들어주는 사이트도 있고 일단 kubernates를 배워 볼 예정.
 
 
+
+## 느낀점
+
+2주는 너무 짧고, 새로운 걸 배워서 써먹기에 좀 애매한 시간 같다. 스파크 깔고 배우느라 삽질한 시간까지 빼면 더 짧아지기에 여러모로 계획한 것을 많이 달성하지 못해서 좀 아쉽다. 그래서 발표도 연습을 못해서 아쉬운 퀄리티의 발표였던 것 같다. 프로젝트 발표 때마다 동기 분들의 피드백을 받아서 진짜 도움이 많이 되었는데 이번에도 참고할 부분이 많이 있었다. 
+
+이제 내일모레부터 새로운 프로젝트가 시작되는데, 틈틈히 여태까지 했던 프로젝트를 정리해야 겠다. 
+
+---
+
+https://medium.com/@aldente0630/%EC%95%84%ED%8C%8C%EC%B9%98-%EC%97%90%EC%96%B4%ED%94%8C%EB%A1%9C%EC%9A%B0%EB%A1%9C-%EC%9E%91%EC%97%85%ED%9D%90%EB%A6%84-%EA%B0%9C%EB%B0%9C%ED%95%B4%EB%B3%B4%EA%B8%B0-8f3653d749b4)
 
 
 
 ---
 
-## 06.01(화)
 
-:thinking:
-
-:chad:
-
-- [x] 프로젝트 계획서 작성 :heavy_check_mark: 
-- [x] 키움 api 신청  :heavy_check_mark: 
-- [ ] 키움 api 실습: 상장 주식수 얻기
-- [x] 크래프트 영상 3개(금융과 딥러닝 :heavy_check_mark: , 동적자산배분 :heavy_check_mark: , 강화학습을 통한 집행전략  :heavy_check_mark: )
-- [ ] 블로그 글 2개
-- [ ] 사용할 스택 생각해보기 (postgres가 최선인지? 스파크 vs 빅쿼리)
-- [ ] 스파크 공부
-- [ ] 다른 기업들 조사:fount 깔아서 써보기, 키움의 로보어드바이저 보기
-
-
-
-저녁 시간에 집중이 안 되는 것을 해결할 방법을 찾자!
-
-오늘은 밖에 나가봐야지
-
----
-
-**데이터 베이스:**
-
-MariaDB와 Postgresql 둘 중에서 고민을 많이 했다. 오픈 소스 DBMS 중에 둘이 많이 사용되기 때문에. MariaDB: MySQL과 비슷하며 MySQL 커뮤니티 버전보다는 많은 기능을 제공하기에 한번쯤 써보고 싶었음. 엔진을 메모리로 선택가능. OLTP에 좀 더 적합
-
-PostgreSQL: 복잡한 쿼리 실행 속도 빠름. DW, 데이터분석 분야에 많이 사용됨, SSD 환경에 적합
-
-Postgres 쓰는 편이 나을 것 같다. 
-
-[PostgreSQL vs MariaDB](https://rastalion.me/postgresql%EA%B3%BC-mariadb%EC%9D%98-%EC%82%AC%EC%9D%B4%EC%97%90%EC%84%9C%EC%9D%98-%EC%84%A0%ED%83%9D/) 
-
-
-
-**데이터 전처리**
-
-주가 데이터 + 가공 + PER
-
-[스파크와 postgres 연결](https://severalnines.com/database-blog/big-data-postgresql-and-apache-spark)
-
----
-
-더 벨 : 문제점-무료 버전은 3일 정도 느림-실시간 정보 반영 불가;
-
-robots.txt
-
-```
-User-agent: *
-Allow: /free/
-Allow: /free/contents/
-Allow: /newspartner/
-
-Sitemap: http://www.thebell.co.kr/newspartner/google.asp
-```
-
-
-
-[Apache Airflow로 작업 흐름 개발해보기](https://medium.com/@aldente0630/%EC%95%84%ED%8C%8C%EC%B9%98-%EC%97%90%EC%96%B4%ED%94%8C%EB%A1%9C%EC%9A%B0%EB%A1%9C-%EC%9E%91%EC%97%85%ED%9D%90%EB%A6%84-%EA%B0%9C%EB%B0%9C%ED%95%B4%EB%B3%B4%EA%B8%B0-8f3653d749b4)
-
----
-
-사용해보고 싶은 툴
-
-* kubeflow
-
-* spark
-
-  window10에 spark 설치 https://icefree.tistory.com/entry/Spark-Window-10%EC%97%90-Spark%EC%84%A4%EC%B9%98
-
-* apache airflow
-
-  
-
-* bigquery?? OLAP에 적합
-
-* cupy: gpu 연산을 지원
-
-* fastapi :matplotlib은 flask 지원하는 듯
-
----
-
-
-
----
-
-## 06.02(수)
-
-:chad:
-
-- [ ] 키움 api 실습: 상장 주식수 얻기
-- [ ] 블로그 글 2개
-- [ ] 스파크 공부(T 아카데미)
-- [ ] 다른 기업들 조사:fount 깔아서 써보기, 키움의 로보어드바이저 보기
-
-
-
-1. 똥같은데이터 어떻게 전처리하나
-2. 어떤모델에 어떻게 학습해야 성능나오나
-3. 이 모델을 어디 얹어서 돌리고 서비스를 만드나
-4. 이 과정을 어떻게 자동화할까
-
-
-
-fc이전 레어에서 출력하는 피쳐맵크기가 달라지겠죠?뭐 Global Average Pooling이나 Conv레이어 트릭처럼써서 해결하려는 시도도..
-
- 엔드디바이스 경량화 tf xla tvm tensorrt 같은거 찾아보십쇼
-
-___
-
-## WSL2 환경 구성
-
-
-
-#### venv로 가상환경 구성하기
-
-1. 설치
-
-``` bash
-$ sudo apt-get install python3-venv
-```
-
-
-
-2. 가상환경 만들기
-
-```bash
-$ python3 -m venv ./(가상환경이름)
-```
-
-
-
-3. activate
-
-```bash
-$ source (가상환경이름)/bin/activate
-```
-
-
-
-4. deactivate
-```bash
-deactivate
-```
-
-
-가상환경을 구성했으니 신나게 패키지를 깔아보자! pandas부터 다시 깔아야 하네...
-
-ipykernel도 깔고
-
----
-
-## 06.03 (목)
-
-:chad:
-
-- [ ] 키움 api 실습: 상장 주식수 얻기
-- [ ] 블로그 글 2개
-- [ ] 스파크 공부(T 아카데미)
-- [ ] 다른 기업들 조사:fount 깔아서 써보기, 키움의 로보어드바이저 보기
-- [x] 책 읽고 코드 이해
-
----
-
-## 06.04(금)
-
-:chad:
-
-- [ ] 키움 api 실습: 상장 주식수 얻기
-- [ ] 블로그 글 2개
-- [ ] 스파크 공부(T 아카데미)
-- [ ] 다른 기업들 조사:fount 깔아서 써보기, 키움의 로보어드바이저 보기
-
-- [x] 책 읽고 코드 이해
-- [ ] stacked autoencoder for time series
-- [x] 도서관 다녀오기
-- [ ] kubeflow 동영상
-- [x] dl4j 동영상
-
----
-
-## 06.06(일)
-
-- [ ] 키움 api 실습: 상장 주식수 얻기
-- [ ] 블로그 글 2개
-- [ ] 스파크 공부(T 아카데미)
-- [ ] 다른 기업들 조사:fount 깔아서 써보기, 키움의 로보어드바이저 보기
-- [ ] stacked autoencoder for time series
-- [ ] kubeflow 동영상
-- [ ] FinRL https://towardsdatascience.com/finrl-for-quantitative-finance-tutorial-for-multiple-stock-trading-7b00763b7530
-
-https://paperswithcode.com/paper/finrl-a-deep-reinforcement-learning-library
 
 ## 해결해야하는 문제
 
@@ -268,44 +111,6 @@ mplfinance install
 multi stock trading: 거래하는 종목이 증가할 수록 상태와 액션의 차원이 지수적으로 증가하게 된다.
 
 FinRL 라이브러리: https://towardsdatascience.com/finrl-for-quantitative-finance-tutorial-for-multiple-stock-trading-7b00763b7530
-
-
-
----
-
-
-
-프로젝트 기획서
-
-* 주제
-
-* 프로젝트 목적
-
-* 가설 및 예상결과
-* 분석방법
-* 언어 및 환경
-* 예상 결과물
-* 데이터셋 제출
-
----
-
-### 주간 리포트
-
-**이번 주 진행사항**: 
-
-우분투 환경 구축
-
-사용할 강화학습 코드 이해하기+ 제대로 작동되는지 확인
-
-시계열 데이터에 대한 이해: 책 읽기
-
-스파크 공부
-
-
-
-다음주 계획: 웹 앱 개발, 스파크로 자동화
-
-세부사항: 앱 개발 및 학습 빠르게
 
 
 
@@ -351,37 +156,7 @@ Final 리포트
 
 프로젝트 기대 효과
 
-주식투자에 있어서 시계열 데이터를 전처리 파이프라인 구축과 다양한 기법의 강화학습을 통해서 투자에 도움을 받을 수 있습니다.
-
-
-
----
-
-앞으로 더 보충할 것
-
-전처리 패키지의 statistical 검증: heteroskedasticity, multicollinearity, serial correlation
-
-
-
-시간 관리 잘 하자
-
-시간 모자란 이유 1) 놀아서 이틀 낭비한듯
-
-2) 스파크 파서..
-
-
-
----
-
-네임서버 정보(dns)
-
-| 1차 네임서버 | ns1.hosting.co.kr | 121.254.170.11  |
-| ------------ | ----------------- | --------------- |
-| 2차 네임서버 | ns2.hosting.co.kr | 114.108.175.146 |
-
-주소: goldenbeetle.space
-
-
+주식투자에 있어서 시계열 데이터를 전처리 파이프라인 구축과 다양한 기법의 강화학습을 통해서 투자에 도움을 받을 수 있다.
 
 
 
@@ -389,7 +164,7 @@ Final 리포트
 
 ## references
 
-https://machinelearningmastery.com/autoencoder-for-regression/
+[특징 추출을 위한 autoencoder](https://machinelearningmastery.com/autoencoder-for-regression/)
 
 https://github.com/borisbanushev/stockpredictionai#fouriertransform
 

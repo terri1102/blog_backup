@@ -1,10 +1,32 @@
+---
+layout: default
+title: 2021년 6월 첫째,둘째주 TIL
+date: 2021-06-14
+categories:
+
+  - TIL
+  tags:
+  - TIL
+  comments: true
+  nav_order: 13
+  parent: TIL
+---
+
+
+
+
+
+2주 간의 프로젝트를 진행하면서 간단하게 진행 상황을 적어놓은 2주 간의 기록
+
+<br>
+
 ## 05.31
 
 :chad: 
 
-:heavy_check_mark: 강화학습 책 읽기 (파이썬과 케라스를 이용한 딥러닝/강화학습 주식투자)
+✅ 강화학습 책 읽기 (파이썬과 케라스를 이용한 딥러닝/강화학습 주식투자)
 
-:heavy_check_mark: 도서관에 스파크/카프카 책 예약하기
+✅ 도서관에 스파크/카프카 책 예약하기
 
 
 
@@ -20,6 +42,8 @@
 
 
 
+여러 딥러닝 모델을 어떻게 프로덕션 과정에서 구현하는지 찾아봤다.
+
 
 
 ---
@@ -32,10 +56,10 @@
 
 - [x] 프로젝트 계획서 작성 :heavy_check_mark: 
 - [x] 키움 api 신청  :heavy_check_mark: 
-- [ ] 키움 api 실습: 상장 주식수 얻기
+- [ ] ~~키움 api 실습: 상장 주식수 얻기~~
 - [x] 크래프트 영상 3개(금융과 딥러닝 :heavy_check_mark: , 동적자산배분 :heavy_check_mark: , 강화학습을 통한 집행전략  :heavy_check_mark: )
 - [ ] 블로그 글 2개
-- [ ] 사용할 스택 생각해보기 (postgres가 최선인지? 스파크 vs 빅쿼리)
+- [ ] 사용할 데이터베이스 생각해보기 (postgres가 최선인지? 스파크 vs 빅쿼리)
 - [ ] 스파크 공부
 - [ ] 다른 기업들 조사:fount 깔아서 써보기, 키움의 로보어드바이저 보기
 
@@ -44,8 +68,6 @@
 저녁 시간에 집중이 안 되는 것을 해결할 방법을 찾자!
 
 오늘은 밖에 나가봐야지
-
----
 
 **데이터 베이스:**
 
@@ -112,16 +134,12 @@ Sitemap: http://www.thebell.co.kr/newspartner/google.asp
 
 ## 06.02(수)
 
-:chad:
+📝
 
 - [ ] 키움 api 실습: 상장 주식수 얻기
 - [ ] 블로그 글 2개
 - [ ] 스파크 공부(T 아카데미)
 - [ ] 다른 기업들 조사:fount 깔아서 써보기, 키움의 로보어드바이저 보기
-
-
-
-
 
 
 
@@ -134,7 +152,7 @@ Sitemap: http://www.thebell.co.kr/newspartner/google.asp
 
 fc이전 레어에서 출력하는 피쳐맵크기가 달라지겠죠?뭐 Global Average Pooling이나 Conv레이어 트릭처럼써서 해결하려는 시도도..
 
- 엔드디바이스 경량화 tf xla tvm tensorrt 같은거 찾아보십쇼
+  찾아보십쇼
 
 ___
 
@@ -176,30 +194,23 @@ deactivate
 
 가상환경을 구성했으니 신나게 패키지를 깔아보자! pandas부터 다시 깔아야 하네...
 
-ipykernel도 깔고
+우분투 깔고 venv로 가상환경을 구성해보았다. 평소에는 아나콘다로 가상환경을 쓰는데, 아직 뭐가 더 좋은지는 잘 모르겠다.
 
 ---
 
 ## 06.03 (목)
 
-:chad:
+📝
 
-- [ ] 키움 api 실습: 상장 주식수 얻기
 - [ ] 블로그 글 2개
-- [ ] 스파크 공부(T 아카데미)
-- [ ] 다른 기업들 조사:fount 깔아서 써보기, 키움의 로보어드바이저 보기
+- [x] 스파크 공부(T 아카데미) 1강
 - [x] 책 읽고 코드 이해
 
 ---
 
 ## 06.04(금)
 
-:chad:
-
-- [ ] 키움 api 실습: 상장 주식수 얻기
-- [ ] 블로그 글 2개
-- [ ] 스파크 공부(T 아카데미)
-- [ ] 다른 기업들 조사:fount 깔아서 써보기, 키움의 로보어드바이저 보기
+📝
 
 - [x] 책 읽고 코드 이해
 - [ ] stacked autoencoder for time series
@@ -211,15 +222,19 @@ ipykernel도 깔고
 
 ## 06.06(일)
 
-- [ ] 키움 api 실습: 상장 주식수 얻기
-- [ ] 블로그 글 2개
-- [ ] 스파크 공부(T 아카데미)
-- [ ] 다른 기업들 조사:fount 깔아서 써보기, 키움의 로보어드바이저 보기
+📝
+
 - [ ] stacked autoencoder for time series
 - [ ] kubeflow 동영상
 - [ ] FinRL https://towardsdatascience.com/finrl-for-quantitative-finance-tutorial-for-multiple-stock-trading-7b00763b7530
 
 https://paperswithcode.com/paper/finrl-a-deep-reinforcement-learning-library
+
+- [ ] FinRL https://towardsdatascience.com/finrl-for-quantitative-finance-tutorial-for-multiple-stock-trading-7b00763b7530
+
+https://paperswithcode.com/paper/finrl-a-deep-reinforcement-learning-library
+
+
 
 ## 해결해야하는 문제
 
@@ -249,21 +264,7 @@ FinRL 라이브러리: https://towardsdatascience.com/finrl-for-quantitative-fin
 
 
 
----
 
-
-
-프로젝트 기획서
-
-* 주제
-
-* 프로젝트 목적
-
-* 가설 및 예상결과
-* 분석방법
-* 언어 및 환경
-* 예상 결과물
-* 데이터셋 제출
 
 ---
 
@@ -285,7 +286,7 @@ FinRL 라이브러리: https://towardsdatascience.com/finrl-for-quantitative-fin
 
 세부사항: 앱 개발 및 학습 빠르게
 
-
+**딥 러닝 컴파일러 프레임워크** 엔드디바이스 경량화 Google의 Tensorflow XLA, Apache의 TVM, NVIDIA의 TensorRT 같은거
 
 ---
 
@@ -312,12 +313,6 @@ Final 리포트
 시계열 데이터 전처리 과정에서 여태까지 배운 분석 방법들을 다양하게 사용해 보려고 했습니다. 
 
 제가 사용한 데이터는 크게 거시 시장 지표(국채지수, 환율, 이자율 등) /종목별 기술지표(주가를 이용한 /종목별 가치지표가 있습니다. 위의 데이터에 추가해서 종목별 종가를 오토 인코더를 통한 feature extraction 후에  pca로 축소하여 일부 선택하여 사용하였습니다. 
-
-2000년 1월 1일부터 주가를 사용한다고 하면 5000개 정도 입니다. 따라서 차원 축소의 필요성 때문에 
-
-
-
-
 
 -모델링: 강화학습에 대해서 처음 공부해봤기 때문에 ''파이썬과 케라스를 이용한 딥러닝/강화학습 주식투자'' 책에 나온 코드를 많이 참고하였습니다.  강화학습 기법으로는 A3C를 사용했으며, 신경망은 LSTM을 사용했습니다.
 
@@ -348,16 +343,6 @@ Final 리포트
 2) 스파크 파서..
 
 
-
----
-
-네임서버 정보(dns)
-
-| 1차 네임서버 | ns1.hosting.co.kr | 121.254.170.11  |
-| ------------ | ----------------- | --------------- |
-| 2차 네임서버 | ns2.hosting.co.kr | 114.108.175.146 |
-
-주소: goldenbeetle.space
 
 
 

@@ -215,6 +215,12 @@ tmp_test = tmp_test.drop(columns=cat_columns)
 
 
 
+
+
+### 서포트 벡터 머신
+
+
+
 ## 5강 k-Fold 교차 검증
 
 
