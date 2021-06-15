@@ -5,6 +5,12 @@ parent: Projects
 nav_order: 2
 ---
 
+
+
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/beetle_main.png?raw=true" alt="main" style="zoom:80%;" />
+
+
+
 ## 프로젝트 배경
 
 딥러닝/머신러닝을 이용한 주식투자가 로보어드바이저로 이미 상용화되었지만, 최저 투자금 요건 등 접근성이 높지 않고 
@@ -14,6 +20,8 @@ nav_order: 2
 ## 프로젝트 목표
 
 주식투자에 있어서 시계열 데이터 전처리 파이프라인 구축과 다양한 기법의 강화학습을 통해서 투자에 도움을 받을 수 있습니다.
+
+
 
 ## 프로젝트 개요
 
@@ -37,7 +45,7 @@ nav_order: 2
 
 ## 강화학습
 
-![rlprocess]()
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/mlops/rlprocess.jpg?raw=true" alt="rlprocess" style="zoom:80%;" />
 
 
 
