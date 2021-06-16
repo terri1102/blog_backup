@@ -1,16 +1,16 @@
 ---
 layout: default
-title: "Multimodal transformer for unaligned multimodal language sequences"
+title: "Extracting training data from large language models"
 date: 2021-06-15
 parent: Article Reviews
 grand_parent: Reviews
-nav_order: 2
+nav_order: 3
 comments: true
 ---
 
 
 
-d오늘 이루다 복귀설이 떠서 찾아 본 논문. 
+오늘 이루다 복귀설이 떠서 찾아 본 논문. 
 
 # 논문 키워드
 

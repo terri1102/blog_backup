@@ -54,7 +54,7 @@ wslconfig /setdefault Ubuntu-20.04
 
 이제 다시 New WSL Window를 열면 제대로 열린다!
 
-![image-20210602073654548](C:\Users\Boyoon Jang\AppData\Roaming\Typora\typora-user-images\image-20210602073654548.png)
+![wslubuntu](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/wslubuntu.jpg?raw=true)
 
 ## Reference
 
