@@ -54,7 +54,9 @@ AICC-기가지니, 온라인 챗봇을 통해 상담 인입콜 감소
 
 금융전용 cloud
 
-![kt cloud]
+![kt cloud](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/kt_cloud.jpg?raw=true)
+
+![금융융복합](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/%EA%B8%88%EC%9C%B5%EC%9C%B5%EB%B3%B5%ED%95%A9.jpg?raw=true)
 
 KT 잘나가게 앱 -> 소상공인 특화 맞춤 서비스 제공
 
@@ -62,4 +64,12 @@ KT 잘나가게 앱 -> 소상공인 특화 맞춤 서비스 제공
 
 
 
-![불완전판매방지]
+![불완전판매방지](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/%EB%B6%88%EC%99%84%EC%A0%84%ED%8C%90%EB%A7%A4%EB%B0%A9%EC%A7%80.jpg?raw=true)
+
+실제로 개발된 솔루션 설명을 해주는데 어떤 기술들이 들어갔는지 꽤 자세히 적혀있어서 
+
+
+
+# KT 금융 DX 플랫폼
+
+![AI개요]
