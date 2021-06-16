@@ -72,4 +72,20 @@ KT 잘나가게 앱 -> 소상공인 특화 맞춤 서비스 제공
 
 # KT 금융 DX 플랫폼
 
-![AI개요]
+![AI개요](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/AI%EA%B0%9C%EC%9A%94.jpg?raw=true)
+
+하나의 서비스 개발을 위해서는 여러 기술을 융합해야한다. 진짜 AI 모델 만드는 건 아주 작은 부분일 것 같다.
+
+
+
+KT의 AI 플랫폼: AI Centro
+
+![kt ai centro]
+
+![kt ai centro2]
+
+
+
+진짜 편해보이긴 한데, 유료여서...kubeflow랑 비슷해 보이긴 한다.
+
+최근에 MLOps 행사에서도 그렇고 대부분 AI많이 활용하는 기업에서는 오픈소스만 쓰진 않고 각자 라이브러리 만들어서 쓰던데, 그만큼 투자하지 않는 기업들에게는 유용한 서비스일 것 같다. 
