@@ -198,6 +198,48 @@ fully connected layers들로 이루어진 모델
 
 
 
+Context 를 반영
+
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/projection_w_context.jpg?raw=true" alt="projectionwithcontext" style="zoom:80%;" />
+
+입력 데이터를 concatenate 시키고 weight matrix를 하나로 만들어서 처리
+
+
+
+### Sequence Encoding
+
+여러 개의 데이터를 요약하는 방법
+
+
+
+### Data Transformation에 'Temporal 정보'를 반영
+
+Temporal 정보 = context, 부가정보
+
+context vector를 target vector 앞에 붙이면 됨
+
+
+
+RNN 종류
+
+Forward RNN, Backward RNN, Bidirectional RNN(Forward RNN, backward rnn을 concat), stacking RNN  
+
+
+
+Global Summarization: Attention mechanism
+
+Attention without Context 
+
+소프트맥스를 취하면 일종의 중요도 weight 같이 나오게 됨.-> 어텐션 스코어
+
+어텐션 스코어를 각 엘레멘트 별로 곱해서 새 벡터 만들고 이를 다시 더함...
+
+Attention with Context
+
+
+
+
+
 ---
 
 
