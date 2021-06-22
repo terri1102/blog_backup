@@ -158,7 +158,43 @@ $$
 
 Seq2Seq: 대표적인 자연어처리의 틀
 
+![seq2seq](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/seq2seq.jpg?raw=true)
+
 Sequence Feeding -> model -> Sequence Generation 문제
+
+Seq2Seq의 종류
+
+![seq2seq_cases](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/seq2seq_cases.jpg?raw=true)
+
+
+
+자동 완성도 seq2seq 모델
+
+우리가 살고 있는 시계열 축에서의 문제에 적합한 경우가 많음
+
+
+
+### RNN
+
+연산이 아주 복잡함
+
+dense하게 붙여 놓음
+
+인코딩 approach
+
+인코딩: 모든 시퀀스를 요약한 벡터 - RNN의 마지막 히든 레이어
+
+
+
+### Classification Formulation
+
+end-to-end model: input - model - output
+
+데이터의 차원을 줄이는 방법? max, average 다양한 값, **weighted sum** 
+
+fully connected layers들로 이루어진 모델
+
+행렬 연산을 GPU를 써서 하기 때문에 빠름
 
 
 
