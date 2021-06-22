@@ -2,7 +2,7 @@
 layout: default
 title: "T academy 모델과 검증 & 앙상블"
 date: 2021-06-15
-parent: Article Reviews
+parent: ETC
 grand_parent: Reviews
 nav_order: 3
 comments: true
@@ -88,7 +88,7 @@ ex) 타이타닉에서 이름에 mr, mrs 붙어있는 것으로 나이 유추
 범주형 변수를 결측치를 최빈값으로 채우기
 
 ```python
-column_list
+column_list = #결측치 있는 컬럼들
 for c in column_list:
     train.loc[train[c] == '?', c] = train[c].mode()[0] #0 안붙이면 최빈 변수 이름
     test.loc[test[c] == '?', c] = test[c].mode()[0]
@@ -301,10 +301,350 @@ lgb = LGBMClassifier(tree_method='gpu_hist')
 
 ## 5강 k-Fold 교차 검증
 
+Hold out 방법으로 충분한 검증이 되는가? 한 번만 쪼개는데?
+
+이 것을 K개로 쪼개서 검증을 하겠다는 것이 K-Fold Cross Validation.
+
+보통 훈련 시간이 너무 오래 걸리고, validation set이 10%미만으로 너무 적기 때문에 K는 10을 초과해서 하지는 않는다. 보통 5개로 쪼개서 하는 경우가 많다. 5번 검증을 해서 검증 스코어가 5번 나온 후 이를 평균낸다.
+
+
+
+train과 validation set이 계속 바뀌기 때문에 전처리 과정을 이 안에 넣어야 한다.
+
+```python
+def preprocess(x_train, x_valid, x_test):
+    tmp_x_train = x_train.copy()
+    tmp_x_valid = x_valid.copy()
+    tmp_x_test = x_test.copy()
+    
+    tmp_x_train = tmp_x_train.reset_index(drop=True)
+    tmp_x_valid = tmp_x_valid.reset_index(drop=True)
+    tmp_x_test = tmp_x_test.reset_index(drop=True)
+    
+    #이 부분!
+    for c in has_na_columns: #결측치 있는 컬럼(위에 코드에선 column_list임)
+        tmp_x_train.loc[tmp_x_train[c] == '?', c] = tmp_x_train[c].mode()[0]
+        tmp_x_valid.loc[tmp_x_valid[c] == '?', c] = tmp_x_valid[c].mode()[0]
+        tmp_x_test.loc[tmp_x_test[c] == '?', c] = tmp_x_test[c].mode()[0]
+        
+    tmp_x_train['log_capital_loss'] = tmp_x_train['capital_loss'].map(lamda x: np.log(x) if x!= 0 else 0)
+    tmp_x_valid['log_capital_loss'] = tmp_x_valid['capital_loss'].map(lamda x: np.log(x) if x!= 0 else 0)
+    tmp_x_test['log_capital_loss'] = tmp_x_test['capital_loss'].map(lamda x: np.log(x) if x!= 0 else 0)
+    
+    tmp_x_train['log_capital_gain'] = tmp_x_train['capital_gain'].map(lamda x: np.log(x) if x!= 0 else 0)
+    tmp_x_valid['log_capital_gain'] = tmp_x_valid['capital_gain'].map(lamda x: np.log(x) if x!= 0 else 0)
+    tmp_x_test['log_capital_gain'] = tmp_x_test['capital_gain'].map(lamda x: np.log(x) if x!= 0 else 0)
+     
+    tmp_x_train = tmp_x_train.drop(columns=['capital_loss', 'capital_gain'])
+    tmp_x_valid = tmp_x_valid.drop(columns=['capital_loss', 'capital_gain'])
+    tmp_x_test = tmp_x_test.drop(columns=['capital_loss', 'capital_gain'])
+    
+    scaler = StandardScaler()
+    tmp_x_train[num_columns] = scaler.fit_transform(tmp_x_train[num_columns])
+    tmp_x_valid[num_columns] = scaler.transform(tmp_x_valid[num_columns])
+    tmp_x_test[num_columns] = scaler.transform(tmp_x_test[num_columns])
+    
+    tmp_all = pd.concat([tmp_x_train, tmp_x_valid, tmp_x_test])
+    
+    ohe = OneHotEncoder(sparse=False)
+    ohe.fit(tmp_all[cat_columns]) #onehotencoder는 fit은 전체, trnaform은 각각
+    
+    ohe_columns = list()
+    for lst in ohe.categories_:
+        ohe_columns += lst.tolist()
+    
+    tmp_train_cat = pd.DataFrame(ohe.transform(tmp_x_train[cat_columns]), columns = ohe.columns)
+    tmp_valid_cat = pd.DataFrame(ohe.transform(tmp_x_valid[cat_columns]), columns = ohe.columns)
+    tmp_test_cat = pd.DataFrame(ohe.transform(tmp_x_test[cat_columns]), columns = ohe.columns)
+    
+    tmp_x_train = tmp_x_train.drop(columns=cat_columns)
+    tmp_x_valid = tmp_x_valid.drop(columns=cat_columns)
+    tmp_x_test = tmp_x_test.drop(columns=cat_columns)
+    
+    #np.array로 반환
+    return tmp_x_train.values,tmp_x_valid.values, tmp_x_test.values
+```
+
+```python
+#xgboost에 f1 score가 없으니 직접 구현(fit할 때 넣어야 해서 sklearn꺼 못 씀)
+def xgb_f1(y, t, threshold=0.5):
+    t = t.get_label()
+    y_bin = (y > threshold).astype(int)
+    return 'f1', f1_score(t, y_bin, average='micro')
+```
+
+```python
+from sklearn.model_selection import KFold, StratifiedKFold
+n_splits = 5
+skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=2020)
+```
+
+```python
+val_scores = list()
+oof_pred = np.zeros((test.shape[0],))
+
+for i, (trn_idx, val_idx) in enumerate(skf.split(train, label)): #라벨 비율에 맞게 쪼개줌-근데 인덱스만 줌!!!!!!!!
+    x_train, y_train = train.iloc[trn_idx, :], label[trn_idx]
+    x_valid, y_valid = train.iloc[val_idx, :], label[val_idx]
+    
+    #전처리
+    x_train, x_valid, x_test = preprocess(x_train, x_valid, test)
+    
+    #모델 정의
+    clf = XGBClassifier(tree_method='gpu_hist')
+    
+    #모델 학습
+    clf.fit(x_train, y_train,
+           eval_set = [[x_valid, y_valid]], #xgb나 lightgbm은 이런 식으로 eval set 넣는 거 가능. sklearn 모델들은 불가
+           eval_metric = xgb_f1, #lightgbm은 이 부분 바꿔야함
+           early_stopping_rounds = 100, #트리 개수는 많이 만들고 early stopping으로 멈춤
+           verbose = 100,
+           )
+    
+    #훈련, 검증 데이터 f1 score 확인
+    trn_f1_score = f1_score(y_train, clf.predict(x_train), average='micro')
+    val_f1_score = f1_score(y_valid, clf.predict(x_valid), average='micro')
+    print('{} Fold, train f1_score : {:.4f}4, validation f1_score : {:.4f}\n'.format(i, trn_f1_score, val_f1_score))
+    
+    val_scores.append(val_f1_score)
+    
+# 교차 검증 f1 score 평균 계산
+print('Cross Validation Score : {:.4f}'.format(np.mean(val_scores)))
+```
+
+
+
+
+
 
 
 ## 6강 Out-of-Fold(OOF) 앙상블
 
+OOF: K Fold에서 값을 섞는 것.
+
+![OOF1]
+
+K Fold 검증을 하면서 모델을 하나 만들고 추론(predict_proba)을 동시에 함. 이렇게 5 fold로 모델이 5개가 나오면 이 예측값을 평균((proba1+proba2+proba3+proba4+proba5)/5)을 내서 앙상블을 한다. 
+
+케글에서는 리더보드 스코어 대로 가중치를 두어서 섞기도 한다.;;;
+
+시드는 고정하고 해야한다. 
+
+하드보팅보다는 소프트보팅이 더 좋다.
+```python
+#위의 코드와 거의 동일
+val_scores = list()
+oof_pred = np.zeros((test.shape[0],)) #(6512,) 테스트 샘플 개수만큼 차원을 갖는 0으로 구성된 벡터를 만듦. 결과를 담아둘 통을 만듦
+
+for i, (trn_idx, val_idx) in enumerate(skf.split(train, label)): #라벨 비율에 맞게 쪼개줌-근데 인덱스만 줌!!!!!!!!
+    x_train, y_train = train.iloc[trn_idx, :], label[trn_idx]
+    x_valid, y_valid = train.iloc[val_idx, :], label[val_idx]
+
+    #전처리
+    x_train, x_valid, x_test = preprocess(x_train, x_valid, test)
+
+    #모델 정의
+    clf = XGBClassifier(tree_method='gpu_hist')
+
+    #모델 학습
+    clf.fit(x_train, y_train,
+           eval_set = [[x_valid, y_valid]],
+           eval_metric = xgb_f1,
+           early_stopping_rounds = 100, #트리 개수는 많이 만들고 early stopping으로 멈춤
+           verbose = 100,
+           )
+
+    #훈련, 검증 데이터 log loss 확인
+    trn_f1_score = f1_score(y_train, clf.predict(x_train), average='micro')
+    val_f1_score = f1_score(y_valid, clf.predict(x_valid), average='micro')
+    print('{} Fold, train f1_score : {:.4f}4, validation f1_score : {:.4f}\n'.format(i, trn_f1_score, val_f1_score))
+
+    val_scores.append(val_f1_score)
+
+    oof_pred += clf.predict_proba(x_test)[:,1]/n_split #[:,1]인 이유: 첫째 열 무시, 확률값만 가져옴
+
+#교차 검증 F1 score 평균 계산
+print('Cross Validation Score : {:.4f}'.format(np.mean(val_scores)))
+```
+
+```python
+(oof_pred > 0.5).astype(int)
+```
+
+
+
+### 하이퍼 파라미터 튜닝을 할 때
+
+```python
+#위의 코드와 거의 동일
+val_scores = list()
+oof_pred = np.zeros((test.shape[0],)) #(6512,) 테스트 샘플 개수만큼 차원을 갖는 0으로 구성된 벡터를 만듦. 결과를 담아둘 통을 만듦
+
+
+#함수를 만들어서 튜닝함
+def train(args):
+
+    for i, (trn_idx, val_idx) in enumerate(skf.split(train, label)): #라벨 비율에 맞게 쪼개줌-근데 인덱스만 줌!!!!!!!!
+        x_train, y_train = train.iloc[trn_idx, :], label[trn_idx]
+        x_valid, y_valid = train.iloc[val_idx, :], label[val_idx]
+
+        #전처리
+        x_train, x_valid, x_test = preprocess(x_train, x_valid, test)
+
+        #모델 정의
+        #여기 바뀌는 것 확인!!!!!
+        clf = XGBClassifier(max_depth  =args.max_depth,
+                            subsample = args.subsample,
+                            colsample_bytree = args.colsample_bytree,
+                            reg_lambda = args.reg_lambda
+                            reg_alpha = args.reg_alpha,
+            tree_method='gpu_hist')
+
+        #모델 학습
+        clf.fit(x_train, y_train,
+               eval_set = [[x_valid, y_valid]],
+               eval_metric = xgb_f1,
+               early_stopping_rounds = 100, #트리 개수는 많이 만들고 early stopping으로 멈춤
+               verbose = 100,
+               )
+
+        #훈련, 검증 데이터 log loss 확인
+        trn_f1_score = f1_score(y_train, clf.predict(x_train), average='micro')
+        val_f1_score = f1_score(y_valid, clf.predict(x_valid), average='micro')
+        print('{} Fold, train f1_score : {:.4f}4, validation f1_score : {:.4f}\n'.format(i, trn_f1_score, val_f1_score))
+
+        val_scores.append(val_f1_score)
+
+        oof_pred += clf.predict_proba(x_test)[:,1]/n_split #[:,1]인 이유: 첫째 열 무시, 확률값만 가져옴
+
+#교차 검증 F1 score 평균 계산
+print('Cross Validation Score : {:.4f}'.format(np.mean(val_scores)))
+```
+
+
+
 
 
 ## 7강 Stacking 앙상블
+
+2 stage 앙상블인 Stacking 앙상블은 수십 개의 1 stage 모델의 결과를 모아 2 stage 모델로 학습 후 결과를 내는 앙상블 방식이다.
+
+효율이 안 좋음..아주 조금 오름. 과적합 우려도 있음. 현업에선 가성비를 챙기기 때문에 잘 안 쓰는 편. 성능 낮아질 수도 있다. 쥐어짜는 방법ㅋㅋㅋ
+
+![stacking1]
+
+validation predict 값들을 다 모음-5 fold일 때 5개의 prediction set이 나오면 이를 concat함. 모델을 아주 많이 모아서 새 데이터셋을 만들기도 한다. 
+
+![staking2]
+
+새로운 데이터셋을 이용해서 train한다.
+
+
+
+### stacking 앙상블 과정
+
+1) 1 stage 결과 모으기
+
+stacking 앙상블을 진행할 1 stage 모델의 결과(train, test)를 모은다.
+
+```python
+
+val_scores = list()
+
+new_x_train_list = [np.zeros((train.shape[0], 1)) for _ in range(4)] #(train.shape[0], 1) 벡터형태. 모델 4개
+new_x_test_list = [np.zeros((test.shape[0], 1)) for _ in range(4)]
+
+for i, (trn_idx, val_idx) in enumerate(skf.split(train, label)): #라벨 비율에 맞게 쪼개줌-근데 인덱스만 줌!!!!!!!!
+    x_train, y_train = train.iloc[trn_idx, :], label[trn_idx]
+    x_valid, y_valid = train.iloc[val_idx, :], label[val_idx]
+
+    #전처리
+    x_train, x_valid, x_test = preprocess(x_train, x_valid, test)
+
+    #모델 정의
+    clfs = [LogisticRegression,
+           RandomForestClassifier,
+           XGBClassifier(tree_method='gpu_hist'),
+           LGBMClassifier(tree_method='gpu_list')]
+
+    for model_idx, clf in enumerate(clfs):
+        clf.fit(x_trian, y_train)
+        
+        new_x_train_list[model_idx][val_idx, :] = clf.predict_proba(x_valid)[:,1].reshape(-1,1)# #벡터->행렬(아래 블럭에서의 연산을 위해서)
+        #reshape(-1,1)의 의미: -1은 컴퓨터가 알아서 해라.
+        #하지만 이미지나 시계열 데이터는 차원 바꿀 때 더 조심해야함. 우리가 생각하지 못하는 차원이 있을 수 있기 때문에
+        
+        new_x_test_list[model_idx][:] += clf.predict_proba(x_test)[:,1].reshape(-1,1)/n_splits
+    
+```
+
+```python
+new_train = pd.DataFrame(np.concatenate(new_x_train_list, axis=1), columns=None)
+new_label = label #아무 것도 안 한 라벨
+new_test = pd.DataFrame(np.concatenate(new_x_test_list, axis=1), columns=None)
+
+new_train.shape, new_label.shape, new_test.shape
+```
+
+### 2) 2 Stage Meta Model 학습
+
+```python
+val_scores = list()
+oof_pred = np.zeros((test.shape[0],))
+
+
+for i, (trn_idx, val_idx) in enumerate(skf.split(new_train, new_label)): 
+    x_train, y_train = new_train.iloc[trn_idx, :], new_label[trn_idx]
+    x_valid, y_valid = new_train.iloc[val_idx, :], new_label[val_idx]
+
+    #전처리
+    scaler = StandardScaler()
+    x_train = scaler.fit_transform(x_train)
+    x_valid = scaler.transform(x_valid),
+    x_test = scaler.transform(new_test)
+
+    #모델 정의 : 뭘 쓰든 상관없음
+    clfs = XGBClassifier(tree_method='gpu_hist')
+	
+    
+    #모델 학습
+    clf.fit(x_train, y_train,
+           eval_set = [[x_valid, y_valid]], #xgb나 lightgbm은 이런 식으로 eval set 넣는 거 가능. sklearn 모델들은 불가
+           eval_metric = xgb_f1, #lightgbm은 이 부분 바꿔야함
+           early_stopping_rounds = 100, #트리 개수는 많이 만들고 early stopping으로 멈춤
+           verbose = 100,
+           )
+    
+    #훈련, 검증 데이터 f1 score 확인
+    trn_f1_score = f1_score(y_train, clf.predict(x_train), average='micro')
+    val_f1_score = f1_score(y_valid, clf.predict(x_valid), average='micro')
+    print('{} Fold, train f1_score : {:.4f}4, validation f1_score : {:.4f}\n'.format(i, trn_f1_score, val_f1_score))
+    
+    val_scores.append(val_f1_score)
+    
+	oof_pred += clf.predict_proba(x_test)[:,1]/n_splits
+#교차 검증 f1 score 평균 계산
+print('Cross Validation Score : {:.4f}'.format(np.mean(val_scores)))    
+```
+
+
+
+## 6. 결과 만들기
+
+```python
+import os
+os.listdir(**)
+```
+
+```python
+submit = pd.read_csv('sample_submission.csv')
+```
+
+```python
+submit.loc[:, 'prediction'] = (oof_pred > 0.5).astype(int)
+```
+
+```python
+submit.to_csv('submission.csv',index=False)
+```
+

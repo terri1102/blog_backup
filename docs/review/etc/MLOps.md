@@ -1,8 +1,8 @@
 ---
 layout: default
-title: ""
-date: 2021-05-16
-parent: Article Reviews
+title: "MLOps 커뮤니티 행사 후기"
+date: 2021-06-05
+parent: ETC
 grand_parent: Reviews
 nav_order: 1
 comments: true
@@ -88,7 +88,7 @@ MLOps의 목표는 빠른 시간 내에 가장 적은 위험을 부담하며 아
 
 ## MLOps component
 
-요리를 좋아해서 집에서 타코를 만들 때, 타코 레스토랑을 만들 떄의 차이
+요리를 좋아해서 집에서 타코를 만들 때, 타코 레스토랑을 만들 때의 차이
 
 음식-모델, 식재료-데이터나 feature, 요리-학습
 
