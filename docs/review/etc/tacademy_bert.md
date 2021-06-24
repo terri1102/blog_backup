@@ -285,15 +285,17 @@ RNN을 encoder와 decoder에서 제거
 
 Self-Attention의 과정
 
-![selfattention1]
+![selfattention1](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/selfattention1.jpg?raw=true)
 
-![selfattention2]
+![selfattention2](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/selfattention2.jpg?raw=true)
 
-![selfattention3]
+![selfattention3](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/selfattention3.jpg?raw=true)
 
-![selfattention4]
+이를 정리해서 보면 아래 사진과 같다.
 
-BERT는 multi-head attention: 12개
+![selfattention4](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/selfattention4.jpg?raw=true)
+
+BERT는 multi-head attention: 12개, 앙상블 효과 노림..
 
 Transformer 모델은 multi-head attention으로 이루어진 encoder를 여러 층(6개) 쌓아서 encoding을 수행
 
@@ -301,9 +303,135 @@ Transformer 모델은 multi-head attention으로 이루어진 encoder를 여러 
 
 # [3강] BERT
 
+BERT는 bi-directional Transformer로 이루어진 언어모델
+
+잘 만들어진 BERT 언어모델 위에 1개의 classification layer만 부착하여 다양한 NLP Task를 수행
+
+
+
+### 데이터의 Tokenizing
+
+**WordPiece tokenizing**
+
+입력 문장을 tokenizing하고, 그 token들로 'token sequence'를 만들어 학습에 사용
+
+2개의 token sequence가 학습에 사용(두 문장)
+
+WordPiece tokenizing: Byte Pair Encoding(BPE) 알고리즘 이용
+
+빈도수에 기반해 단어를 의미 있는 패턴(subword)으로 잘라서 tokenizing
+
+* BPE의 순서도
+
+![bpe_process]()
+
+학습 데이터를 이용해서 vocab을 만들기 시작하는데, 빈도수가 많이 등장하는 char들의 묶음을 계속 반복하면서 vocab 후보를 계속 업데이트 함
+
+
+
+vocab만드는 과정
+
+![wordpiecetokenizer1]
+
+![wordpiecetokenizer2]
+
+![wordpiecetokenizer3]
+
+![wordpiecetokenizer4]
+
+![wordpiecetokenizer5]
+
+
+
+### Bert의 학습
+
+input text를 예측하는 방식으로 학습이 이루어지게 된다.
+
+마스크된 단어조차도 원래 단어를 예측하게 학습이 이루어진다.
+
+두번째 학습은 isnext, notnext인지 레이블 값 예측
+
+
+
+**Training options**
+
+Batch size: 256 sequences(256 sequences * 512 tokens = 128000 tokens/batch)
+
+steps: 1M
+
+Epoch: 40 epochs
+
+Adam lr: 1e-4
+
+weight decay: 0.01
+
+drop out probability: 0.1
+
+Activation function: GELU
+
+
+
+Environment setup
+
+BERT_base: 4 Cloud TPUs (16 TPU chips total)
+
+BERT_large: 16 Cloud TPUs(64 TPU chips total) ≒ 72 P100 GPU
+
+Training time: 4 days
+
+
+
+
+
+classification task시 4가지 방법 사용
+
+sentence pair classification: 앞문장과 뒤 문장이 비슷한지, 자연스러운지 분류
+
+
+
+question and answering: index 출력
+
+
+
+BERT 적용 실험: 문장 유사도
+
+Sent2vec + Bert Multi-lingual이 성능이 가장 좋았다.
+
+
+
+tokenizing할 때 음절 단위로 자르는 게 한국어는 더 좋음
+
 
 
 # [4강] 한국어 BERT
+
+ETRI에서 공개한 korBERT
+
+ETRI KorBERT의 입력은 형분석 이후 데이터가 입력되어야 함. wordpiece 알고리즘은 동일한데, 형태소 태그를 다 붙여 놓은 다음에 tokenize. 동음이의어 구분에 용이
+
+
+
+형태소 분석 라이브러리로 Mecab이나 Khaii 등 있는데, ETRI에는 Khaii가 적합하다.
+
+
+
+BERT 성능에 영향을 미치는 요인
+
+* corpus 사이즈
+* corpus 도메인
+* corpus tokenizing(어절, BPE, 형태소)
+* vocab 사이즈(영어 model: 30522, 다국어 모델:119547)
+* 전처리...데이터 퀄리티가 제일 중요하다
+
+​    (XLnet: aggresive하게 heuristic한 필터링...)
+
+
+
+
+
+
+
+
 
 
 
