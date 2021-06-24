@@ -236,9 +236,15 @@ Attention without Context
 
 Attention with Context
 
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/attention_w_context.jpg?raw=true" alt="attentionwithcontext" style="zoom:80%;" />
 
+어텐션 셀에 들어온 정보가 C(context) 
 
+context를 반영하는 방법들: concat, dot
 
+보통 concat해서 하긴 하지만 다양한 방법이 있다.
+
+![context](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/context%EB%B0%98%EC%98%81%EB%B0%A9%EB%B2%95.jpg?raw=true)
 
 ---
 
