@@ -217,10 +217,102 @@ Word2vec이나 FastText와 같은 word embedding 방식은 동형어, 다의어 
 
 딥러닝 기반의 언어모델은 해당 확률을 최대로 하도록 네트워크를 학습
 
+![markov](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/markov.jpg?raw=true)
 
+
+
+## RNN 기반의 언어 모델
+
+### RNN의 구조적 문제점
+
+* 입력 sequence의 길이가 매우 긴 경우, 처음에 나온 token에 대한 정보가 희석
+
+* 고정된 context vector 사이즈로 인해 긴 sequence에 대한 정보를 함축하기 어려움
+
+* 모든 token이 영향을 미치니, 중요하지 않은 token(조사 등..)도 영향을 줌
+
+
+
+## Attention 모델
+
+### RNN계열에 Attention 적용한 경우(RNN+Attention)
+
+* 인간이 정보처리를 할 떄와 마찬가지로 중요한 feature는 더욱 중요하게 고려하는 것이 Attention의 모티브
+
+기존 seq2seq에서는 RNN의 최종 output인 context vector만 활용
+
+(즉, 앞 부분의 단어는 hidden vector로만 전달되고, output은 무시되었음)
+
+Attention에서는 인코더 RNN 셀의 각각 output을 활용
+
+Decoder에서는 매 step마다 RNN 셀의 output을 이용해 dynamic하게 context vector를 생성
+
+
+
+Attention 모델을 이용한 딥러닝의 시각화 ---> 나중에 모델 만들고 발표할 때 쓰기 좋아보임
+
+ex) NMT(Attention for neural machine translation), STT(Attention for speech to text)
+
+
+
+장점: 문맥에 따라 동적으로 할당되는 encoder의 Attention weight로 인한 dynamic context vector를 획득해 기존 seq2seq의 encoder, decoder의 성능을 비약적으로 향상시킴
+
+한계: 여전히 RNN이 순차적으로 연산이 이뤄짐에 따라 연산속도가 매우 느림
+
+
+
+### Self-Attention
+
+Attention is all you need 논문에서 소개
+
+RNN을 encoder와 decoder에서 제거
+
+위의 RNN 계열에 Attention을 적용한 것의 한계를 극복함
+
+
+
+기존의 RNN + attention:
+
+* decoder 결과가 정답과 많이 다르다면 좋지 못한 context vector -> 좋지 못한 attention weight
+
+->Fully connected feed forward network에서 score를 조정 -> softmax 값이 조정됨에 따라 attention score도 조정됨
+
+* RNN+attention에 적용된 attention은 decoder가 해석하기에 가장 적합한 weight를 찾고자 노력
+
+만약, Attention이 decoder가 아니라 input인 값을 가장 잘 표현할 수 있도록 학습하면? -> 자기 자신을 가장 잘 표현할 수 있는 좋은 embedding-> self attention 모델의 탄생
+
+
+
+Self-Attention의 과정
+
+![selfattention1]
+
+![selfattention2]
+
+![selfattention3]
+
+![selfattention4]
+
+BERT는 multi-head attention: 12개
+
+Transformer 모델은 multi-head attention으로 이루어진 encoder를 여러 층(6개) 쌓아서 encoding을 수행
+
+
+
+# [3강] BERT
+
+
+
+# [4강] 한국어 BERT
+
+
+
+# [5강] BERT 실습
 
 
 
 ## Reference
 
-BERT 톺아보기 http://docs.likejazz.com/bert/
+BERT 톺아보기 http://docs.likejazz.com/bert/ -> 시각화에 대한 아이디어도 많음
+
+ 
