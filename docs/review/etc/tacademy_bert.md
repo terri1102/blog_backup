@@ -94,9 +94,7 @@ n개의 단어는 n차원의 벡터로 표현
 
 한 단어의 주변 단어들을 통해 그 단어의 의미를 파악
 
-![bertq]()
-
-
+![bertq](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/bertq.jpg?raw=true)
 
 Word2vec 알고리즘은 주변부의 단어를 예측하는 방식으로 학습(skip-gram방식)
 
@@ -104,7 +102,120 @@ Word2vec 알고리즘은 주변부의 단어를 예측하는 방식으로 학습
 
 
 
+| Sparse Representation | Dense Representation |
+| --------------------- | -------------------- |
+| one hot encoding      |   word embedding     |
+| 단어가 커질 수록 무한대 차원의 벡터 | 한정된 차원으로 표현 가능|
+|의미 유추 불가능| 의미 관계 유추 가능|
+|차원의 저주|비지도 학습으로 단어의 의미 학습 가능|
+
+Representation Learning에 대한 좋은 글
+
+
+
+단어의 의미가 벡터로 표현됨으로써 `벡터 연산`이 가능! 추론 가능
+
+
+
+### 임베딩이 잘 되었는지 확인하는 법: 
+
+사람이 단어의 유사도를 annotate함(정답)
+
+두 단어 벡터의 cosine similarity를 구한 후 정답과 Spearman's rank-order correlation값을 획득
+
+경험상 0.7이상의 값이 나오면 embedding이 잘 수행되었다고 할 수 있음
+
+
+
+```python
+#gensim을 이용한 word2vec 실습
+
+from gensim.models.word2vec import Word2Vec
+import gensim
+
+path = 'train_corpus.txt'
+sentences = gensim.models.word2vec.Text8Corpus(path)
+
+model = Word2Vec(sentences, min_counts=5, size=100, window=5)
+model.save('w2v_model')
+
+saved_model = Word2Vec.load('w2v_model')
+
+word_vector = saved_model['강아지']
+
+saved_model.similarity('강아지','멍멍이')
+
+saved_model.similar_by_word('강아지')
+
+```
+
+장점: 단어 간의 유사도 측정에 용이, 단어간 관계 파악 및 벡터 연산을 통한 추론 가능
+
+단점: 단어의 subword information 무시(서울 vs 서울시 vs 고양시)
+
+​		 out of vocabulary에서 적용 불가능
+
+
+
+## FastText
+
+* **Training:** 
+
+  기존의 word2vec과 유사하나, 단어를 n-gram으로 나누어서 학습을 수행
+
+  n-gram의 범위가 2-5일 때 단어를 다음과 같이 분리하여 학습
+
+  "assumption" = {as,ss,su,...,ass,ssu,sum,ump,mpt,...,ption,assumption}
+
+  as-> 2개니까 bi-gram
+
+  이 때, n-gram으로 나눠진 단어는 사전에 들어가지 않으며 별도의 n-gram vector를 형성함(각 단어별 n-gram vector가 있음)
+
+* **Testing**
+
+  입력 단어가 vocabulary에 있을 경우, word2vec과 마찬가지로 해당 단어의 word vector를 return함
+
+  만약 OOV일 경우, 입력 단어의 n-gram vector들의 합산을 return함
+
+subword를 이용해서 학습함
+
+오탈자, OOV, 등장 횟수가 적은 학습 단어에 대해서 강세
+
+FastText Model 중 jamo-advanced 이용하면 성능 좋음
+
+
+
+## Word Embedding의 한계점
+
+Word2vec이나 FastText와 같은 word embedding 방식은 동형어, 다의어 등에 대해선 embedding 성능이 좋지 못하다
+
+주변 단어를 통해 학습이 이루어지기 때문에 `문맥`을 고려할 수 없다
+
+
+
+한국어에서의 n-gram? 
+
+기본은 음절을 단위로 n-gram을 시행. 
+
+자소 단위로 나눠서 n-gram 하기도 함. 대신 n-gram의 개수를 6-12 gram으로 하는 등 바꿈. ex) 대한민국=>대한, ㅐ한ㅁ, ... 이런식
+
+
+
+---
+
+
+
 # [2강] 언어 모델(Language Model)
+
+언어 모델: 자연어의 법칙을 컴퓨터로 모사한 모델
+
+
+
+### Markov 확률 기반의 언어 모델
+
+초기의 언어 모델은 다음 단어나 문장이 나올 확률을 통계와 단어의 n-gram을 기반으로 계산
+
+딥러닝 기반의 언어모델은 해당 확률을 최대로 하도록 네트워크를 학습
 
 
 
