@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 자연어 처리
+title: NLP
 date: 2021-06-17
 parent: Deep Learning
 has_children: true
