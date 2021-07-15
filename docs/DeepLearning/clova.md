@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Image Classification Pipeline
+title: Hyper CLOVA 후기
 date: 2021-05-23
 parent: Deep Learning
 nav_order: 5
 comments: true
 ---
 
-fddd
+
 
 # HYPER CLOVA
 
