@@ -56,7 +56,7 @@ typora-copy-images-to: ..\..\assets\img
 
 P(AlB)=A given B: B일 때 A인 조건부확률을 구하는 방법 이며, 아래에서는 이해를 위해 A, -A 두 가지 사건만 일어난다고 가정한다.
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/img/%EB%B2%A0%EC%9D%B4%EC%A7%80%EC%95%88.png?raw=true" alt="bayesian square" style="zoom:67%;" />
+![bayesian](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/%EB%B2%A0%EC%9D%B4%EC%A7%80%EC%95%88.png?raw=true)
 
 
 
@@ -138,7 +138,7 @@ $$
 P(H|E) = \frac{P(H)P(E|H)}{P(H)P(E|H)+P(-H)P(E|-H)}
 $$
 
-![bayesian inference](https://github.com/terri1102/terri1102.github.io/blob/master/assets/img/bayes%20theorem.PNG?raw=true)
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/bayes%20theorem.PNG?raw=true" alt="bayesian inference" style="zoom:67%;" />
 
 
 
@@ -146,7 +146,7 @@ $$
 
 
 
-### 혼동행령(confusion matrix, contingency matrix, error matrix)
+### 혼동행렬(confusion matrix, contingency matrix, error matrix)
 
 |          | Test Positive      | Test Negative      |
 | -------- | ------------------ | ------------------ |
@@ -181,5 +181,5 @@ MCMC --->좀 더 개념 공부하고 적기
 
 복잡한 문제는 수형도로 그리면 더 알아보기 쉬워진다. 
 
-![tree diagram](https://github.com/terri1102/terri1102.github.io/blob/master/assets/img/tngudeh.PNG?raw=true)
+![tree diagram](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/tngudeh.PNG?raw=true)
 
