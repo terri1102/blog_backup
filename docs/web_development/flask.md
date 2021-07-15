@@ -10,73 +10,111 @@ nav_order: 8
 
 
 
-flask request 종류
+# 아주 간단한 Flask app 만들기
 
-https://velog.io/@sangmin7648/%EC%98%A4%EB%8A%98%EC%9D%98-%EB%B0%B0%EC%9B%80-045
-
-
+너무 오랜만에 Flask 앱 만들려고 하니까 하나도 기억이 안나서...다시 정리해 볼 겸 조금씩 기본적인 내용을 정리해보려고 한다. 최종 목표는 Flask와 MongoDB, Dash로 간단한 대시보드를 만드는 것이다.
 
 
 
-werkzerg
+## Flask 설치
+
+새로운 가상환경을 생성한 다음에 flask 라이브러리를 깔아준다.
+
+```bash 
+$ pip install flask
+```
 
 
 
-jinja
+## 앱 폴더 생성
+
+flask_project 폴더를 생성하고 또 그 안에 flask_app 폴더를 생성한 후에 `__init__.py` 파일을 만든다. 보통 flask_project과 flask_app 이름을 동일하게 하는 경우도 있지만 여기서는 설명의 편의성을 위해 다르게 쓸 것이다.
+
+```python
+flask_project
+└── flask_app
+	└── __init__.py
+```
 
 
 
-palette project 
+## init 파일 작성
+
+`__init__.py` 파일을 작성한다.
+
+```python
+#__init__.py
+
+from flask import Flask
+
+app = Flask(__name__)
+```
 
 
 
-1)app.run() 매서드로 실행
+## Flask 실행
+
+`__init__.py`  작성 후 flask run으로 실행한다. 이때 flask_app 밖에서 실행해야 제대로 실행이 된다. 즉 flask_project 폴더 안에서 실행하면 된다.
+
+
+
+1) app.run() 매서드로 실행
 
 ```bash
-Flask_app=mini_flask flask run
+$ FLASK_APP=flask_app flask run
 #FLASK_app 환경변수
 #쉘이나 터미널에서 실행할 때 환경변수 설정가능
 ```
 
-pip install flask 설치하면 flask 명령어 설치해줌 ex) flask run
+매번 FLASK_APP=flask_app을 치는 것이 귀찮다면, 환경 변수를 설정해 export해도 된다. 
 
 ```bash
-$env:FLASK_APP='flask_app' flask run
-
-```
-
-```bash
-$ env:FLASK_APP = 'flask_app'
+$ export FLASK_APP=flask_app
 $ flask run 
 ```
 
 
 
-윈도우 환경변수 터미널 찾아보기
 
-2)python mini_flask 로 직접 실행가능
+
+2) python flask_app 로 직접 실행가능
+
+
+
+flask run 대신에 python 스크립트 실행하듯이 실행 가능하다.
+
+---
+
+## 라우트 추가
+
+기본 페이지를 만들기 위해 `__init__.py`에 라우트를 추가해보았다. 
+
+```python
+#__init__.py
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/') #엔드포인트 설정
+def main_page():
+    return "Main Page"
+```
+
+
+
+## 블루프린트
+
+라우트가 많아질수록 한 파일에서 관리하기 복잡해지기 때문에, 기능별로 라우트를 나누어서 사용할 수 있다.
+
+
+
+## 어플리케이션 팩토리 만들기
+
+circular import를 피하기 위해 사용한다. 
 
 
 
 ---
-
-과제 설명
-
-테이블은 하나
-
-정해진 매서드 잘 넣어서 만들기
-
-엔드포인트도
-
-flask-sqlalchemy 
-
-
-
-id값은 기본적으로 계속 증가하기 때문에 빈 번호를 메꿀 수 없다
-
-
-
-테스트파일 많이 참고..!
 
 
 
@@ -114,10 +152,6 @@ except NoResultFound, e:
 
 
 
-
-깨달은 것!
-
-def update_user(): #여기 안에 인자 안 들어가!!
 
 ```python
 def get_user():
@@ -505,3 +539,8 @@ def parse_records(db_records):
     return parsed_list
 ```
 
+
+
+## 참고
+
+flask request 종류 https://velog.io/@sangmin7648/%EC%98%A4%EB%8A%98%EC%9D%98-%EB%B0%B0%EC%9B%80-045

@@ -323,7 +323,7 @@ WordPiece tokenizing: Byte Pair Encoding(BPE) 알고리즘 이용
 
 * BPE의 순서도
 
-![bpe_process]()
+![bpe_process](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/bpe_process.jpg?raw=true)
 
 학습 데이터를 이용해서 vocab을 만들기 시작하는데, 빈도수가 많이 등장하는 char들의 묶음을 계속 반복하면서 vocab 후보를 계속 업데이트 함
 
@@ -331,15 +331,15 @@ WordPiece tokenizing: Byte Pair Encoding(BPE) 알고리즘 이용
 
 vocab만드는 과정
 
-![wordpiecetokenizer1]
+![wordpiecetokenizer1](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/wordpiecetokenizer_ex1.jpg?raw=true)
 
-![wordpiecetokenizer2]
+![wordpiecetokenizer2](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/wordpiecetokenizer_ex2.jpg?raw=true)
 
-![wordpiecetokenizer3]
+![wordpiecetokenizer3](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/wordpiecetokenizer_ex3.jpg?raw=true)
 
-![wordpiecetokenizer4]
+![wordpiecetokenizer4](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/wordpiecetokenizer_ex4.jpg?raw=true)
 
-![wordpiecetokenizer5]
+![wordpiecetokenizer5](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/wordpiecetokenizer_ex5.jpg?raw=true)
 
 
 

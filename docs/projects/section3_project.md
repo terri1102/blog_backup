@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Section3 project 회고
+title: "[기업 IPO 수익률 예측기] 회고"
 parent: Projects
-nav_order: 3
+nav_order: 1
 ---
 
 

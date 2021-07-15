@@ -3,6 +3,8 @@ layout: default
 title: 강화학습을 이용한 주식투자 프로젝트 
 parent: Projects
 nav_order: 2
+nav_exclude: true
+search_exclude: true
 ---
 
 
