@@ -15,27 +15,7 @@ nav_order: 3
 
 
 
-### BERT Model
-
-
-
-### 읽은 논문
-
-* Sentence Transformer
-
-### 배운 점
-
-
-
-
-
-### 아쉬운 점
-
-
-
-
-
-### 궁금한 점
+### 
 
 
 
@@ -55,9 +35,9 @@ context sentence를 어떻게 BERT 모델과 붙일까 계속 이 고민만 하�
 
 그러다가 multiple inputs이라는 이 글에서 힌트를 얻어서 모델을 구상해보았다. 이 모델이 아직 돌아갈지 안 갈지는 모르겠다.
 
-\#https://discuss.pytorch.org/t/nn-module-with-multiple-inputs/237/2
+https://discuss.pytorch.org/t/nn-module-with-multiple-inputs/237/2
 
- ![model_structure]
+
 
 ```
 #print(model)
@@ -387,7 +367,7 @@ https://discuss.pytorch.org/t/concatenation-of-the-hidden-states-produced-by-a-b
 
 
 
-클래스 비율이 처참하다ㅋㅋ 70:1 정도
+클래스 비율이 처참하다.  70:1 정도
 
 그래서 NLP의 oversampling에 대해 찾아보았다. 텍스트 representation을 구한다음에 resampling하는 것 같다.
 
@@ -485,111 +465,9 @@ model = ElectraModel(config)
 
 ---
 
-## 07.03
-
-https://zzsza.github.io/mlops/2021/04/18/bentoml-basic/
-
-한국어 혐오발언을 분류하는 모델을 만든다음에 논문을 써보는 게 어떤지 제안해주셨습니다.
 
 
-
-이창우님
-
-데이터셋 구축 40만개 ㄷㄷ
-
-cross-dataset의 성능이 낮았음
-
-데이터셋을 많이 줄이고 조합을 중요하게 생각해봤음
-
-랜덤한 수를 주고 그 수에 속한 데이터셋을 뽑아서 cross 검증을 했었음
-
-데이터셋 조합을 아주 다양하게 
-
-Glove+bilstm
-
-aucroc
-
-결론: 데이터셋이 큰 게 잘 나온다.
-
-질문: 전처리? 
-
-val factor: roc auc에 대한 평균을 낸다음에 데이터셋의 샘플 개수로 나누었음. net score: 모델의 효율성(작은 데이터셋으로 얼마나 성능 좋게 나오게 만드나?)
-
-sem_eval, hate_eval의 데이터셋이 좋았음
-
-sem_eval의 public dataset으로 했을 때는 낮았는데 샘플이 적어서 그런 거 같다.
-
-
-
-데이터셋: bench mark dataset+sem eval + hate eval
-
-
-
-Tokenizing을 어떻게 할 것인가? Embedding을 어떻게 할 것인가? 
-
-Glove: 100d
-
-임베딩 후에 FC 대신 Logistic이나 Randomforest, lgbm 등 써볼 것이다. (시간 효율)
-
-
-
-35만 개 데이터셋을 밸런스를 맞춰서 줄였음.->15만 개로
-
-꿀팁ㅋㅋ토크나이징을 한번에 하면 안 좋음..
-
-Tokenizer = transformers.Autotokenizer.from_pretrained
-
-Bert의 마지막 히든 레이어를 가져올 수 있음()
-
-64개를 벡터로 바꿈
-
-np.concat해서 일일이 벡터로 만든 다음에 붙여줌
-
-그리고 pkl로 중간중간 저장하면 좋음
-
-
-
-'detect all abuse' (인성님)
-
-트위터로 훈련한 모델로 Reddit을 predict하면 정확도가 많이 떨어진다.
-
-데이터셋을 이것저것 섞어서 하니까 좀 낫더라..
-
-
-
-한 에폭 2시간ㅋㅋㅋㅋ
-
----
-
-최인성님
-
-BERT 사용. 데이터는 3만 개 조금 안 됨
-
-데이터셋 클래스 비율? 
-
-전처리를 더 해야 할 것 같다! 
-
-전처리: strip, url 자르고, ~~stemming, stopword~~
-
-kaggle에서 긁어 온 Reddit 데이터셋이 안 좋음..h e l l o, 이모티콘
-
----
-
-kaggle jigsaw 15만개. 완전 imbalance
-
-문장의 글자수를 줄이는 게 좋다!
-
-BERT 계열은 무거워서 빨라야 하는데, 데이터도 GPU에 넣어야 연산이 빠리진다.
-
-GPU 메모리가 얼마 안 되서 이를 개선하려고 한다.
-
-전체 데이터를 CPU에 넣고, batch로 잘라서 가져올 때 Gpu로 넣은 다음에 써야함...
-
----
-
-(보윤)
-
-
+7월 3일의 결과
 
 ## 1. 데이터셋 선정
 
@@ -639,103 +517,7 @@ Reddit 전처리를 할 때 [deleted] 같은 거랑 외국어 처리!
 
 ---
 
-contextual data가 부족함
 
-sub-task로 감정 분석을 훈련, hate speech 분류
-
-두 개의 히든 벡터를 융햡(confusing)
-
-
-
-퍼러비스, CRR 채용시 오픈소스를 얼마나 목적에 맞게 `빨리` 쓰느냐! 
-
-transformer나 seq2seq 코드 
-
----
-
-서비스로도 구현하고 싶다
-
-악플 분류
-
-사회적 가치 실현
-
-데이터 수집: 각각 커뮤니티에서 수집, 건전 사이트에서 반대가 많이 찍히는 글들
-
-필터링해야하는 단어들을 구함
-
-영어로 프로젝트 한 것과 비교??
-
-유튜브 댓글은 test set으로 구체적으로 예시까지
-
-유튜브나 트위터 api를 사용해서 댓글 쓸 때 바로 감지
-
-flask로 배포
-
----
-
-나치 관련 단어는 독일어
-
-언어 감지 라이브러리
-
-
-
-Bert("multi-lingual-based")
-
----
-
-Hate speech
-
-context가 없어도 hate hate speech인 데이터가 의미가 있나?
-
-AI가 toxic speech를 하게 될까봐 시키나?
-
-
-
----
-
-out side is too hot. [sep] take off your jacket
-
-hi i'm a teenager [sep] take off your clothes
-
----
-
-경현님
-
-jigsaw, gab, reddit: jigsaw 두 개 중에 1만 꺼내서 씀.
-
-jigsaw?
-
-전처리
-
-distillroberta : roberta가 bert 보다 좋아서
-
-TPU로 돌렸음
-
-
-
-궁금점? 하이퍼 파라미터 or 데이터셋 크기에 모델 영향 받나?
-
-cross-entropy 0.8, 0.3
-
-데이터셋에 따라 혐오의 정의가 다르다. 데이터셋을 여러개를 섞어써서 정확도가 낮아졌나 생각중.
-
-
-
-문장 2개는 리스트로 전처리 후 [sep]. 문장 1개는 그냥 넣었음
-
-임베딩 레이어
-
-fully connected layer
-
-(창우님)
-
-BERT 마지막 레이어의 히든 스테이트를 뽑아서 randomforest, lgbm 돌림.
-
-Glove 보단 좋은데 BERT 보단 안 좋음
-
-
-
-electra랑 distillbert 보다 logistic이 몇 만배 빠름.
 
 
 
