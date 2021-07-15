@@ -1,4 +1,18 @@
+---
+layout: default
+title: Hash Table
+date: 2021-05-10
+comments: true
+nav_order: 2
+parent: Data Structure and Algorithm
+
+
+---
+
+
+
 # 해쉬테이블
+
 검색을 위한 자료구조
 해싱은 검색 알고리즘의 일부
 

@@ -1,15 +1,10 @@
 ---
 layout: default
 title: 2021년 6월 셋째주 TIL
-date: 2021-06-6
-categories:
-
-  - TIL
-  tags:
-  - TIL
-  comments: true
-  nav_order: 15
-  parent: TIL
+date: 2021-06-06
+comments: true
+nav_order: 15
+parent: TIL
 ---
 
 ## 21.06.16
