@@ -65,6 +65,8 @@ scipy.stats.variation(arr, axis=0, nan_policy='propagate')
 ## 3. 특이값의 발견
 
 **z스코어 값**이 -2에서 2, -3에서 3 사이의 범위를 벗어나는 것을 특이값으로 생각
+
+
 $$
 z-score: (x_i - \bar{x}) / std
 $$
@@ -109,7 +111,10 @@ $$
 
 
 2. 표본공분산
-   <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/4d158b1ec5a3c6d1de84b9d59f604d8170a51407" alt=" q_{jk}=\frac{1}{N-1}\sum_{i=1}^{N}\left(  x_{ij}-\bar{x}_j \right)  \left( x_{ik}-\bar{x}_k \right), " style="zoom:67%;" />
+
+<br>
+
+ <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/4d158b1ec5a3c6d1de84b9d59f604d8170a51407" alt=" q_{jk}=\frac{1}{N-1}\sum_{i=1}^{N}\left(  x_{ij}-\bar{x}_j \right)  \left( x_{ik}-\bar{x}_k \right), " style="zoom:67%;" />
 
 ```python
 numpy.cov(m, y=None, rowvar=True, bias=False, ddof=None, fweights=None, aweights=None)
@@ -117,7 +122,7 @@ numpy.cov(m, y=None, rowvar=True, bias=False, ddof=None, fweights=None, aweights
 
 
 
-#### 상관계수(Correlation coefficient)
+### 상관계수(Correlation coefficient)
 
 **피어슨상관계수(Pearson correlation coefficient)**: , Cov(X,Y)의 X와 Y의 단위는 각각 다르기 때문에 공분산의 정도를 보여주지는 못 하기 때문에, 두 숫자형 변수 사이의 선형적 강도를 나타내기 위한 통계량으로 공분산을 각 변수의 표준편차로 나눈 것다. 
 
@@ -142,6 +147,8 @@ scipy.stats.pearsonr(x, y)         #x,y = array
 
 
 **X와 Y의 모집단상관계수 성질**
+
+
 $$
 -1 ≤ \rho _{XY} ≤ 1
 $$
@@ -157,6 +164,8 @@ $$
 
 
 **X와 Y의 표본상관계수**
+
+
 $$
 \gamma_{xy} = \frac{s_{xy}}{std_x * std_y}
 $$
