@@ -350,7 +350,7 @@ model.intercept_
 
 
 
-최적화 하기: val에 fit하기? 아니면 train+val로 fit하기? 즉 마지막 test set 의 mae, r2구하기 전 어떻게 하는 거지?
+최적화 하기
 
 ```python
 #X 특성의 테이블, y 타겟 벡터 만들기
@@ -389,9 +389,25 @@ plt.scatter(X_test, y_pred, color = 'red', linewidth =1)
 
 ## 오류지표와 결정계수
 
+선형회귀에서 자주 사용되는 지표는 R square, Adjusted R square, MAE, MSE 등이 있다. 
+
+* MAE: 실제값과 예측값의 차이를 절댓값으로 변환해 평균한 것 
+* 이상치를 잡아내는 데 효과적. 작을 수록 좋은 모델. 데이터의 스케일에 영향 많이 받음.
+
+$$
+MAE = \frac{1}{N} \sum_{i=1}^{N}|y_i - \hat{y}|
+$$
 
 
-## R^2 결정계수
+
+* MSE: 변동치가 큰 지표와 낮은 지표를 같이 예측하는 데 효과적. 작을수록 좋은 모델. 데이터의 스케일에 영향 많이 받음.
+* RMSE
+* RMSLE
+* R square
+
+
+
+## R Square 결정계수
 
 | X    | y       | y-y_bar | (y-y_bar)^2 | y_hat | y_hat-y_bar | (y_hat-y_bar)^2 |
 | ---- | ------- | ------- | ----------- | ----- | ----------- | --------------- |
@@ -427,11 +443,11 @@ Standard Error of th Estimate =
 $$
 \sqrt{\frac{\Sigma(\hat{y}-y)^2 }{n-2}} = \sqrt{\frac{2.4}{5-2}} = \sqrt{0.8} =0.89
 $$
-[그림]
 
 
 
-### bias and variance
+
+### Bias and Variance
 
 bias: 모델이 train data와 잘 맞지 않는 것
 
@@ -469,9 +485,9 @@ X에 따른 잔차의 산점도를 x=X, y = e(y-y hat)로 그렸을 때, 어떠�
 
 만약 x 값이 증가할수록 잔차의 분산이 커지는 나팔관 형태라면 오차의 등분산 가정 위배(이분산)하고, 회귀식이 설명변수와 반응변수의 관계를 적절하게 설명하지 못하는 것이다.
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/img/residual_plot.png?raw=true" alt="residual_plot" style="zoom:67%;" />
+![residual_plot](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/residual_plot.png?raw=true)
 
-[^ ]: 나팔관 형태의 분산
+######                                                                                                   [나팔관 형태의 잔차의 분포]
 
 비선형관계, 이차 내지 고차방정식 유형으로 보일 때는 선형관계보다는 다항회귀나 비선형 모형으로 가정하고 재분석해야 한다. (산점도가 이차방정식 같은 고차방정식 모양처럼 생겼음)
 
@@ -541,3 +557,9 @@ from category_encoders import OneHotEncoder
 encoder = OneHotEncoder(use_cat_names=True) #알아서 카테고리 변수만 변환해주니 pandas get dummies 보다 편하다
 ```
 
+
+
+## Reference
+
+* 회귀/ 분류시 알맞은 metric과 그에 대한 설명 https://mole-starseeker.tistory.com/30
+* Regression Metrics for Machine Learning https://machinelearningmastery.com/regression-metrics-for-machine-learning/

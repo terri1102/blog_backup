@@ -311,3 +311,5 @@ model = ElasticNet(alpha=1.0, *, l1_ratio=0.5, fit_intercept=True, normalize=Fal
 https://youtu.be/NGf0voTMlcs
 
 https://youtu.be/1dKRdX9bfIo
+
+https://machinelearningmastery.com/ridge-regression-with-python/

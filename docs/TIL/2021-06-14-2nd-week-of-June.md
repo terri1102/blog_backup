@@ -2,14 +2,9 @@
 layout: default
 title: 2021년 6월 첫째,둘째주 TIL
 date: 2021-06-14
-categories:
-
-  - TIL
-  tags:
-  - TIL
-  comments: true
-  nav_order: 13
-  parent: TIL
+comments: true
+nav_order: 13
+parent: TIL
 ---
 
 
