@@ -11,12 +11,6 @@ nav_order: 3
 
 ### Week3
 
-이제 모델 코드를 짜야할 시간...
-
-
-
-### 
-
 
 
 ## Sentence transformer 모델 고르기
