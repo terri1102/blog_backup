@@ -2,8 +2,8 @@
 layout: default
 title: Hyper CLOVA 후기
 date: 2021-05-23
-parent: Deep Learning
-nav_order: 5
+parent: etc
+nav_order: 11
 comments: true
 ---
 
@@ -267,3 +267,24 @@ HyperCLOVA Studio
 
 ![ai개발자들]
 
+
+
+---
+
+## HyperCLOVA의 활용
+
+
+
+쇼핑 리뷰 요약
+
+1.리뷰 클러스터링
+
+2. 클러스터별대표 리뷰 추출 & 한줄 요약 생성
+
+생성요약시 faithfulness 문제있음.
+
+ROUGE 스코어와 NLI 이용
+
+ROUGE: 쇼핑리뷰와 한 줄 요약이 상호간에 얼마나 단어들이 겹치는지를 계산(word overlap)로 평가
+
+NLI: 
