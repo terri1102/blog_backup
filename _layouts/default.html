@@ -156,6 +156,9 @@ layout: table_wrappers
         {% if footer_custom != "" or site.last_edit_timestamp or site.gh_edit_link %}
           <hr>
           <footer>
+            {% if site.disqus.shortname %}
+            {% include disqus_comments.html %}
+            {% endif %}
             {% if site.back_to_top %}
               <p><a href="#top" id="back-to-top">{{ site.back_to_top_text }}</a></p>
             {% endif %}
@@ -198,9 +201,7 @@ layout: table_wrappers
       <div class="search-overlay"></div>
     {% endif %}
   </div>
-  {% if site.disqus.shortname %}
-  {% include disqus_comments.html %}
-  {% endif %}
+ 
 </body>
 
 </html>
