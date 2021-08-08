@@ -149,15 +149,15 @@ Generate된 문장의 많은 부분이 Retrieved 문장과 중복되고 일부 �
 
 <img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/rnr1.jpg?raw=true" alt="rnr1" style="zoom:67%;" />
 
-위의 <Table 1>을 보면 RetNRef model은  True label's neighbor나 True label를 이용하여 perplexity를 개선할 수 있다(perplexity를 낮출 수 있다). RetNRef++ 모델은 Memory Network retriever를 이용하면 perplexity가 48.4로 매우 안 좋지만,  perplexity가 안 좋다고 generate된 문장이 안 좋은 문장인 것은 아니다.
+위의 \<Table 1>을 보면 RetNRef model은  True label's neighbor나 True label를 이용하여 perplexity를 개선할 수 있다(perplexity를 낮출 수 있다). RetNRef++ 모델은 Memory Network retriever를 이용하면 perplexity가 48.4로 매우 안 좋지만,  perplexity가 안 좋다고 generate된 문장이 안 좋은 문장인 것은 아니다.
 
 
 
-**Word Statistics **: 생성해 낸 단어의 개수와 문자(character)의 개수, 흔하지 않은 단어 사용 빈도
+**Word Statistics**: 생성해 낸 단어의 개수와 문자(character)의 개수, 흔하지 않은 단어 사용 빈도
 
 <img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/rnr2.jpg?raw=true" alt="rnr2" style="zoom:67%;" />
 
-<Table2>를 통해 Seq2Seq 모델이 다른 모델에 비해 더 흔한 단어를 사용하고 짧은 문장을 만들어내는 것을 확인할 수 있다. RetNRef 모델(Memory Network retriever 사용)은 덜 흔한 단어를 사용하고 문장 길이도 더 길다. RetNRef++모델은 retriever를 더 boost하기에 더 좋은 성능을 보여준다.
+\<Table2>를 통해 Seq2Seq 모델이 다른 모델에 비해 더 흔한 단어를 사용하고 짧은 문장을 만들어내는 것을 확인할 수 있다. RetNRef 모델(Memory Network retriever 사용)은 덜 흔한 단어를 사용하고 문장 길이도 더 길다. RetNRef++모델은 retriever를 더 boost하기에 더 좋은 성능을 보여준다.
 
 
 
@@ -183,7 +183,7 @@ Retrieved된 문장과 generated된 문장을 비교해서 얼마나 참조하�
 
 ![table8](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/table8.jpg?raw=true)
 
-<table8>을 보면 RetNRef++은 더 긴 문장을 생성하고 문맥에 더 적합한 문장을 생성한다. 하지만 여전히 반복된 표현을 생성하거나 대화 상대의 문장을 따라하는 등의 문제들이 남아있다.
+\<Table8>을 보면 RetNRef++은 더 긴 문장을 생성하고 문맥에 더 적합한 문장을 생성한다. 하지만 여전히 반복된 표현을 생성하거나 대화 상대의 문장을 따라하는 등의 문제들이 남아있다.
 
 
 
@@ -199,7 +199,7 @@ Retrieved된 문장과 generated된 문장을 비교해서 얼마나 참조하�
 
 ## Conclusion
 
-결론적으로 논문에서는 retrieval model를 이용해  generation model의 문제점인 흔한 단어 사용 및 짧은 문장 생성을 개선할 수 있다는 점을 보여주었다. 여기서 소개한 RetNRef++ 모델은 human utterance에 가까운 수치들을 보여주고 더 engaging한 대화를 나누는 것을 확인할 수 있었다. 앞으로의 계획은 논문에서 사용한 heuristic한 방법 대신 다른 방법으로 retrieval을 generation에 사용해보는 것과, concatenation 말고 더 정교한 방법으로 input을 결합할 수 있는지 살펴볼 것이다.
+결론적으로 논문에서는 retrieval model를 이용해  generation model의 문제점인 흔한 단어 사용 및 짧은 문장 생성을 개선할 수 있다는 점을 보여주었다. 여기서 소개한 RetNRef++ 모델은 human utterance에 가까운 수치들을 보여주고 더 engaging한 대화를 나누는 것을 확인할 수 있었다. 앞으로의 계획은 논문에서 사용한 heuristic한 방법 대신 다른 방법으로 retrieval을 generation에 사용해보는 것과, concatenation 말고 더 정교한 방법으로 input을ㅎ 결합할 수 있는지 살펴볼 것이다.
 
 
 
