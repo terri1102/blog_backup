@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "[NLP] Retrieve and Refine 리뷰"
+title: "[NLP] Retrieve and Refine: Improved Sequence Generation Models For Dialogue 리뷰"
 date: 2021-08-08
 parent: Paper Reviews
 grand_parent: Reviews
@@ -9,6 +9,8 @@ comments: true
 ---
 
 
+
+[Retrieve and Refine: Improved Sequence Generation Models For Dialogue](https://arxiv.org/abs/1808.04776)
 
 
 
