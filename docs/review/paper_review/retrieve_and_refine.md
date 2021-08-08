@@ -171,17 +171,17 @@ Retrieved된 문장과 generated된 문장을 비교해서 얼마나 참조하�
 
 위의 자동화된 평가 외에도 Zhang et al.(2018) 논문의 프로토콜에 따라 사람에 의한 평가를 시행하였다. 사람에 의한 평가는 생성된 문장의 engagingness, consistency, fluency를 평가하고 persona 예측한다. 
 
-![rnr4]()
+![rnr4](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/rnr4.jpg?raw=true)
 
 **Engagingness score:** 모든 RetNRef variants들은 Seq2Seq 모델보다 보다 높은 성능을 보인다. RetNRef++는 Retriever 모델은 할 수 없는 text generation을 하면서도 Retriever 모델보다 engagingness는 조금 더 좋다. 하지만 여전히 perplexity는 안 좋은 것을 볼 수 있다.
 
-
+![rnr6](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/rnr6.jpg?raw=true)
 
 모델들이 생성한 문장을 보면 RetNRef가 MemNet(Memory Network)
 
 ### 3.3 A/B Testing by Humans
 
-
+![rnr5](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/rnr5.jpg?raw=true)
 
 # Glossary
 
