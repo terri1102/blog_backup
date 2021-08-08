@@ -92,22 +92,18 @@ Retrieve and Refine 모델은 retrieval model의 output을  standard generative 
 
 
 
-### 모델 훈련 **과정** 
+### 모델 훈련 과정 
 
 **RetNRef**
 
 1. 모든 dialogue turn에 대해서 retrieval result을 계산한다. 이때 top ranking result를 사용하는 대신 임베딩 스페이스 안에서 label과 유사도에 따라서 top 100 prediction을 rerank한다. 이는 refinement가 original retrieval로부터 너무 멀어지는 것을 방지하는 효과가 있다.
 2. 이 chosen utterance를 Seq2Seq의 모델의 기존 input에 붙여서 Seq2Seq 모델을 훈련한다.
 
-<br>
-
 
 
 ### 모델 variation 
 
 **Use Retriever More : RetNRef+**
-
-<br>
 
 * vanilla model의 문제: generator가 retrieval utterance를 많이 참조 안 함
 * 해결: Seq2Seq 모델의 input은 retrieval utterance가 붙은 dialogue history이기 때문에, 이 history를 잘라내면 retrieval에 더 많은 attention이 감
@@ -117,8 +113,6 @@ Retrieve and Refine 모델은 retrieval model의 output을  standard generative 
 
 **Fix Retrieval Copy Errors : RetNRef++** 
 
-<br>
-
 Generate된 문장의 많은 부분이 Retrieved 문장과 중복되고 일부 단어만 다른 경우 실수를 많이 하기에, 60%이상이 중복되면 retrieval 그대로 복사하는 모델을 만들었다.
 
 
@@ -127,7 +121,7 @@ Generate된 문장의 많은 부분이 Retrieved 문장과 중복되고 일부 �
 
 ## 3. Experiments
 
-본 논문에서는 PersonaChat 데이터셋을 변형한 ConvAI2 데이터셋을 이용하였다. ConvAI2는 랜덤하게 짝지어진 크라우드 워커들이 랜덤하게 주어진 페르소나를 유지하면서 대화를 나누는 데이터셋이다.  이중 훈련 데이터셋은 160,000 utterances, 11,000 dialogues로 이루어져 있고, validation set과 test set은 각각 겹치지 않는 페르소나를 사용하는 2000 dialogues로 이루어져 있다.
+본 논문에서는 PersonaChat 데이터셋을 가공한 ConvAI2 데이터셋을 이용하였다. ConvAI2는 랜덤하게 짝지어진 크라우드 워커들이 랜덤하게 주어진 페르소나를 유지하면서 대화를 나누는 데이터셋이다.  이중 훈련 데이터셋은 160,000 utterances, 11,000 dialogues로 이루어져 있고, validation set과 test set은 각각 겹치지 않는 페르소나를 사용하는 2000 dialogues로 이루어져 있다.
 
 
 
@@ -171,7 +165,7 @@ Retrieved된 문장과 generated된 문장을 비교해서 얼마나 참조하�
 
 ### 3.2 Evaluation by Human Judgment Scores
 
-위의 자동화된 평가 외에도 Zhang et al.(2018) 논문의 프로토콜에 따라 사람에 의한 평가를 시행하였다. 사람에 의한 평가는 생성된 문장의 engagingness, consistency, fluency를 평가하고 persona 예측한다. 
+위의 자동화된 평가 외에도 Zhang et al.(2018) 논문의 프로토콜에 따라 사람에 의한 평가를 시행하였다. 사람에 의한 평가는 생성된 문장의 engagingness, consistency, fluency를 평가하고 persona를 예측한다. 
 
 ![rnr4](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/rnr4.jpg?raw=true)
 
@@ -205,10 +199,12 @@ Retrieved된 문장과 generated된 문장을 비교해서 얼마나 참조하�
 
 
 
-retriever 모델로 많이 언급된 memory network 논문 읽고 싶다. (Miller et al., 2016)
+## 느낀점
 
 
+
+Retriever 모델로 많이 언급된 memory network (Miller et al., 2016)도 논문 읽어보고 싶다.
 
 # References
 
-perplexity 정의: https://ai-information.blogspot.com/2019/03/text-generation-evaluation-03-perplexity.html
+[perplexity 정의](https://ai-information.blogspot.com/2019/03/text-generation-evaluation-03-perplexity.html)
