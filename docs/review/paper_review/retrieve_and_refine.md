@@ -38,9 +38,9 @@ Retriever model과 Generation model의 단점을 보안한 Retrieve and Refine �
 
 | Models  | Description |
 | ------- | ----------- |
-| RetNRef |             |
-| RetNRef+ | |
-|RetNRef++| |
+| RetNRef | retrieval model의 output을  standard generative model의 input에 concat해서 input으로 넣어 generative model로 훈련한 모델 |
+| RetNRef+ | RetNRef 모델에 들어가는 dialogue history를 잘라내서 retrieval에 더 많은 attention이 가게한 모델 |
+|RetNRef++| Generate된 문장의 많은 부분이 Retrieved 문장과 중복되고 일부 단어만 다른 경우 실수를 많이 하기에, 60%이상이 중복되면 retrieval을 그대로 복사하는 모델 |
 
 
 
@@ -108,7 +108,7 @@ Retrieve and Refine 모델은 retrieval model의 output을  standard generative 
 <br>
 
 * vanilla model의 문제: generator가 retrieval utterance를 많이 참조 안 함
-* 해결: Seq2Seq 모델의 input은 retrival utterance가 붙은 dialogue history이기 때문에, 이 history를 잘라내면 retrival에 더 많은 attention이 감
+* 해결: Seq2Seq 모델의 input은 retrieval utterance가 붙은 dialogue history이기 때문에, 이 history를 잘라내면 retrieval에 더 많은 attention이 감
 * ConvAI2 데이터셋에서 dialogue의 첫 profile sentences를 잘라냄
 
 <br>
@@ -193,7 +193,7 @@ Retrieved된 문장과 generated된 문장을 비교해서 얼마나 참조하�
 
 ![rnr5](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/rnr5.jpg?raw=true)
 
-위의 <table5>를 보면 대부분의 경우에서 RetNRef++이 다른 모델보다 더 좋은 성능을 보여주는 것을 알 수 있다. 즉 RetNRef++는 retrieve한 utterance의 퀄리티가 좋으면 copy하고 안 좋으면 generate하며 언제 이런 선택을 내려야 하는지 학습할 수 있다. 
+위의 \<table5>를 보면 대부분의 경우에서 RetNRef++이 다른 모델보다 더 좋은 성능을 보여주는 것을 알 수 있다. 즉 RetNRef++는 retrieve한 utterance의 퀄리티가 좋으면 copy하고 안 좋으면 generate하며 언제 이런 선택을 내려야 하는지 학습할 수 있다. 
 
 
 
@@ -203,10 +203,10 @@ Retrieved된 문장과 generated된 문장을 비교해서 얼마나 참조하�
 
 
 
+retriever 모델로 많이 언급된 memory network 논문 읽고 싶다. (Miller et al., 2016)
+
 
 
 # References
-
-retriever 모델로 많이 언급된 memory network 논문 읽고 싶다. (Miller et al., 2016)
 
 perplexity 정의: https://ai-information.blogspot.com/2019/03/text-generation-evaluation-03-perplexity.html
