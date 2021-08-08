@@ -70,7 +70,9 @@ Seq2Seq 같은 Sequence generation model은 짧고 generic한 문장을 생성�
 
 ## 2. Retrieve and Refine
 
-**모델 구조** <br>
+
+
+### 모델 구조
 
 Retrieve and Refine 모델은 retrieval model의 output을  standard generative model의 input에 concat해서 input으로 넣어 generative model로 훈련하는 구조이다.
 
@@ -90,7 +92,7 @@ Retrieve and Refine 모델은 retrieval model의 output을  standard generative 
 
 
 
-**모델 훈련** **과정** <br>
+### 모델 훈련 **과정** 
 
 **RetNRef**
 
@@ -99,7 +101,9 @@ Retrieve and Refine 모델은 retrieval model의 output을  standard generative 
 
 <br>
 
-**모델 variation** <br>
+
+
+### 모델 variation 
 
 **Use Retriever More : RetNRef+**
 
@@ -111,9 +115,11 @@ Retrieve and Refine 모델은 retrieval model의 output을  standard generative 
 
 <br>
 
-**Fix Retrieval Copy Errors : RetNRef++**
+**Fix Retrieval Copy Errors : RetNRef++** 
 
 <br>
+
+Generate된 문장의 많은 부분이 Retrieved 문장과 중복되고 일부 단어만 다른 경우 실수를 많이 하기에, 60%이상이 중복되면 retrieval 그대로 복사하는 모델
 
 
 
