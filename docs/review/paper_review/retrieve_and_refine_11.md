@@ -4,7 +4,7 @@ title: "[NLP] Retrieve and Refine 리뷰"
 date: 2021-08-08
 parent: Paper Reviews
 grand_parent: Reviews
-nav_order: 12
+nav_order: 20
 comments: true
 ---
 
@@ -16,7 +16,7 @@ comments: true
 
 # 논문 키워드
 
-`Retrieve&Refine`, `Retriever model`, `Generation model`, `Memory network`, `perplexity`
+`Retrieve&Refine`, `Retriever model`, `Generation model`, `Memory network`, `utterance`,`perplexity`
 
 <br>
 
@@ -40,9 +40,11 @@ Retriever model과 Generation model의 단점을 보안한 Retrieve and Refine �
 
 # 논문에 사용된 모델
 
-| Models | Description |
-| ------ | ----------- |
-|        |             |
+| Models  | Description |
+| ------- | ----------- |
+| RetNRef |             |
+| RetNRef+ | |
+|RetNRef++| |
 
 
 
@@ -54,7 +56,7 @@ Retriever model과 Generation model의 단점을 보안한 Retrieve and Refine �
 
 ## Abstract
 
-Sequence generation model의 문제는 짧고, generic한 문장을 생성하는 것이고, retrieval model의 문제는 흥미로운 대답을 생성하지만 대답이 한정적이고 문맥에 안 맞을 때도 있다는 것이다. 이 두 모델을 합친 Retrieve & Refine은 두 모델의 한계를 극복한다. Retrieve & Refine 모델은 retrieve한 문장을 additional context로 사용해서 generate하는 모델이다.
+Sequence generation model의 문제는 짧고 generic한 문장을 생성하는 것이고, retrieval model의 문제는 흥미로운 대답을 생성하지만 대답이 한정적이고 문맥에 안 맞을 때도 있다는 것이다. 이 두 모델을 합친 Retrieve & Refine은 두 모델의 한계를 극복한다. Retrieve & Refine 모델은 retrieve한 문장을 additional context로 사용해서 generate하는 모델이다.
 
 
 
@@ -90,14 +92,30 @@ Retrieve and Refine 모델은 retrieval model의 output을  standard generative 
 
 
 
-**모델 훈련**  <br>
+**모델 훈련** **과정** <br>
 
-1. 모든 dialogue turn에 대해서 retrieval result을 계산함 
--이때 top ranking result를 사용하는 대신 임베딩 스페이스 안에서 label과 유사도에 따라서 top 100 prediction을 rerank함 
--이는 refinement가 original retrival로부터 너무 멀어지는 것을 방지
-2. 이 chosen utterence를 Seq2Swq의 모델의 기존 input에 붙여서 Seq2Seq 모델을 훈련함
+**RetNRef**
+
+1. 모든 dialogue turn에 대해서 retrieval result을 계산한다. 이때 top ranking result를 사용하는 대신 임베딩 스페이스 안에서 label과 유사도에 따라서 top 100 prediction을 rerank한다. 이는 refinement가 original retrieval로부터 너무 멀어지는 것을 방지하는 효과가 있다.
+2. 이 chosen utterance를 Seq2Seq의 모델의 기존 input에 붙여서 Seq2Seq 모델을 훈련한다.
 
 <br>
+
+**모델 variation** <br>
+
+**Use Retriever More : RetrieveNRefine+**
+
+<br>
+
+
+
+<br>
+
+**Fix Retrieval Copy Errors**
+
+<br>
+
+
 
 # 관련 논문
 

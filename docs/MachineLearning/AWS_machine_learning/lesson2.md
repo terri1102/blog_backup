@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Lesson 1
+title: Lesson 2
 date: 2021-07-01
 grand_parent: Machine Learning
 parent: AWS Machine Learning course
-nav_order: 1
+nav_order: 2
 ---
 
 

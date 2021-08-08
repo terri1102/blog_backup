@@ -4,7 +4,6 @@ title: "[NLP] A Benchmark Dataset for Learning to Intervene in Online Hate Speec
 date: 2021-06-23
 parent: Paper Reviews
 grand_parent: Reviews
-date : true
 nav_order: 5
 comments: true
 ---
