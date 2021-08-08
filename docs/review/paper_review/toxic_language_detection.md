@@ -2,7 +2,7 @@
 layout: default
 title: "[NLP] Toxic Speech Detection 리뷰"
 date: 2021-06-16
-parent: Article Reviews
+parent: Paper Reviews
 grand_parent: Reviews
 nav_order: 4
 comments: true

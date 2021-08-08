@@ -2,7 +2,7 @@
 layout: default
 title: "Attention is all you need"
 date: 2021-05-16
-parent: Article Reviews
+parent: Paper Reviews
 grand_parent: Reviews
 nav_order: 1
 comments: true

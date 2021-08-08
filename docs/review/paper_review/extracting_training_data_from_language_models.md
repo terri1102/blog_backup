@@ -2,7 +2,7 @@
 layout: default
 title: "Extracting training data from large language models"
 date: 2021-06-15
-parent: Article Reviews
+parent: Paper Reviews
 grand_parent: Reviews
 nav_order: 3
 comments: true

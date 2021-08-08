@@ -2,7 +2,7 @@
 layout: default
 title: "[NLP] Contextualizing Hate Speech Classifiers with Post-hoc Explanation 리뷰"
 date: 2021-06-26
-parent: Article Reviews
+parent: Paper Reviews
 grand_parent: Reviews
 nav_order: 8
 comments: true

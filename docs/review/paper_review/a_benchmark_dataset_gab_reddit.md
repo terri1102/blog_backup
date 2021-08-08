@@ -2,8 +2,9 @@
 layout: default
 title: "[NLP] A Benchmark Dataset for Learning to Intervene in Online Hate Speech 리뷰"
 date: 2021-06-23
-parent: Article Reviews
+parent: Paper Reviews
 grand_parent: Reviews
+date : true
 nav_order: 5
 comments: true
 ---

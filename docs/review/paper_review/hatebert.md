@@ -2,7 +2,7 @@
 layout: default
 title: "[NLP] HateBERT: Retraining BERT for Abusive Language Detection in English 리뷰"
 date: 2021-06-24
-parent: Article Reviews
+parent: Paper Reviews
 grand_parent: Reviews
 nav_order: 6
 comments: true
