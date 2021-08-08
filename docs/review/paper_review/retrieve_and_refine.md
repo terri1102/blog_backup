@@ -149,20 +149,37 @@ Generate된 문장의 많은 부분이 Retrieved 문장과 중복되고 일부 �
 
 <img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/rnr1.jpg?raw=true" alt="rnr1" style="zoom:67%;" />
 
-위의 <Table 1>을 보면 RetNRef model은  label 이웃이나 레이블과 함께있으면 perplexity를 높일 수 있다. Retrieval을 이용하고 안 하고에 있어서 perplextity는 별 차이없다.
-하지만 perplexity가 안 좋다고 generate된 문장이 안 좋은 문장인 것은 아니다.
+위의 <Table 1>을 보면 RetNRef model은  True label's neighbor나 True label를 이용하여 perplexity를 개선할 수 있다(perplexity를 낮출 수 있다). RetNRef++ 모델은 Memory Network retriever를 이용하면 perplexity가 48.4로 매우 안 좋지만,  perplexity가 안 좋다고 generate된 문장이 안 좋은 문장인 것은 아니다.
 
 
 
 **Word Statistics **: 생성해 낸 단어의 개수와 문자(character)의 개수, 흔하지 않은 단어 사용 빈도
 
-![rnr2]()
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/rnr2.jpg?raw=true" alt="rnr2" style="zoom:67%;" />
+
+<Table2>를 통해 Seq2Seq 모델이 다른 모델에 비해 더 흔한 단어를 사용하고 짧은 문장을 만들어내는 것을 확인할 수 있다. RetNRef 모델(Memory Network retriever 사용)은 덜 흔한 단어를 사용하고 문장 길이도 더 길다. RetNRef++모델은 retriever를 더 boost하기에 더 좋은 성능을 보여준다.
 
 
 
-![rnr3]()
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/rnr3.jpg?raw=true" alt="rnr3" style="zoom:67%;" />
+
+Retrieved된 문장과 generated된 문장을 비교해서 얼마나 참조하는지를 비교해보면, RetNRef++은 53%의 경우에서 retriever ouput과 80%이상 중복되고, Seq2Seq과 RetNRef는 거의 retriever와 중복안되는 것을 확인할 수 있다. 이를 통해서 RetNRef++은 retriever를 사용하는 것을 알 수 있고 창의적인 컨텐츠(novel content)를 생성 가능하다. (실제 인간의 대화를 많이 retrieve하기 때문에 다양하고 인간 같은 대답 생성이 가능하다-이루다 처럼...)
+
+
 
 ### 3.2 Evaluation by Human Judgment Scores
+
+위의 자동화된 평가 외에도 Zhang et al.(2018) 논문의 프로토콜에 따라 사람에 의한 평가를 시행하였다. 사람에 의한 평가는 생성된 문장의 engagingness, consistency, fluency를 평가하고 persona 예측한다. 
+
+![rnr4]()
+
+**Engagingness score:** 모든 RetNRef variants들은 Seq2Seq 모델보다 보다 높은 성능을 보인다. RetNRef++는 Retriever 모델은 할 수 없는 text generation을 하면서도 Retriever 모델보다 engagingness는 조금 더 좋다. 하지만 여전히 perplexity는 안 좋은 것을 볼 수 있다.
+
+
+
+모델들이 생성한 문장을 보면 RetNRef가 MemNet(Memory Network)
+
+### 3.3 A/B Testing by Humans
 
 
 
@@ -178,4 +195,6 @@ Generate된 문장의 많은 부분이 Retrieved 문장과 중복되고 일부 �
 
 # References
 
-memory network 논문 읽고 싶다. (Miller et al., 2016)
+retriever 모델로 많이 언급된 memory network 논문 읽고 싶다. (Miller et al., 2016)
+
+perplexity 정의: https://ai-information.blogspot.com/2019/03/text-generation-evaluation-03-perplexity.html
