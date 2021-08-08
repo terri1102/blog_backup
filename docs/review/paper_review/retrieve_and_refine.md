@@ -181,7 +181,7 @@ Retrieved된 문장과 generated된 문장을 비교해서 얼마나 참조하�
 
 모델들이 생성한 문장을 보면 RetNRef가 MemNet과 Seq2Seq 모델보다 더 좋은 문장을 생성하는 것을 알 수 있다.  
 
-![table8]()
+![table8](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/table8.jpg?raw=true)
 
 <table8>을 보면 RetNRef++은 더 긴 문장을 생성하고 문맥에 더 적합한 문장을 생성한다. 하지만 여전히 반복된 표현을 생성하거나 대화 상대의 문장을 따라하는 등의 문제들이 남아있다.
 
@@ -189,19 +189,17 @@ Retrieved된 문장과 generated된 문장을 비교해서 얼마나 참조하�
 
 ### 3.3 A/B Testing by Humans
 
-더 통계적으로 유의미한 테스트를 위해서 논문에서는 모델들을 짝 지어서 평가했다. 
+더 통계적으로 유의미한 테스트를 위해서 논문에서는 모델들을 짝지어서 평가했다.
 
 ![rnr5](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/rnr5.jpg?raw=true)
 
-위의 <table5>를 보면 대부분의 경우에서 RetNRef++이 다른 모델보다 더 좋은 성능을 보여주는 것을 알 수 있다. 
+위의 <table5>를 보면 대부분의 경우에서 RetNRef++이 다른 모델보다 더 좋은 성능을 보여주는 것을 알 수 있다. 즉 RetNRef++는 retrieve한 utterance의 퀄리티가 좋으면 copy하고 안 좋으면 generate하며 언제 이런 선택을 내려야 하는지 학습할 수 있다. 
 
 
 
 ## Conclusion
 
-
-
-
+결론적으로 논문에서는 retrieval model를 이용해  generation model의 문제점인 흔한 단어 사용 및 짧은 문장 생성을 개선할 수 있다는 점을 보여주었다. 여기서 소개한 RetNRef++ 모델은 human utterance에 가까운 수치들을 보여주고 더 engaging한 대화를 나누는 것을 확인할 수 있었다. 앞으로의 계획은 논문에서 사용한 heuristic한 방법 대신 다른 방법으로 retrieval을 generation에 사용해보는 것과, concatenation 말고 더 정교한 방법으로 input을 결합할 수 있는지 살펴볼 것이다.
 
 
 
