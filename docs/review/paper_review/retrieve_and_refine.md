@@ -109,7 +109,7 @@ Retrieve and Refine 모델은 retrieval model의 output을  standard generative 
 * 해결: Seq2Seq 모델의 input은 retrieval utterance가 붙은 dialogue history이기 때문에, 이 history를 잘라내면 retrieval에 더 많은 attention이 감
 * ConvAI2 데이터셋에서 dialogue의 첫 profile sentences를 잘라냄
 
-<br>
+
 
 **Fix Retrieval Copy Errors : RetNRef++** 
 
@@ -195,7 +195,7 @@ Retrieved된 문장과 generated된 문장을 비교해서 얼마나 참조하�
 
 ## Conclusion
 
-결론적으로 논문에서는 retrieval model를 이용해  generation model의 문제점인 흔한 단어 사용 및 짧은 문장 생성을 개선할 수 있다는 점을 보여주었다. 여기서 소개한 RetNRef++ 모델은 human utterance에 가까운 수치들을 보여주고 더 engaging한 대화를 나누는 것을 확인할 수 있었다. 앞으로의 계획은 논문에서 사용한 heuristic한 방법 대신 다른 방법으로 retrieval을 generation에 사용해보는 것과, concatenation 말고 더 정교한 방법으로 input을ㅎ 결합할 수 있는지 살펴볼 것이다.
+결론적으로 논문에서는 retrieval model를 이용해  generation model의 문제점인 흔한 단어 사용 및 짧은 문장 생성을 개선할 수 있다는 점을 보여주었다. 여기서 소개한 RetNRef++ 모델은 human utterance에 가까운 수치들을 보여주고 더 engaging한 대화를 나누는 것을 확인할 수 있었다. 앞으로의 계획은 논문에서 사용한 heuristic한 방법 대신 다른 방법으로 retrieval을 generation에 사용해보는 것과, concatenation 말고 더 정교한 방법으로 input을 결합할 수 있는지 살펴볼 것이다.
 
 
 
