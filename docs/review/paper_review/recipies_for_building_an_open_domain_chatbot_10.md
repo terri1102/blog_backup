@@ -39,7 +39,18 @@ comments: true
 
 # 내용 요약
 
+## 2. Model architectures
 
+1. Retriever
+
+2. Generator
+
+3. Retrieve and Refine 
+
+   Generative  model의 문제: dull and repetitive responses. hallucinate knowledge, unable to access external knowledge
+
+   * Dialogue Retrieval: 이전 대화 기록
+   * Knowledge Retrieval : 여러 지식
 
 <br>
 

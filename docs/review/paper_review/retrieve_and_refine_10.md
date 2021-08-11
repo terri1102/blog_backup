@@ -123,7 +123,43 @@ Generate된 문장의 많은 부분이 Retrieved 문장과 중복되고 일부 �
 
 ### 3.1 Automatic Evaluation and Analysis
 
-**Perplexity(PPL)** : PPL은 언어모델을 평가하는 내부평가지표로 단어의 수로 정규화된 테스트 데이터에 대한 확률의 역수이다. 예를 들어 PPL이 10이면 문장의 앞 부분(혹은 단어)를 통해서 다음 단어를 예측할 때 평균 10개의 후보 단어 중 선택할 수 있다는 의미이다. 즉, PPL이 낮을수록 더 적은 수의 후보 단어로 예리하게 예측한다고 할 수 있다.
+**Perplexity(PPL)** : PPL은 언어모델을 평가하는 내부평가지표로 단어의 수로 정규화된 테스트 데이터에 대한 확률의 역수이다. PPL은 특정 시점에서 평균적으로 몇 개의 선택지를 가지고 있는지를 나타낸다. 예를 들어 PPL이 10이면 문장의 앞 부분(혹은 단어)를 통해서 다음 단어를 예측할 때 평균 10개의 후보 단어 중 선택할 수 있다는 의미이다. 즉, PPL이 낮을수록 더 적은 수의 후보 단어로 예리하게 예측한다고 할 수 있다.
+$$
+PPL(W) = P(w_1,w_2,w_3,...,w_n)^{-\frac{1}{N}}
+$$
+
+[^ normalized inverse probability of the test set]:
+
+$$
+P(W) = P(w_1)P(w_2)...P(w_n) = \prod^N_{i=1}P(w_i)
+$$
+
+normalize
+$$
+ln(P(W)) = ln(\prod^N_{i=1}P(w_i)) = \sum^N_{i=1}ln P(w_i)
+$$
+N으로 나눠서 단어당(per-word) 확률을 구함
+$$
+\frac{ln(P(w))}{N} = \frac{\sum^N_{i=1}ln P(w_i)}{N}
+$$
+e의 지수로 취해서 log를 제거함
+$$
+e^{\frac{ln(P(w))}{N} } = e^{\frac{\sum^N_{i=1}ln P(w_i)}{N}}
+$$
+
+$$
+P(W)^{\frac{1}{N}} = (\prod^N_{i=1}P(w_i))^{\frac{1}{N}}
+$$
+
+$$
+PP(W) = 
+$$
+
+
+
+확률의 역수를 구하는 것이기에 낮을수록 좋은 것.
+
+
 
 대화는 다양한 답(valid answer)이 있을 수 있기 때문에 자동화된 평가가 어렵다. 최근 많은 논문들은 Perplexity를 이용한 평가를 하고 있다. 하지만 Retrieve and refine 모델은 Perplexity도 적용이 어렵다. 왜냐하면 retrieval이 가져온 문장이 답과는 다르지만 말이 되는 문장일 때 model은 이를 refine하려고 해서 perplexity가 안 좋아지기 때문이다.
 
