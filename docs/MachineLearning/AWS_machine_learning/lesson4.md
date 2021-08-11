@@ -182,3 +182,77 @@ what it does, list its dependencies, and provide sufficiently detailed instructi
 
 ## Version Control in Data Science
 
+1. switch to the develop branch
+
+```git
+git checkout develop
+```
+
+2. pull the latest changes
+
+```git
+git pull
+```
+
+3. 새로운 브랜치를 만들고 checkout
+
+```git
+git checkout -b demographic
+```
+
+4. 변경사항을 커밋함
+5. 다시 develop branch로 checkout
+
+```git
+git checkout develop
+```
+
+6. 새로운 브랜치를 만들고 checkout
+
+```git
+git checkout -b friends
+```
+
+7. 커밋 후 develop branch에 merge
+
+```git
+git checkout develop
+```
+
+```git
+git merge --no--ff friends
+```
+
+8. remote 레포에 push
+
+```git
+git push origin develop
+```
+
+
+
+로그 보기
+
+```git
+git log
+```
+
+커밋으로 가기 (checkout a commit)
+
+```git
+git checkout bc90fkdjsjdlfs
+```
+
+
+
+A successful git branching model
+
+https://nvie.com/posts/a-successful-git-branching-model/
+
+
+
+Model Versioning 
+
+https://algorithmia.com/blog/how-to-version-control-your-production-machine-learning-models
+
+https://towardsdatascience.com/version-control-ml-model-4adb2db5f87c

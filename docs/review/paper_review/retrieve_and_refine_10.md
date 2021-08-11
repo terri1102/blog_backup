@@ -26,15 +26,11 @@ Retriever model과 Generation model의 단점을 보안한 Retrieve and Refine �
 
 
 
-<br>
-
 # 데이터셋
 
 * [ConvAI2 dataset](http://convai.io/) : 대화자들이 서로 자신을 소개하는 chit-chat 데이터셋 
 
   
-
-<br>
 
 # 논문에 사용된 모델
 
@@ -113,7 +109,7 @@ Retrieve and Refine 모델은 retrieval model의 output을  standard generative 
 
 **Fix Retrieval Copy Errors : RetNRef++** 
 
-Generate된 문장의 많은 부분이 Retrieved 문장과 중복되고 일부 단어만 다른 경우 실수를 많이 하기에, 60%이상이 중복되면 retrieval 그대로 복사하는 모델을 만들었다.
+Generate된 문장의 많은 부분이 Retrieved 문장과 중복되고 일부 단어만 다른 경우 (crucial한 단어를 바꾸는 등) 실수를 많이 하기에, 60%이상이 중복되면 retrieval 그대로 복사하는 모델을 만들었다.
 
 
 
