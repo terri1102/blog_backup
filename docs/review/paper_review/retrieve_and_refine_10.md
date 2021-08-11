@@ -128,38 +128,6 @@ $$
 PPL(W) = P(w_1,w_2,w_3,...,w_n)^{-\frac{1}{N}}
 $$
 
-[^ normalized inverse probability of the test set]:
-
-$$
-P(W) = P(w_1)P(w_2)...P(w_n) = \prod^N_{i=1}P(w_i)
-$$
-
-normalize
-$$
-ln(P(W)) = ln(\prod^N_{i=1}P(w_i)) = \sum^N_{i=1}ln P(w_i)
-$$
-N으로 나눠서 단어당(per-word) 확률을 구함
-$$
-\frac{ln(P(w))}{N} = \frac{\sum^N_{i=1}ln P(w_i)}{N}
-$$
-e의 지수로 취해서 log를 제거함
-$$
-e^{\frac{ln(P(w))}{N} } = e^{\frac{\sum^N_{i=1}ln P(w_i)}{N}}
-$$
-
-$$
-P(W)^{\frac{1}{N}} = (\prod^N_{i=1}P(w_i))^{\frac{1}{N}}
-$$
-
-$$
-PP(W) = 
-$$
-
-
-
-확률의 역수를 구하는 것이기에 낮을수록 좋은 것.
-
-
 
 대화는 다양한 답(valid answer)이 있을 수 있기 때문에 자동화된 평가가 어렵다. 최근 많은 논문들은 Perplexity를 이용한 평가를 하고 있다. 하지만 Retrieve and refine 모델은 Perplexity도 적용이 어렵다. 왜냐하면 retrieval이 가져온 문장이 답과는 다르지만 말이 되는 문장일 때 model은 이를 refine하려고 해서 perplexity가 안 좋아지기 때문이다.
 
@@ -240,3 +208,32 @@ Retriever 모델로 많이 언급된 memory network (Miller et al., 2016)도 논
 # References
 
 [perplexity 정의](https://ai-information.blogspot.com/2019/03/text-generation-evaluation-03-perplexity.html)
+
+[^ normalized inverse probability of the test set]: 
+
+$$
+P(W) = P(w_1)P(w_2)...P(w_n) = \prod^N_{i=1}P(w_i)
+$$
+
+normalize
+$$
+ln(P(W)) = ln(\prod^N_{i=1}P(w_i)) = \sum^N_{i=1}ln P(w_i)
+$$
+N으로 나눠서 단어당(per-word) 확률을 구함
+$$
+\frac{ln(P(w))}{N} = \frac{\sum^N_{i=1}ln P(w_i)}{N}
+$$
+e의 지수로 취해서 log를 제거함
+$$
+e^{\frac{ln(P(w))}{N} } = e^{\frac{\sum^N_{i=1}ln P(w_i)}{N}}
+$$
+
+$$
+P(W)^{\frac{1}{N}} = (\prod^N_{i=1}P(w_i))^{\frac{1}{N}}
+$$
+
+이것의 inverse
+
+
+
+확률의 역수를 구하는 것이기에 낮을수록 좋은 것.
