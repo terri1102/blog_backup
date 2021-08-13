@@ -143,9 +143,9 @@ $$
 
 
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/rnr1.jpg?raw=true" alt="rnr1" style="zoom:67%;" />
+<center><img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/rnr1.jpg?raw=true" alt="rnr1" style="zoom:67%;" /></center>
 
-위의 \<Table 1>을 보면 RetNRef model은  True label's neighbor나 True label를 이용하여 perplexity를 개선할 수 있다(perplexity를 낮출 수 있다). RetNRef++ 모델은 Memory Network retriever를 이용하면 perplexity가 48.4로 매우 안 좋지만,  perplexity가 안 좋다고 generate된 문장이 안 좋은 문장인 것은 아니다.
+위의 \<Table 1>을 보면 RetNRef model은  True label's neighbor나 True label를 이용하여 perplexity를 개선할 수 있다(perplexity를 낮출 수 있다). /RetNRef++ 모델은 Memory Network retriever를 이용하면 perplexity가 48.4로 매우 안 좋지만,  perplexity가 안 좋다고 generate된 문장이 안 좋은 문장인 것은 아니다.
 
 
 
