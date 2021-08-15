@@ -193,3 +193,126 @@ https://www.kevinlondon.com/2015/05/05/code-review-best-practices.html
 
 
 
+---
+
+Git
+
+새 브랜치 만들기
+
+```shell
+ $ git checkout -b [new branch]
+```
+
+브랜치나 커밋 checkout
+
+```shell
+$ git checkout c1
+```
+
+
+
+
+
+합치고 싶은 브랜치로 checkout 후 합쳐질 브랜치 입력
+
+```shell
+$ git merge [합쳐질 브랜치]
+```
+
+ rebase: commit을 다른 브랜치로 옮기기
+
+ex) bugFix 브랜치의 커밋이 main branch의 커밋을 가리키게 하기
+
+```shell
+$ git checkout bugFix
+```
+
+```shell
+$ git rebase main
+```
+
+실행취소하기
+
+```shell
+$ git reset --hard [commit 번호]
+```
+
+
+
+HEAD: 현재 체크아웃된 커밋. 항상 작업트리의 가장 최근 커밋을 가리킴. 일반적으로 HEAD는 브랜치의 이름을 가리키고 있음
+
+ Git 데모
+
+
+
+HEAD 분리하기
+
+HEAD를 분리한다는 것은 HEAD를 브랜치 대신 커밋에 붙이는 것을 의미합니다. 명령을 사용하기 전의 모습은 다음과 같습니다: HEAd -> main -> c1
+
+```shell
+$ git checkout [commit]
+```
+
+상대참조
+
+해시 4글자만 입력해도 알아들음
+
+`^ `: 한번에 한 커밋 위로 움직임
+
+`~<num>` : 한번에 여러 커밋 위로 올라감
+
+`main^` : 메인의 부모 커밋
+
+`main^^`: 메인의 조부모 커밋
+
+
+
+git checkout HEAD^ 통해 계속 위로 올라갈 수도 있음
+
+```shell
+$ git checkout c4
+```
+
+```shell
+$ git checkout HEAD^
+```
+
+
+
+~ 연산자 :올라가고 싶은 부모의 갯수를 ~ 뒤의 숫자로 명시
+
+
+
+```shell
+$ git branch -f main HEAD~3
+```
+
+main branch로 force checkout 후에 head 3 단계 올라감
+
+
+
+
+
+git branch c2
+
+
+
+git checkout bugFix
+
+git commit
+
+git checkout main
+
+git rebase bugFix
+
+git branch -f bugFix HEAD~3
+
+
+
+
+
+## Git에서 작업 되돌리기
+
+Git에는 작업한 것을 되돌리는 여러가지 방법이 있습니다. 변경내역을 되돌리는 것도 커밋과 마찬가지로 낮은 수준의 일(개별 파일이나 묶음을 스테이징 하는 것)과 높은 수준의 일(실제 변경이 복구되는 방법)이 있는데요, 여기서는 후자에 집중해 알려드릴게요.
+
+Git에서 변경한 내용을 되돌리는 방법은 크게 두가지가 있습니다 -- 하나는 `git reset`을 쓰는거고, 다른 하나는 `git revert`를 사용하는 것입니다. 다음 화면에서 하나씩 알아보겠습니다
