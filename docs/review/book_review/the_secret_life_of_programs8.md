@@ -250,7 +250,7 @@ statement 	: expression				{ $$ = $1; }
 
 **인터프리터 구조**
 
-![](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/interpreter.jpg?raw=true)
+![interpreter]
 
 프론트 엔드는 파스 트리를 만들고 파스 트리는 어떤 중간 언어로 표현된다. 백엔드는 이 언어를 실행할 대상 환경마다 하나씩 존재한다.
 
@@ -260,7 +260,11 @@ statement 	: expression				{ $$ = $1; }
 
 컴파일러도 인터프리터와 비슷하지만 백엔드 실행 코드 대신 코드 생성기가 들어간다.
 
+**컴파일러 구조**
 
+
+
+코드 생성기는
 
 ## :star2: ​최적화
 
