@@ -250,7 +250,7 @@ statement 	: expression				{ $$ = $1; }
 
 **인터프리터 구조**
 
-![interpreter]
+![interpreter](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/interpreter.jpg?raw=true)
 
 프론트 엔드는 파스 트리를 만들고 파스 트리는 어떤 중간 언어로 표현된다. 백엔드는 이 언어를 실행할 대상 환경마다 하나씩 존재한다.
 
@@ -262,19 +262,46 @@ statement 	: expression				{ $$ = $1; }
 
 **컴파일러 구조**
 
+![complier](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/complier.jpg?raw=true)
+
+**코드 생성기(code generator)**는 특정 대상 기계에 대한 기계어 코드를 만들어낸다. 코드 생성기는 파스 트리 순회와 계산을 순회한다.
+
+컴파일된 기계어를 실행하면 코드가 더 작고 효율적이기 때문에 인터프리터로 실행할 때보다 훨씬 더 빠르게 실행된다.
 
 
-코드 생성기는
 
 ## :star2: ​최적화
 
 **최적화기(optimizer)** : 대부분의 언어 도구에는 최적화기라는 추가 단계가 파스 트리와 코드 생성기 사이에 들어간다. 최적화기는 파스 트리를 분석하고 이 결과를 활용해 더 효율적인 코드를 생성해내도록 파스 트리를 변환한다.
 
+예를 들어 컴파일 시점에 식을 미리 계산해서 실행 시점에 따로 계산을 수행할 필요가 없게 만들 수도 있다.
+
+* 루프 불변 요소(loop invariant) : 루프를 반복해도 바뀌지 않는 값이 있다면 이를 루프 밖으로 보냄.
+
+* 강도 절감(strength reduction) : 비용이 많이 드는 연산을 비용이 더 적게 드는 연산으로 대체함
+
+```c
+//루프 안에 대입문이 있는 c 코드
+for (i = 0; i < 10; i++) {
+    x = a + b;
+    result[i] = 4 * i + x * x;
+}
+```
+
+```c
+//루프 불변 요소 최적화와 강도 절감을 거친 c 루프 코드
+x = a + b;
+optimizer_created_temporary_variable = x * x;
+optimizer_created_4_times_i = 0;
+for (i = 0; i < 10; i++) {
+    result[i] = optimizer_created_4_times_i + optimizer_created_temporary_variable;
+    optimizer_created_4_times_i = optimizer_created_4_times_i + 4;
+}
+```
+
 
 
 ## 하드웨어를 다룰 때 주의하라
 
-
-
-
+항상 최적화기를 사용할 수 있는 것은 아니며 경우에 따라 최적화기를 꺼야할 때도 있다. C 언어에서 volatile 키워드는 변수에 대한 접근을 최적화하지 말라고 지정한다.
 
