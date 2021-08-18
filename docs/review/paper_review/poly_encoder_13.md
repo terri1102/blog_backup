@@ -26,7 +26,7 @@ Facebook AI Research팀에서 Bi-encoder보다 성능을 개선하고, Cross-enc
 
 
 
-# :books: 데이터셋
+# 📚 데이터셋
 
 * Reddit
 
