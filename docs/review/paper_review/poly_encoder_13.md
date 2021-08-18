@@ -14,13 +14,13 @@ use_math: true
 
 
 
-# :key:논문 키워드
+# 🗝️ 논문 키워드
 
 `encoder`, `poly-encoder`, `bi-encoder`, `cross-encoder` 
 
 
 
-# :bookmark_tabs: 논문 주제
+# 📑 논문 주제
 
 Facebook AI Research팀에서 Bi-encoder보다 성능을 개선하고, Cross-encoder보다 예측 시간을 개선한 Poly-encoder 제안
 
@@ -126,9 +126,9 @@ $$
 y_{ctxt}
 $$
 
-\(y_{ctxt}\)
-
 는 Input을 입력받아서 벡터로 인코딩된 후(T1(ctxt))에 red(·) 함수를 거쳐서 하나의 벡터로 축소된 **임베딩 벡터**이다. (그림에서 ctxt Emb)
+
+* T1, T2는 두 pre-trained된 트랜스포머로 둘 다 같은 가중치로 시작하지만 파인튜닝 과정동안 달라질 것으로 예상해 실험 후에 더 나은 모델 사용할 것. 
 
 * T(x) = h1,...,h_n : 트랜스포머의 output (out1 == h1 == [S]의 임베딩값)
 
@@ -148,10 +148,7 @@ $$
 Bi-encoder는 input과 candidate를 각각 인코딩하기 때문에 candidate의 representation은 캐싱한 후에 inference할 때 가져와서 사용할 수 있다. 
 
 
-
-모델 2개를 만들어서 실험 후에 더 나은 모델 사용할 것. 
-T1, T2 모
-두 pre-trained된 트랜스포머. 둘 다 같은 가중치로 시작하지만 파인튜닝 과정동안 달라질 듯. T(x) = h1, h2...,hn은 트랜스포머의 output이고 red()는 벡터들의 시퀀스를 벡터 하나로 줄이는 함수
+ T(x) = h1, h2...,hn은 트랜스포머의 output이고 red()는 벡터들의 시퀀스를 벡터 하나로 줄이는 함수
 input과 label이 각각 인코딩되기 때문에 segment token은 둘 다 0임
 pre-training 과정을 모방하기 위해 input과 label은 각각 스페셜 토큰 [s]로 둘러 싸임
 
@@ -163,11 +160,15 @@ s(ctxt,cand_i)=y_{ctxt y}· y_{cand_i}
 $$
  input의 임베딩과 candidate의 임베딩을 내적한 값이다. 모델은 cross-entropy loss를 최소화하는 방식으로 훈련되었다. 
 
+로짓은 cand_i가 맞는 라벨이고, 나머지는 트레이닝 셋에서 가져옴.
+
+훈련 과정 동안 다른 candidate들은 negative로 취급해서 훈련 속도를 높였다. 그리고 각 candidate별로 임베딩을 구해놓은 다음에 재사용하기 때문에 큰 배치 사이즈를 사용할 수 있게된다. 그래서 ConvAI2에서는 배치 사이즈가 512이다. 
+
 
 
 * **Inference speed**
 
-  
+Inference 과정에서 이미 구해진 candidate들의 임베딩을 사용하기에, 남은 연산은 input 임베딩인 y_{ctxt}가 계산된 후에 이 둘의 내적을 구하는 것 뿐이다. 따라서 inference가 매우 빠르다. 
 
 ### 4.3 Cross-encoder
 
@@ -189,13 +190,61 @@ $$
 
 <img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/poly-encoder.jpg?raw=true" alt="polyencoder" style="zoom:100%;" class="center" />
 
+Poly-encoder는 Bi-encoder와 Cross-encoder의 장점만을 가져온다. Bi-encoder처럼 Poly-encoder도 Candidate를 하나의 벡터로 표현하며 이를 캐싱해서 빠르게 예측가능하다. 그리고 Cross-encoder처럼 Input이 candidate와 함께 인코딩되어서 더 많은 정보를 추출하는 것이 가능하다. 
+
+Poly-encoder는 Bi-encoder처럼 input과 candidate을 각각 인코딩할 때 서로 다른 트랜스포머를 사용한다. Candidate는 하나의 벡터 
+$$
+y_{cand_i}
+$$
+로 인코딩되고 이를 캐싱하여 재사용할 수 있다. 
+
+<span style="background:#f1d9ff">하지만 BI-encoder와의 차이는 (보통 candidate 보다 긴)  input을 m개의 벡터들로 표현한다는 것이다. </span> 이는 하나의 벡터로 표현하는 Bi-encoder와 차이가 있다. m을 어떤 값으로 설정하는지에 따라 인퍼런스 속도에 영향을 준다. 
+
+이 input을 표현하는 **m global context features**(m개의 글로벌 피처)를 얻기 위해서 우리는 **m context code**를 학습하는데, 
+$$
+c_i
+$$
+는 이전 레이어의 모든 outputs를 통해서 추출한 
+$$
+y^i_{ctxt}
+$$
+ representation이다. 
+
+즉, 우리는 
+$$
+y^i_{ctxt}
+$$
+를 아래의 식을 통해 얻을 수 있다.
+
+
+$$
+y^i_{ctxt} = \sum_jw_j^{c_i} \quad where \quad (w_1^{c_i}, ...,w_N^{c_i}) = softmax(c_i· h_1,)
+$$
+**m context code**는 처음에 랜덤하게 초기화되고 미세 조정(fine-tuning) 과정에서 학습된다. 이렇게 구한 **m global features**에 
+$$
+y_{cand_i}
+$$
+를 쿼리로 사용하여 attned하면 candidate의 최종 스코어를 구할 수 있다. 
+$$
+y_{ctxt} = \sum_i w_iy^i_{ctxt} \quad where \\ \quad (w_1, ...,w_m) = softmax(y_{cand_i}·y^1_{ctxt},..,y_{cand_i}·y^m_{ctxt})
+$$
+N이 토큰의 개수일 때 m은 N보다 작은 수이고, input과 candidate의 어텐션 연산이 탑 레이어에서만 수행되기 때문에 Poly-encoder의 연산은 Cross-encoder보다 훨씬 빠르다.
+
+
+
 ## 5. Experiments
+
+본 연구에서 사용한 평가지표는 Recall@k과 MRR(mean reciprocal rank)인데, Recall@k는 예시 C개 중 선택하는k개 candidate의 Recall값을 의미한다.  
 
 
 
 ### 5.1 Bi-encoders and Cross-encoders
 
 ![polyencoder3](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/polyencoder3.jpg?raw=true)
+
+#### 여기서 Negatives는 답이 아닌 candidate의 개수이다. 
+
+
 
 ![polyencoder4]
 
