@@ -12,9 +12,9 @@ use_math: true
 
 
 
+블로그로 보면 조금 더 깔끔합니다. https://terri1102.github.io/docs/review/paper_review/poly_encoder_13/
 
-
-# 🗝️ 논문 키워드
+#  🗝️ 논문 키워드
 
 `encoder`, `poly-encoder`, `bi-encoder`, `cross-encoder` 
 
@@ -70,7 +70,7 @@ Pairwise comparison이나 주어진 인풋을 관련 라벨과 매칭하는 테�
 머신러닝에 있어서 다양한 후보들을 스코어링하는 것은 아주 클래식한 문제이다. 이를 이산적인 multi-class 분류라는 특수한 경우로 볼 수도 있지만 이를 일반화하면 응답 후보들은 클래스가 아닌 구조체이다. 이 연구에서 우리는 인풋과 후보 라벨(candidate label)을 텍스트 시퀀스로 고려할 것이다.
 
 <span style="background:#fff28c">**Bi-encoder**</span> 
-Input과 candidate를 각각 common feature space에 매핑한 후에 이 둘의 유사성을 내적이나 코사인 유사도를 통해서 구한다. 즉 임베딩 벡터가 Input과 candidate에서 각각 나온다. 논문에서 Next utterance prediction task를  (NSP랑 같은 건가????) 위한 Bi-encoder 접근으로 메모리 네트워크, 트랜스포머 메모리 네트워크, LSTM, CNN 등을 고려했었다.(근데 안 쓴 거지? BERT기반 인코더 쓴 거지??)  Bi-encoder의 장점은 크고 고정된 사이즈의 candidate set을 캐싱한 후에 사용하여, input과 독립적이기에 evaluation 과정에서 연산 효율적이다.
+Input과 candidate를 각각 common feature space에 매핑한 후에 이 둘의 유사성을 내적이나 코사인 유사도를 통해서 구한다. 즉 임베딩 벡터가 Input과 candidate에서 각각 나온다. 논문에서 Next utterance prediction task를 위한 Bi-encoder 접근으로 메모리 네트워크, 트랜스포머 메모리 네트워크, LSTM, CNN 등을 고려했었다.(근데 안 쓴 거지? BERT기반 인코더 쓴 거지??)  Bi-encoder의 장점은 크고 고정된 사이즈의 candidate set을 캐싱한 후에 사용하여, input과 독립적이기에 evaluation 과정에서 연산 효율적이다.
 
 <span style="background:#e8f7ff">**Cross-encoder**</span>
 Input과 candidate를 concat한 후에 self-attention을 적용한다. 따라서 두 문장의 임베딩 간의 관계(유사도)를 구하지 않고 두 문장을 합친 것이 활성화 함수로 들어가서 하나의 임베딩을 얻게 된다. 이 경우 candidate들의 모든 단어와 input의 모든 단어 간의 상호작용을 알 수 있어서 Input sequence와 candidate sequence들의 관계를 잘 나타낼 수 있다. 
@@ -98,18 +98,20 @@ Input과 candidate를 concat한 후에 self-attention을 적용한다. 따라서
 * **Transformers**
 
 비교를 위해서 2가지 데이터셋을 이용해 트랜스포머를 훈련함 
-1)BERT-base와 비슷하게 위키피디아와 토론토 북스 코퍼스에서 추출한 input, label을 스페셜 토큰[S]로 감쌈
-2 Reddit의 경우 input은 context이고 label은 next utterance
 
-위키피디아, 토론토 : input: 문장 하나. label: 다음 문장
-각 인풋 토큰은 3가지 임베딩의 합! (token embedding, position embedding, segment embedding) -> bert와 동일한듯
+1\) BERT-base와 비슷하게 위키피디아와 토론토 북스 코퍼스에서 추출한 input, label을 스페셜 토큰[S]로 감쌈 <br>
+
+2\) Reddit의 경우 input은 context이고 label은 next utterance
+
+
+output은 3가지 임베딩의 합! (token embedding, position embedding, segment embedding) -> bert와 동일한듯
 
 * **Input Representation**
 
 pre-training input은 input과 label의 concat한 것. 모두 스페셜 토큰 [S]로 둘러싸여 있음(Lample&Conneau,2019) 참조.
 
 * **Pre-training Procedure** : BERT와 동일한 MLM방식으로 사전학습. Wikipedia+Toronto books는 NSP테스크도 수행. Reddit의 경우 Next utterance prediction task로 수행. NSP와의 차이점은 Next utterance는 여러 문장일 수 있다는 것.  
-* **Fine-tuning**
+* **Fine-tuning** : 3가지 아키텍처를 이용해서 미세조정했다.
 
 ### 4.2 Bi-encoder
 
@@ -118,7 +120,7 @@ pre-training input은 input과 label의 concat한 것. 모두 스페셜 토큰 [
 
 
 이제 위의 4.1에서 사전학습한 인코더를 Fine-tuning 과정에 대한 설명이다. 
-Bi-encoder 설명
+Bi-encoder의 context embedding
 
 
 $$
@@ -134,7 +136,9 @@ $$
 
 는 Input을 입력받아서 벡터로 인코딩된 후(T1(ctxt))에 red(·) 함수를 거쳐서 하나의 벡터로 축소된 **임베딩 벡터**이다. (그림에서 ctxt Emb)
 
-* T1, T2는 두 pre-trained된 트랜스포머로 둘 다 같은 가중치로 시작하지만 파인튜닝 과정동안 달라질 것으로 예상해 실험 후에 더 나은 모델 사용할 것. 
+* Context encoder : Bert와 동일하게 3가지의 값을 더해서 임베딩을 구함. 이때 input과 candidate는 각각 인코딩되기 때문에 segment tokens은 모두 0이다. 사전학습에서 비슷한 환경을 모방하기 위해 input과 candidate는 모두 스페셜 토큰 [S]로 둘러 싸인다. 
+
+* T1, T2는 두 pre-trained된 트랜스포머로 둘 다 같은 가중치로 시작하지만 파인튜닝 과정 동안 달라질 것이다.
 
 * T(x) = h1,...,h_n : 트랜스포머의 output (out1 == h1 == [S]의 임베딩값)
 
@@ -149,14 +153,9 @@ $$
 
   를 고려했었는데, 미세하게 성능이 가장 좋은 1번 함수를 채택했다. 다른 함수를 사용했을 때의 결과는 Appendix에서 볼 수 있다.
 
-* Context encoder : Bert와 동일하게 3가지의 값을 더해서 임베딩을 구함. 이때 input과 candidate는 각각 인코딩되기 때문에 segment tokens은 모두 0이다. 사전학습에서 비슷한 환경을 모방하기 위해 input과 candidate는 모두 스페셜 토큰 [S]로 둘러 싸인다. 
 
 Bi-encoder는 input과 candidate를 각각 인코딩하기 때문에 candidate의 representation은 캐싱한 후에 inference할 때 가져와서 사용할 수 있다. 
 
-
- T(x) = h1, h2...,hn은 트랜스포머의 output이고 red()는 벡터들의 시퀀스를 벡터 하나로 줄이는 함수
-input과 label이 각각 인코딩되기 때문에 segment token은 둘 다 0임
-pre-training 과정을 모방하기 위해 input과 label은 각각 스페셜 토큰 [s]로 둘러 싸임
 
 * **Scoring**
 
@@ -172,13 +171,17 @@ Input의 임베딩과 candidate의 임베딩을 내적한 값이다. 모델은 c
 
 로짓은 cand_i가 맞는 라벨이고, 나머지는 트레이닝 셋에서 가져옴.
 
-훈련 과정 동안 다른 candidate들은 negative로 취급해서 훈련 속도를 높였다. 그리고 각 candidate별로 임베딩을 구해놓은 다음에 재사용하기 때문에 큰 배치 사이즈를 사용할 수 있게된다. 그래서 ConvAI2에서는 배치 사이즈가 512이다. 
+훈련 과정 동안 다른 candidate들은 negative로 취급해서 훈련 속도를 높였다.(정답 한 개) 그리고 각 candidate별로 임베딩을 구해놓은 다음에 재사용하기 때문에 큰 배치 사이즈를 사용할 수 있게된다. 그래서 ConvAI2에서는 배치 사이즈가 512이다. 
 
 
 
 * **Inference speed**
 
-Inference 과정에서 이미 구해진 candidate들의 임베딩을 사용하기에, 남은 연산은 input 임베딩인 y_{ctxt}가 계산된 후에 이 둘의 내적을 구하는 것 뿐이다. 따라서 inference가 매우 빠르다. 
+Inference 과정에서 이미 구해진 candidate들의 임베딩을 사용하기에, 남은 연산은 input 임베딩인 
+$$
+y_{ctxt}
+$$
+가 계산된 후에 이 둘의 내적을 구하는 것 뿐이다. 따라서 inference가 매우 빠르다. 
 
 ### 4.3 Cross-encoder
 
@@ -228,7 +231,7 @@ y_{cand_i}
 $$
 로 인코딩되고 이를 캐싱하여 재사용할 수 있다. 
 
-<span style="background:#f1d9ff">하지만 BI-encoder와의 차이는 (보통 candidate 보다 긴)  input을 m개의 벡터들로 표현한다는 것이다. </span> 이는 하나의 벡터로 표현하는 Bi-encoder와 차이가 있다. m을 어떤 값으로 설정하는지에 따라 인퍼런스 속도에 영향을 준다. 
+<span style="background:#f1d9ff">하지만 Bi-encoder와의 차이는 (보통 candidate 보다 긴)  input을 m개의 벡터들로 표현한다는 것이다. </span> 이는 하나의 벡터로 표현하는 Bi-encoder와 차이가 있다. m을 어떤 값으로 설정하는지에 따라 인퍼런스 속도에 영향을 준다. 
 
 이 input을 표현하는 **m global context features**(m개의 글로벌 피처)를 얻기 위해서 우리는 **m context code**를 학습하는데, 
 $$
@@ -257,7 +260,7 @@ $$
 $$
 y_{cand_i}
 $$
-를 쿼리로 사용하여 attend하면 candidate의 최종 스코어를 구할 수 있다. 
+를 candidate를  쿼리로 사용하여 attend하면 candidate의 최종 스코어를 구할 수 있다. 
 
 
 $$
@@ -281,6 +284,12 @@ $$
 $$
 
 
+**Recall@k** 
+
+
+$$
+Recall@k = \frac{(number \; of \; recommended \; items \; @k \; that \; are \; relevant)}{(total \; number \; of \; relevant \; items)}
+$$
 
 
 
@@ -298,9 +307,9 @@ $$
 
 | Query | Proposed Results  | Correct response | Rank | Reciprocal rank |
 | ----- | ----------------- | ---------------- | ---- | --------------- |
-| cat   | catten, cati,cats | cats             | 3    | 1/3             |
-|torus | torii, tori, toruses | tori | 2 | 1/2 |
-|virus | viruses, virii, viri | viruses | 1|1|
+| cat   | catten, cati,**cats** | cats             | 3    | 1/3             |
+|torus | torii, **tori**, toruses | tori | 2 | 1/2 |
+|virus | **viruses**, virii, viri | viruses | 1|1|
 
 라고 할 때 이 모델의 MRR은 
 $$
@@ -365,7 +374,7 @@ learning rate decay: 한 에포크의 절반 당 valid set의 loss 0.4 이상 �
 
 ![polyencoder5](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/polyencoder5.jpg?raw=true)
 
-### 5.2 Poly-encoders
+### 5.2 <span style="background:#ffe4de">**Poly-encoder**</span>
 
 Bi-encoder에서 사용한 것과 동일한 배치 사이즈와 옵티마이저를 사용하였다. 위의 Table 4에서 m의 사이즈에 따른 실험결과가 나와 있다.
 
@@ -429,14 +438,12 @@ Convai2와 DSTC7의 valid set을 이용해 평가한 결과 m이 커질수록 �
 
 **Cross-encoder**
 
-Thomas Wolf, Victor Sanh, Julien Chaumond, and Clement Delangue. Transfertransfo: A
-transfer learning approach for neural network based conversational agents. arXiv preprint
+Thomas Wolf, Victor Sanh, Julien Chaumond, and Clement Delangue. Transfertransfo: A transfer learning approach for neural network based conversational agents. arXiv preprint
 arXiv:1901.08149, 2019.
 
 **Bi encoder**
 
-Pierre-Emmanuel Mazar´e, Samuel Humeau, Martin Raison, and Antoine Bordes. Training millions
-of personalized dialogue agents. In EMNLP, 2018.
+Pierre-Emmanuel Mazar´e, Samuel Humeau, Martin Raison, and Antoine Bordes. Training millions of personalized dialogue agents. In EMNLP, 2018.
 
 SBERT Bi-Encoder 
 
