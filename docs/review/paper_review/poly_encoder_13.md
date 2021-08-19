@@ -52,7 +52,7 @@ Pairwise comparison이나 주어진 인풋을 관련 라벨과 매칭하는 테�
 
 ## 1. Introduction
 
-**Multi-sentence scoring** : Input context가 주어졌을 때 응답 후보들의 점수를 매기는 것이로 Retrieval and dialogue task에 많이 사용된다. 이 Multi-sentence scoring 분야에서 최근 SOTA 모델들은 사전학습된 BERT모델들을 사용한 Bi-encoder나 Cross-encoder가 많이 이용된다. 
+**Multi-sentence scoring** : Input context가 주어졌을 때 응답 후보들의 점수를 매기는 것으로 Retrieval and dialogue task에 많이 사용된다. 이 Multi-sentence scoring 분야에서 최근 SOTA 모델들은 사전학습된 BERT모델들을 사용한 Bi-encoder나 Cross-encoder가 많이 이용된다. 
 
 
 
@@ -75,14 +75,13 @@ Input과 candidate를 concat한 후에 self-attention을 적용한다. 따라서
 
 ## 3. Tasks
 
-**ConvAI2 테스크 설명**
+* **ConvAI2 테스크**
 
-![convai2](https://paperswithcode.com/media/datasets/ConvAI2-0000003063-95759eda.jpg)20개의 선택지 중에 가장 적합한 응답 후보를 선택해야함. 페르소나
-\<convai2> 데이터셋 예시 보여주기
+![convai2](https://paperswithcode.com/media/datasets/ConvAI2-0000003063-95759eda.jpg)훈련할 때 5개 문장의 페르소나가 주어지고, 여기에 따른 대화 데이터가 제공된다. 평가시에는 20개의 선택지 중에 가장 적합한 응답 후보를 선택해야하는데, 이때 19개의 응답 후보는 트레이닝 셋에서 랜덤하게 추출한 것이다. 
 
-
-
-StarSpace 설명 필요함
+* DTSC7 : Ubuntu chat log에서 추출된 대화들이며, 기술적 도움을 주고 받는 대화이다. 
+* Ubuntu V2 : DTSC7과 비슷하지만 더 큰 사이즈의 데이터셋이다.
+* Wiki Article : 한 아티클에서 문장이 쿼리로 주어지고, 이 문장이 나온 아티클을 찾는 테스크이다. 서치 쿼리를 통해 가장 관련있는 아티클을 검색하는 것으로,웹 검색과 비슷한 구조이다. 이 테스크에서는 StarSpace라는 모델이 가장 좋은 성능을 보였다.
 
 **Dataset 설명**
 
@@ -107,7 +106,7 @@ StarSpace 설명 필요함
 
 pre-training input은 input과 label의 concat한 것. 모두 스페셜 토큰 [S]로 둘러싸여 있음(Lample&Conneau,2019) 참조.
 
-* **Pre-training Procedure**
+* **Pre-training Procedure** : BERT와 동일한 MLM방식으로 사전학습. Wikipedia+Toronto books는 NSP테스크도 수행. Reddit의 경우 Next utterance prediction task로 수행. NSP와의 차이점은 Next utterance는 여러 문장일 수 있다는 것.  
 * **Fine-tuning**
 
 ### 4.2 Bi-encoder
@@ -118,9 +117,14 @@ pre-training input은 input과 label의 concat한 것. 모두 스페셜 토큰 [
 
 이제 위의 4.1에서 사전학습한 인코더를 Fine-tuning 과정에 대한 설명이다. 
 Bi-encoder 설명
+
+
 $$
 y_{ct xt} = red(T_1(ctxt)) \quad y_{cand}=red(T_2(cand))
 $$
+
+
+
 
 $$
 y_{ctxt}
@@ -155,10 +159,14 @@ pre-training 과정을 모방하기 위해 input과 label은 각각 스페셜 �
 * **Scoring**
 
 cand_i의 점수는 
+
+
 $$
 s(ctxt,cand_i)=y_{ctxt y}· y_{cand_i}
 $$
- input의 임베딩과 candidate의 임베딩을 내적한 값이다. 모델은 cross-entropy loss를 최소화하는 방식으로 훈련되었다. 
+ 
+
+Input의 임베딩과 candidate의 임베딩을 내적한 값이다. 모델은 cross-entropy loss를 최소화하는 방식으로 훈련되었다. 
 
 로짓은 cand_i가 맞는 라벨이고, 나머지는 트레이닝 셋에서 가져옴.
 
@@ -177,18 +185,26 @@ Inference 과정에서 이미 구해진 candidate들의 임베딩을 사용하�
 
 
 input과 candidate는 사전학습 방법과 비슷하게 스페셜 토큰[S]로 둘러싸인다음에 concat되어 하나의 벡터가 된다. 이 벡터는 하나의 트랜스포머 인코더를 거쳐서 output으로 나온다. 우리는 첫 번째 벡터를 context-candidate 임베딩으로 취한다. 
+
+
 $$
 y_{ctxt,cand} = h_1 = first(T(ctxt,cand))
 $$
+
+
 이 방법을 통해 Cross-encoder는 input과 candidate 간의 self-attention을 수행할 수 있어서, 더 풍부한 관계를 표현할 수 있다. 이렇게 candidate label이 트랜스포머 레이어를 거칠 때 input context에 접근할 수 있기에 candidate에 맞춰진 input representation을 얻을 수 있다. 
 
 
 * Scoring
 
 Candidate를 스코어링할 때 linear layer W는 임베딩 y에 적용되어 벡터를 스칼라값으로 축소한다.
+
+
 $$
 s(ctxt, cand_i) = y_{ctxt,cand_i}W
 $$
+
+
 
 Bi-encoder와 마찬가지로 Cross-entropy loss를 최소화하는 방식으로 훈련되는데, 
 
@@ -364,11 +380,13 @@ Poly-encoder의 초기 목적이 Cross-encoder보다 빠른 예측 시간을 갖
 
 8 GPU Volta 100을 이용해서 훈련한 4가지의 모델의 훈련 시간
 
-![poly7]()
+![poly7](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/poly7.jpg?raw=true)
 
 ### B Reduction layer
 
-![poly8]()
+![poly8](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/poly8.jpg?raw=true)
+
+Bi-encoder로 ConvAI2를 미세 조정했을 때 reduce 함수의 종류에 따른 성능 차이.
 
 ### C Alternative Choices for Context Vectors
 
@@ -378,7 +396,7 @@ Convai2와 DSTC7의 valid set을 이용해 평가한 결과 m이 커질수록 �
 
 
 
-# :meat_on_bone: ​Takeaway
+# 🍖Takeaway
 
 * Information retrieval 테스크를 수행할 때 Query(Input)과 관련된 응답 후보들을 스코어링할 때 Poly-encoder를 사용하자. Retrieval-base 챗봇에서 응답 후보를 고를 때 충분히 사용 가능할 것 같다.
 

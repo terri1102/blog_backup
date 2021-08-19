@@ -173,7 +173,7 @@ $$
 
 Ubuntu Dialogue corpus
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b33ce3a1-9b26-4b4c-af08-41b596894c4b/Untitled.png)
+![ubuntu](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b33ce3a1-9b26-4b4c-af08-41b596894c4b/Untitled.png)
 
 훈련을 위해 Ubuntu Dialogue Corpus를 사용하였는데, 이는 multi-turn 대이터셋으로 100만개의 발화-응답 쌍으로 이루어져 있으며 응답을 긍정/부정으로 분류하는 라벨이 붙어있다. train, validation, test set의 구성은 아래와 같다.
 
