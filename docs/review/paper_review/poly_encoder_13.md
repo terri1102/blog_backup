@@ -44,9 +44,11 @@ Pairwise comparison이나 주어진 인풋을 관련 라벨과 매칭하는 테�
 
 * **Alias 정리:** 논문에서 Input context와 Candidate label을 가리키는 단어들이 다양하게 사용되기에 정리해두겠다.
   
-  * Input context (인풋) : Input, Context
+  * Input context (인풋) : Input, Context(주로 임베딩된 것 의미)
   
-  * Candidate label (라벨 후보) : candidate, label, response
+  * Candidate (응답 후보) : candidate, response
+  
+  * Candidate label(라벨) :  label (정답인 문장) 
   
     
 
@@ -245,17 +247,24 @@ $$
 를 아래의 식을 통해 얻을 수 있다.
 
 
+
 $$
 y^i_{ctxt} = \sum_jw_j^{c_i} \quad where \quad (w_1^{c_i}, ...,w_N^{c_i}) = softmax(c_i· h_1,)
 $$
+
+
 **m context code**는 처음에 랜덤하게 초기화되고 미세 조정(fine-tuning) 과정에서 학습된다. 이렇게 구한 **m global features**에 
 $$
 y_{cand_i}
 $$
 를 쿼리로 사용하여 attend하면 candidate의 최종 스코어를 구할 수 있다. 
+
+
 $$
 y_{ctxt} = \sum_i w_iy^i_{ctxt} \quad where \\ \quad (w_1, ...,w_m) = softmax(y_{cand_i}·y^1_{ctxt},..,y_{cand_i}·y^m_{ctxt})
 $$
+
+
 N이 토큰의 개수일 때 m은 N보다 작은 수이고, input과 candidate의 어텐션 연산이 탑 레이어에서만 수행되기 때문에 Poly-encoder의 연산은 Cross-encoder보다 훨씬 빠르다.
 
 
@@ -265,23 +274,27 @@ N이 토큰의 개수일 때 m은 N보다 작은 수이고, input과 candidate�
 본 연구에서 사용한 평가지표는 Recall@k과 MRR(mean reciprocal rank)인데, Recall@k는 예시 C개 중 선택하는k개 candidate의 Recall값을 의미한다.  
 
 **Recall**
+
+
 $$
 \frac{TP}{TP+FN}
 $$
-예를 들어 20개의 candidate 중에 top 1로 
 
 
 
-**MRR**
 
 
 
-정보 검색을 평가하는 평가 지표. 
+**MRR** : 정보 검색을 평가하는 평가 지표. 
 
 각 Query별 관련있는 response 중 가장 높은 위치를 역수로 계산 (1/k)하고,  Query마다 계산된 점수를 모아 평균을 낸다.
+
+
 $$
-MRR = \frac{1}{\abs{Q}}\sum_{i=1}^{\abs{Q}} \frac{1}{rank_i}
+MRR = \frac{1}{|Q|}\sum_{i=1}^{|Q|} \frac{1}{rank_i}
 $$
+
+
 
 | Query | Proposed Results  | Correct response | Rank | Reciprocal rank |
 | ----- | ----------------- | ---------------- | ---- | --------------- |
@@ -320,19 +333,25 @@ Cross-encoder는 연산이 임베딩 쌍을 매번 계산해야 하기에 배치
 
 **Optimizer**
 
+* BERT 가중치로 초기화한 모델
+
 Adam with weight decay 0.01 (BERT에서 사용한 설정)
+
+
+
+* Reddit으로 훈련한 모델
 
 Adamax without weight decay
 
-BERT의 가중치를 가지고 초기화할 때는 Adam을 사용했다.  
 
-learning rate은 
 
-Bi-encoder와 Poly-encoder는 5e-5, warmup of 100 iteration
+**learning rate**
 
-Cross-encoder는  5e-5, warmup of 1000 iteration
+* Bi-encoder와 Poly-encoder는 5e-5, warmup of 100 iteration
 
-learning rate decay: 한 에포크의 절반 당 valid set의 loss 0.4 upon plateau ????뭐 어떻게 번역해야 돼
+* Cross-encoder는  5e-5, warmup of 1000 iteration
+
+learning rate decay: 한 에포크의 절반 당 valid set의 loss 0.4 이상 개선이 없으면 decay 
 
 아래의 표를 보면 워드 임베딩을 제외한 전체 네트워크를 미세 조정하는 것이 성능이 가장 좋게 나왔다. 
 
