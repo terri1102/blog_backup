@@ -141,7 +141,7 @@ $$
   2) 모든 output의 평균값을 취하는 함수
   3) 첫 m개의 output의 평균값을 취하는 함수 (m<N)
 
-  를 고려했었는데, 1번 함수 사용했다. 다른 함수를 사용했을 때의 결과는 Appendix에서 볼 수 있다.
+  를 고려했었는데, 미세하게 성능이 가장 좋은 1번 함수를 채택했다. 다른 함수를 사용했을 때의 결과는 Appendix에서 볼 수 있다.
 
 * Context encoder : Bert와 동일하게 3가지의 값을 더해서 임베딩을 구함. 이때 input과 candidate는 각각 인코딩되기 때문에 segment tokens은 모두 0이다. 사전학습에서 비슷한 환경을 모방하기 위해 input과 candidate는 모두 스페셜 토큰 [S]로 둘러 싸인다. 
 
@@ -173,18 +173,30 @@ Inference 과정에서 이미 구해진 candidate들의 임베딩을 사용하�
 ### 4.3 Cross-encoder
 
 <img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/cross-encoder.jpg?raw=true" alt="crossencoder" style="zoom:100%;" class="center" />
+
+
+
+input과 candidate는 사전학습 방법과 비슷하게 스페셜 토큰[S]로 둘러싸인다음에 concat되어 하나의 벡터가 된다. 이 벡터는 하나의 트랜스포머 인코더를 거쳐서 output으로 나온다. 우리는 첫 번째 벡터를 context-candidate 임베딩으로 취한다. 
 $$
 y_{ctxt,cand} = h_1 = first(T(ctxt,cand))
 $$
+이 방법을 통해 Cross-encoder는 input과 candidate 간의 self-attention을 수행할 수 있어서, 더 풍부한 관계를 표현할 수 있다. 이렇게 candidate label이 트랜스포머 레이어를 거칠 때 input context에 접근할 수 있기에 candidate에 맞춰진 input representation을 얻을 수 있다. 
 
 
 * Scoring
 
+Candidate를 스코어링할 때 linear layer W는 임베딩 y에 적용되어 벡터를 스칼라값으로 축소한다.
 $$
 s(ctxt, cand_i) = y_{ctxt,cand_i}W
 $$
 
+Bi-encoder와 마찬가지로 Cross-entropy loss를 최소화하는 방식으로 훈련되는데, 
 
+cand_1이 정답이고 나머지는 negative일 때의 로짓은
+$$
+s(ctxt, cand_1), ..., s(ctxt, cand_n)
+$$
+이다. Bi-encoder의 경우와 다르게 같은 배치의 다른 label을 negative로서 재사용할 수 없어서 트레이닝 셋에서 주어진 "external negative"를 사용한다. Cross-encoder는 BI-encoder보다 더 많은 메모리를 사용하기 때문에 작은 배치 사이즈를 사용한다.
 
 ### 4.4 Poly-encoder
 
@@ -210,7 +222,7 @@ y^i_{ctxt}
 $$
  representation이다. 
 
-즉, 우리는 
+즉, 우리는 context vector 
 $$
 y^i_{ctxt}
 $$
@@ -224,7 +236,7 @@ $$
 $$
 y_{cand_i}
 $$
-를 쿼리로 사용하여 attned하면 candidate의 최종 스코어를 구할 수 있다. 
+를 쿼리로 사용하여 attend하면 candidate의 최종 스코어를 구할 수 있다. 
 $$
 y_{ctxt} = \sum_i w_iy^i_{ctxt} \quad where \\ \quad (w_1, ...,w_m) = softmax(y_{cand_i}·y^1_{ctxt},..,y_{cand_i}·y^m_{ctxt})
 $$
@@ -236,53 +248,145 @@ N이 토큰의 개수일 때 m은 N보다 작은 수이고, input과 candidate�
 
 본 연구에서 사용한 평가지표는 Recall@k과 MRR(mean reciprocal rank)인데, Recall@k는 예시 C개 중 선택하는k개 candidate의 Recall값을 의미한다.  
 
+**Recall**
+$$
+\frac{TP}{TP+FN}
+$$
+예를 들어 20개의 candidate 중에 top 1로 
+
+
+
+**MRR**
+
+
+
+정보 검색을 평가하는 평가 지표. 
+
+각 Query별 관련있는 response 중 가장 높은 위치를 역수로 계산 (1/k)하고,  Query마다 계산된 점수를 모아 평균을 낸다.
+$$
+MRR = \frac{1}{\abs{Q}}\sum_{i=1}^{\abs{Q}} \frac{1}{rank_i}
+$$
+
+| Query | Proposed Results  | Correct response | Rank | Reciprocal rank |
+| ----- | ----------------- | ---------------- | ---- | --------------- |
+| cat   | catten, cati,cats | cats             | 3    | 1/3             |
+|torus | torii, tori, toruses | tori | 2 | 1/2 |
+|virus | viruses, virii, viri | viruses | 1|1|
+
+라고 할 때 이 모델의 MRR은 
+$$
+\frac{(\frac{1}{3} + \frac{1}{2} + 1)}{3} = \frac{11}{18}
+$$
+이다. 
+
+본 논문의 설정에 적용해보면 Query 대신 Input이 들어가고, response 대신 candidate를 대입하면 될 것 같다.
+
+
 
 
 ### 5.1 Bi-encoders and Cross-encoders
 
+훈련 세팅: 8 Nvidia Volta v 100 GPU, half precision operation(float16 operation)
+
+Bi-encoder와 Cross-encoder를 먼저 미세조정한 결과에 대해 살펴보면, BERT의 가중치로 초기화한 후 두 모델을 미세조정하였다. 
+
+<span style="background:#fff28c">**Bi-encoder**</span> 
+
+Bi-encoder의 경우 배치의 다른 candidate들의 임베딩을 재사용하기에 학습할 때 많은 negatives를 사용할 수 있다. (배치 사이즈를 크게 할 수 있다) 아래는 ConvAI2의 배치 사이즈를 32, 64, 128, 256, 512으로 훈련한 결과이다.
+
 ![polyencoder3](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/polyencoder3.jpg?raw=true)
 
-#### 여기서 Negatives는 답이 아닌 candidate의 개수이다. 
+위의 표를 보면 배치 사이즈가 커질수록 성능이 좋아지는 것을 알 수 있다. 다른 테스크는 시퀀스가 더 길었기 때문에 (메모리를 더 많이 차지해서) 배치 사이즈를 256으로 설정하였다.
+
+<span style="background:#e8f7ff">**Cross-encoder**</span> 
+
+Cross-encoder는 연산이 임베딩 쌍을 매번 계산해야 하기에 배치 사이즈를 16으로 제한하였다. 이때 negative는 트레이닝 셋에서 랜덤으로 샘플한 15개의 candidate로 하였다. 
+
+**Optimizer**
+
+Adam with weight decay 0.01 (BERT에서 사용한 설정)
+
+Adamax without weight decay
+
+BERT의 가중치를 가지고 초기화할 때는 Adam을 사용했다.  
+
+learning rate은 
+
+Bi-encoder와 Poly-encoder는 5e-5, warmup of 100 iteration
+
+Cross-encoder는  5e-5, warmup of 1000 iteration
+
+learning rate decay: 한 에포크의 절반 당 valid set의 loss 0.4 upon plateau ????뭐 어떻게 번역해야 돼
+
+아래의 표를 보면 워드 임베딩을 제외한 전체 네트워크를 미세 조정하는 것이 성능이 가장 좋게 나왔다. 
 
 
 
-![polyencoder4]
+![polyencoder4](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/polyencoder4.jpg?raw=true)
 
-![polyencoder5]
+
+
+아래 표는 Bi-encoder, Cross-encoder를 이용해 미세 조정한 결과를 나타낸다. 예상한 것과 같이 Cross-encoder는 기존의 SOTA 모델과 우리의 Bi-encoder를 뛰어넘는 성능을 보여주었다. 
+
+![polyencoder5](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/polyencoder5.jpg?raw=true)
 
 ### 5.2 Poly-encoders
 
-![polyencoder6]
+Bi-encoder에서 사용한 것과 동일한 배치 사이즈와 옵티마이저를 사용하였다. 위의 Table 4에서 m의 사이즈에 따른 실험결과가 나와 있다.
+
+Poly-encoder는 모든 테스크에서 Bi-encoder보다 좋은 성능을 보여주었고, 코드가 더 많을수록 많은 성능 향상을 보였다. 우리의 제안은 시간이 허락하는 한 큰 코드 사이즈를 사용하는 것이다. (to use as large a code size as compute time allows) 
+
+논문의 결과 발표 이후 ConvAI2에 대한 사람 평가가 이루어졌는데, 여기서도 본 논문의 Poly-encoder 아키텍처가 다른 모델들보다 좋은 성능을 보여줬다고 한다. 
 
 ### 5.3 Domain-specific Pre-training
 
+레딧 데이터로 사전 학습한 트랜스포머를 4가지 테스크에 대해 미세 조정한 것과 BERT와 동일한 데이터로 사전 학습한 트랜스포머와 비교해보았다.  우리의 레딧 데이터로 학습한 모델은 Adamax 옵티마이저 사용하고 임베딩을 포함한 모든 레이어를 학습시켰다. 이때 weight decay를 사용하지 않았기 때문에 마지막 레이어의 가중치는 BERT의 마지막 레이어 가중치보다 훨씬 크다. 이로 인한 어텐션 레이어의 saturation을 막기 위해 마지막 linear layer를 BERT의 표준편차에 맞게 스케일링했다. 
 
+ \<Table 4>를 보면 레딧 데이터로 사전 학습한 모델이 BERT 데이터로 사전학습한 모델보다 훨씬 좋은 성능을 보이는 것을 알 수 있다. 따라서 사전학습에 사용되는 데이터가 성능에 영향을 주며, 다운 스트림 테스크와 비슷한 데이터로 사전학습하는 것이 중요하다고 할 수 있다.
 
 ### 5.4 Inference Speed
 
+Poly-encoder의 초기 목적이 Cross-encoder보다 빠른 예측 시간을 갖게 하는 것이었기에 inference speed을 살펴보면, GPU연산의 경우 100k개의 candidate일 때 Poly-encoder는 Cross-encoder보다 1000배 이상 빠르고, 실시간 예측이 가능한 정도의 시간이었다. 
 
+![polyencoder6](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/polyencoder6.jpg?raw=true)
+
+또한 Appendix의 Training Time을 보면  Cross-encoder보다 Poly-encoder의 훈련 시간이 3-4배 빠른 것을 확인할 수 있다. (Bi-encoder와 비슷한 수준)
 
 ## 6. Conclusion
 
-
-
-## A Training Time
-
-
-
-## B Reduction layer
+본 논문에서는 응답 후보 선정 테스크를 수행하는 bidirectional transformer의 1) 새로운 아키텍처와 2) 사전학습 전략을 소개하였다. Poly-encoder는 각 candidate의 representation을 미리 계산하면서도 label candidate를 이용한 input context의 임베딩을 얻을 수 있게 하였다. 또한 프로덕션 레벨의 예측 시간과 정확도를 달성하였다. 사전학습 전략으로는 다운 스트림 테스크와 비슷한 테스크로 사전학습을 하면 더 좋은 성능을 보여준다는 것을 증명하였다. 레딧 데이터로 처음부터 사전학습를 진행한 모델이 BERT 데이터로 사전학습한 모델보다 좋은 성능을 보여주었다. 본 논문의 결과는 대화 데이터셋 뿐만 아니라 다른 information retrieval 등의 scoring 테스크에 적용될 수 있을 것이다. 
 
 
 
-## C Alternative Choices for Context Vectors
+## Appendix
 
+### A Training Time
 
+8 GPU Volta 100을 이용해서 훈련한 4가지의 모델의 훈련 시간
+
+![poly7]()
+
+### B Reduction layer
+
+![poly8]()
+
+### C Alternative Choices for Context Vectors
+
+Poly-encoder의 output에서 context vector를 얻는 여러 방법들이 있다.
+
+Convai2와 DSTC7의 valid set을 이용해 평가한 결과 m이 커질수록 성능이 좋아지고, First m outputs나 Last m outputs를 이용한 방법의 성능이 좋았다.
 
 
 
 # :meat_on_bone: ​Takeaway
 
+* Information retrieval 테스크를 수행할 때 Query(Input)과 관련된 응답 후보들을 스코어링할 때 Poly-encoder를 사용하자. Retrieval-base 챗봇에서 응답 후보를 고를 때 충분히 사용 가능할 것 같다.
 
+* 사전학습이 가능한 환경이라면 다운스트림과 비슷한 테스크로 사전학습하자. 또한 데이터 형태 뿐만 아니라 사전학습과 미세조정 과정에서 스페셜 토큰을 붙이는 것도 비슷하게 만들자. 
+
+* MRR이라는 매트릭을 사용해보자. 여태까지 읽은 논문들에는 Recall@k나 Hit@k가 많이 사용되었는데, MRR도 (자동화된 평가지표로) 비슷하지만 괜찮은 지표 같다. 
+
+  
 
 # Reference
 
