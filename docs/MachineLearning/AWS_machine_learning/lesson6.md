@@ -113,6 +113,12 @@ for i in range(len(tshirt_collection)):
 
 ## 3. Coding as class
 
+OOP에서 **매서드를 통해서 속성을 변경하는 것** vs. 직접 속성을 변경하는 것.
+
+매서드를 통해서 속성을 변경하면 한꺼번에 속성을 바꿔야 할 때 편리하다. 
+
+ex) 달러에서 유로로 전체 가격 변경
+
 
 
 ## 4. Magic methods
