@@ -285,3 +285,12 @@ Json의 장점
 
 1. 자바스크립트 객체를 Json 형식으로 쉽게 바꿀 수 있음
 2. 자바스크립트를 사용할 때 XML보다 편리: 자바스크립트의 eval함수는 데이터인 Json을 자바스크립트 프로그램인 것처럼 직접 실행 가능. 따라서 Json을 사용하면 자바스크립트에서 데이터를 내보내고 들여올 때 추가로 코드 작성할 필요 없음
+
+
+
+
+
+## 정리
+
+![browser](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/browser.jpg?raw=true)
+
