@@ -204,7 +204,7 @@ XML 경로 언어(Xpath)은 XML 문서에 대한 셀렉터를 제공한다. Xpat
 
 자바스크립트를 사용하면 서버가 아니라 (브라우저가 실행 중인) 실제 프로그램을을 웹 페이지에 포함시킬 수 있다. 
 
-![slp11]
+![slp11](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/slp11.jpg?raw=true)
 
 자바스크립트와 서버의 상호작용은 AJAX(비동기 자바스크립트와 XML)를 통해 이루어진다. 
 
