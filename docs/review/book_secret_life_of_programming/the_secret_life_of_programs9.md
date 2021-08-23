@@ -131,22 +131,157 @@ HTML 문서를 트리 구조로 생각한 모습
 
 깊이 우선 순회를 하면서 트리를 해석함.
 
+![parse_tree](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/parsetree.jpg?raw=true)
+
+브라우저는 루트에서 시작해서 첫 번째 자식으로 내려가고, 그 자식의 첫 번째 자식으로 내려간다. 이런 식으로 종단 노드에 도달할 때까지 순회를 계속한다. 
+
+여기서 방문하는 순서는 HTML을 작성한 순서에 따르며, 깊이 우선 순회는 스택을 사용한다.
 
 
-## CSS
+
+## CSS(Cascading Style Sheets)
+
+CSS는 HTML에서 스타일 정보를 분리해서 HTML을 한 번만 작성해도 대상 장치에 따라 여러 스타일을 적용할 수 있게 했다. 
+
+CSS가 셀렉터라고 하는 정규식의 변형을 사용해 DOM의 엘리먼트 위치를 지정하므로 구성요소를 어떻게 수성하느냐가 중요하다.
+
+CSS는 색, 글꼴 크기 등의 많은 프로퍼티(property)를 정의하며, DOM 엘리먼트와 결합된 프로퍼티를 애트리뷰트라고 부른다. 
+
+
+
+CSS가 포함된 html
+
+```HTML
+<html>
+    <head>
+        <title>My first web page</title>
+         <!-- css 추가된 영역 -->
+        <style>                    
+            body {
+                color: blue;
+            }
+            big {
+                color: yellow;
+                font-soze: 200%;
+            }
+        </style>
+        <!-- css 추가된 영역 -->
+    </head>
+ 
+    <body>
+        This is my first web page.
+        <b>
+        	<big>
+            cool!
+            </big>
+        </b>
+    </body>
+        
+</html>
+```
+
+body와 big 엘리먼트를 선택해서 각 셀렉터(body, big) 뒤에는 프로퍼티 이름(color)과 값(blue)의 목록이 들어있다. 이름과 값은 콜론으로 구분하고, 값 뒤에는 세미콜론이 들어가며, 셀렉터에 대한 프로퍼티 목록은 중괄호 안에 들어 있다. 
 
 
 
 ## XML 등의 마크업 언어
 
+HTML과의 차이는 XML은 일반적인 용도의 마크업 언어로 다양한 응용 분야가 있고, HTML은 웹페이지라는 구체적인 응용을 위해 만들어진다는 점이다. 
+
+XML은 엘리먼트 이름을 원하는대로 정할 수 있는데, 다른 언어에서 같은 이름을 사용하는 이름 충돌이 일어날 수 있다. 이때 이 엘리먼트가 어느 언어(파일)에 속하는지 구분할 수 있게 이름 공간(name space)를 사용해 엘리먼트 태그 앞에 접두사를 붙인다. 
+
+**이름공간** 또는 **네임스페이스**(Namespace)는 개체를 구분할 수 있는 범위를 나타내는 말로 일반적으로 하나의 이름 공간에서는 하나의 이름이 단 하나의 개체만을 가리키게 된다.
+
+XML 문서로부터 파스 트리를 만들어주는 라이브러리도 많음 : DTD, Xpath, XSLT 등.. 나는 elementTree 쓰는데..
+
+**DTD(문서타입정의, Document Type Definition)** 는 메타 마크업 언어로, 마크업 언어 문법에 맞는 엘리먼트가 어떻게 생겼는지 정의할 수 있다.
+
+XML 경로 언어(Xpath)은 XML 문서에 대한 셀렉터를 제공한다. Xpath는 XSLT의 중요한 부분이다. XSLT(Xtensible Sytlesheet Language Transformation)와 Xpath를 결합하면 XML 문서를 표현한 파스 트리를 검색하고 변형시킴으로써 XML 문서의 일부분을 다른 형태로 변환하는 XML 문서 조각을 작성할 수 있다.  
+
 
 
 ## 자바스크립트
+
+자바스크립트를 사용하면 서버가 아니라 (브라우저가 실행 중인) 실제 프로그램을을 웹 페이지에 포함시킬 수 있다. 
+
+![slp11]
+
+자바스크립트와 서버의 상호작용은 AJAX(비동기 자바스크립트와 XML)를 통해 이루어진다. 
+
+**비동기:** 브라우저가 서버의 응답이 언제 일어날지에 대해(일어날지의 여부도) 아무 제어를 하지 않는다는 뜻이다. 브라우저 자바스크립트 프로그램이 서버에게 비동기로 XML형식의 데이터를 보낸다.
+
+
+
+\<script> 엘리먼트 안에 자바스크립트 포함한 코드
+
+```html
+<html>
+    <head>
+        <title>My first web page</title>
+        <style>                    
+            body {
+                color: blue;
+            }
+            big {
+                color: yellow;
+                font-soze: 200%;
+            }
+        </style>
+        <!-- javascript 추가된 영역 -->
+        <script>
+        	window.onloade = function() {
+                var big = document.getElementsByTagName('big');
+                big[0].style.background = "green";
+            }
+        </script>
+    </head>
+ 
+    <body>
+        This is my first web page.
+        <b>
+        	<big>
+            cool!
+            </big>
+        </b>
+    </body>
+        
+</html>
+```
 
 
 
 ## jQuery
 
+위의 DOM 함수의 문제는 1) DOM 함수 동작이 브라우저마다 다를 수 있다는 것과 2) DOM 함수를 사용하기가 불편하다는 것이다. jQuery를 통해 이 두 문제를 해결할 수 있다. jQuery를 통해서 엘리먼트가 클릭될 때 실행될 이벤트 핸들러를 연결할 수 있다. 근데 최근에 jQuery가 많이 안 쓰이는 것 같다.
 
 
-## 
+
+## SVG(Scalable Vector Graphics)
+
+SVG는 크기 변경이 가능한 백터 그래픽스로 브라우저가 지원하는 마크업 언어 중 하나이지만 다른 마크업 언어와 다르다. 
+
+```html
+<br>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"?
+     <circle id="c" r="10" cx="200" cy="200" fill="red"/>
+	 <animate xlink:href="#c" attributeName="r" from="10" to="200" dur="5s"
+repeatCount="indefinite"/>
+</svg>
+```
+
+
+
+## HTML5
+
+html5는 여러 시맨틱 엘리먼트들이 추가되었다. 또한 캔버스(canvas)가 추가되었는데 SVG와 비슷한 기능을 제공하지만 완전 다른 방식으로 제공한다.
+
+
+
+## JSON(JavaScript Object Notation)
+
+Json은 자바스크립트 객체를 사람이 읽기 쉬운방식으로 표현한 것이다. 
+
+Json의 장점
+
+1. 자바스크립트 객체를 Json 형식으로 쉽게 바꿀 수 있음
+2. 자바스크립트를 사용할 때 XML보다 편리: 자바스크립트의 eval함수는 데이터인 Json을 자바스크립트 프로그램인 것처럼 직접 실행 가능. 따라서 Json을 사용하면 자바스크립트에서 데이터를 내보내고 들여올 때 추가로 코드 작성할 필요 없음
