@@ -255,7 +255,7 @@ cc gta.c -o gta
 
 [stdio 버퍼를 사용하는 사용자 프로그램]
 
-![slp15]()
+![slp15](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/slp15.jpg?raw=true)
 
 
 

@@ -7,6 +7,7 @@ nav_order: 6
 tags: [statistics, 수치적 기술통계, 통계]
 category: [Statistics]
 comments: true
+use_math: true
 ---
 
 
