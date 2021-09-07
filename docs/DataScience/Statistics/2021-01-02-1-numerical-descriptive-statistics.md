@@ -18,8 +18,6 @@ use_math: true
 
 ### 측정 단위(수준)
 
-<br>
-
 **Categorical variable(범주형 변수)**
 
 1. **명목 척도(nominal measures):** 사람이나 사물의 속성을 구분하기 위해 이름을 부여한 척도
@@ -46,8 +44,6 @@ use_math: true
 
 수치형(연속, 이산)과 범주형(이진, 순서)로 나누기도 한다.
 
-<br>
-
 
 
 ### **통계 분석의 종류**
@@ -56,7 +52,7 @@ use_math: true
 
 **추리통계(inferential statistics):** 표본 자료에서 얻은 결과를 바탕으로 모집단에 대한 추리를 하는데 사용한다. 주로 고전적인 통계학에서는 이런 추리통계를 많이 사용했다.
 
-
+<br>
 
 ## 1. (중심) 위치의 척도
 
@@ -108,12 +104,14 @@ df.discribe() #count, mean, std, min, quartiles, max
 **편차(deviation)**: 관측값과 위치 추정값 사이의 차이
 
 **분산(variance)과 표준편차(standard deviation)**: 모든 자료가 그 평균으로부터 떨어져 있는 거리를 제곱한 것의 평균값 & 그것의 제곱근이 표준편차
+
+
 $$
-분산 = s^2 = \frac{\sum^n_{i=1}(x_i-\bar{x})^2}{n-1}
+variance = s^2 = \frac{\sum^n_{i=1}(x_i-\bar{x})^2}{n-1}
 $$
 
 $$
-표준편차 = s = \sqrt{분산}
+standard deviation = s = \sqrt{variance}
 $$
 
 ```python
@@ -126,6 +124,8 @@ numpy.std(arr) # 표준편차
 분산과 표준편차는 가장 많이 쓰이는 변이 측정 방법이지만 특잇값에 민감하다는 단점이 있다. 중간값과 백분위수로부터 평균절대편차와 중간값의 중위절대편차(MAD)를 구하는 것이 좀 더 로버스트 하다.
 
 **중간값의 중위절대편차(MAD)**
+
+
 $$
 중위절대편차 = 중간값(|x_1-m|,|x_2-m|,...,|x_n-m|)
 $$
@@ -180,7 +180,7 @@ ax = (df['number_of_ppl']/100000).plot.box()
 ax.set_ylabel('Population (millions)')
 ```
 
-![boxplot]()
+![boxplot](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/statistics/boxplot.jpg?raw=true)
 
 
 
@@ -222,13 +222,13 @@ plt.tight_layout()
 plt.show()
 ```
 
-![hist_kde]
+![hist_kde](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/statistics/hist_kde.jpg?raw=true)
 
 
 
 ### 범주형 데이터 EDA
 
-**최빈값(mode) **: 데이터에서 자주 등장하는 범주, 값
+**최빈값(mode)**: 데이터에서 자주 등장하는 범주, 값
 
 **기댓값(expected value)**: 범주에 해당하는 어떤 수치가 있을 때, 범주의 출현 확률(probability)에 따른 평균. 어떤 값과 그 값이 일어날 확률을 곱해 더한 값을 의미.
 
@@ -270,7 +270,7 @@ $$
 
 2. 표본공분산
 
-<br>
+
 $$
 q_{jk}=\frac{1}{N-1}\sum^N_{i=1}(x_{ij}-\bar{x_j})(x_{ik}-\bar{x}_k)
 $$
@@ -290,19 +290,25 @@ numpy.cov(m, y=None, rowvar=True, bias=False, ddof=None, fweights=None, aweights
 
 
 
-**피어슨상관계수(Pearson correlation coefficient)**: , Cov(X,Y)의 X와 Y의 단위는 각각 다르기 때문에 공분산의 정도를 보여주지는 못 하기 때문에, 두 숫자형 변수 사이의 선형적 강도를 나타내기 위한 통계량으로 공분산을 각 변수의 표준편차로 나눈 것이다. 
+**피어슨상관계수(Pearson correlation coefficient)**: 
+
+피어슨 상관계수를 계산하려면 변수1과 변수2 각각의 평균으로부터의 편차들을 서로 곱한 값들의 평균을 각 변수의 표준편차의 곱으로 나눠준다.
+
+
+$$
+r = \frac{\sum^n_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)s_xs_y}
+$$
+
+
+변수들이 선형적인 관계를 갖지 않는 경우, 상관계수는 유용한 측정지표는 아니다.
+
+
+
+Cov(X,Y)의 X와 Y의 단위는 각각 다르기 때문에 공분산의 정도를 보여주지는 못 하기 때문에, 두 숫자형 변수 사이의 선형적 강도를 나타내기 위한 통계량으로 공분산을 각 변수의 표준편차로 나눈 것이다. 
 
 $$
 \rho _{XY} = \frac{σ_{XY}}{σ_X * σ_Y}
 $$
-
-피어슨 상관계수를 계산하려면 변수1과 변수2 각각의 평균으로부터의 편차들을 서로 곱한 값들의 평균을 각 변수의 표준편차의 곱으로 나눠준다.
-$$
-r = \frac{\sum^n_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)s_xs_y}
-$$
-변수들이 선형적인 관계를 갖지 않는 경우, 상관계수는 유용한 측정지표는 아니다.
-
-
 
 ###### σXY:(X,Y)의 모집단공분산, σX, σY: X와 Y의 표준편차
 
@@ -328,7 +334,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![heatmap]
+![heatmap](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/statistics/heatmap.jpg?raw=true)
 
 ```python
 #산점도
@@ -340,7 +346,7 @@ ax.axhline(0, color='grey', lw=1);
 ax.axvline(0, color='grey', lw=1);
 ```
 
-![scatter]
+![scatter](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/statistics/scatter.jpg?raw=true)
 
 
 
@@ -397,7 +403,7 @@ ax.set_xlabel('Finished Square Feet')
 ax.set_ylabel('Tax-Assessed Value')
 ```
 
-![hexbin]
+![hexbin](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/statistics/hexbin.jpg?raw=true)
 
 
 
@@ -409,11 +415,11 @@ ax.set_xlabel('Finiahed Square Feet');
 ax.set_ylabel('Tax-Assessed Value');
 ```
 
-![contourplot]
+![contourplot](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/statistics/contourplot.jpg?raw=true)
 
 
 
-### Reference
+## Reference
 
 통계학 입문
 
