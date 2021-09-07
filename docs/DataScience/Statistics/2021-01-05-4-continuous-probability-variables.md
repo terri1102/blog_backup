@@ -7,6 +7,7 @@ parent: Data Science
 nav_order: 9
 tags: [연속형 확률변수, 확률밀도함수, pdf, cdf]
 comments: true
+use_math: true
 ---
 
 
@@ -124,4 +125,38 @@ $$
 다른 연속인 확률변수들처럼 표준정규분포를 따르는 확률변수 Z가 구간(a,b)에 포함될 확률은 구간(a,b)에 해당하는 확률밀도함수 곡선의 아래 부분에 대한 영역으로 표시된다.
 $$
 P(a \leq Z \leq b) = P(Z\leq b)-P(Z\leq a)= \Phi(b)-\Phi(a)
+$$
+
+
+---
+
+### Magic methods
+
+파이썬의 디폴트 행동을 오버라이딩하는 방법 ex) \_\_init__, \_\_add__, \_\_repr__
+
+* init : 파이썬이 인스턴스를 만들 때의 행동을 오버라이드
+* add : +의 행동을 오버라이드
+* repr: 파이썬의 기본 print 형식을 오버라이드 ex) repr이 없으면 인스턴스 찍어봤을 때 메모리 주소 나오지만, repr을 추가하면 repr로 설정한 내용이 나옴
+
+
+
+
+
+가우스 분포를 따르는 X와 Y 두 분포를 합치고 싶다면 어떻게 해야할까?
+
+
+
+X분포
+$$
+평균:\mu X \quad 표준편차: \sigma X
+$$
+
+
+Y분포
+$$
+평균:\mu Y \quad 표준편차: \sigma Y
+$$
+X분포와 Y분포를 합친 분포
+$$
+평균: \mu X + \mu Y \quad 표준편차 : \sqrt{\sigma^2 X + \sigma^2 Y}
 $$

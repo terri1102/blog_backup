@@ -6,6 +6,7 @@ category: [Statistics]
 parent: Data Science
 nav_order: 7
 tags: [빈도론자, 베이지안, 베이즈 정리]
+use_math: true
 comments: true
 typora-copy-images-to: ..\..\assets\img
 ---

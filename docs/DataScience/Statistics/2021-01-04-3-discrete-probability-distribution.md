@@ -6,6 +6,7 @@ category: [Statistics]
 parent: Data Science
 nav_order: 8
 tags: [이산형확률분포, 이항분포, 베르누이, 평균, 표준편차, 포아송분포, 베르누이]
+use_math: true
 comments: true
 ---
 

@@ -6,6 +6,7 @@ category: [Statistics]
 parent: Data Science
 nav_order: 11
 tags: [점추청, 구간추청, 신뢰구간, CI]
+use_math: true
 comments: true
 ---
 

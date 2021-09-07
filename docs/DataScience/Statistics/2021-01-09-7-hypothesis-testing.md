@@ -6,6 +6,7 @@ categories: [Statistics]
 parent: Data Science
 nav_order: 12
 tags: [가설검정,t-test, z-score, 유의수준]
+use_math: true
 comments: true
 ---
 
