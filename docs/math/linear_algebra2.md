@@ -49,7 +49,7 @@ $$
 
 
 
-**[STEP 1]** 첫 번째 방정식에 적당한 수를 곱해서(Scaling) 두 번째 방정식과 연립했을 때 x를 소거하게 만들자(행렬 A의 (2,1) 원소를 0으로 만들기). 이때 첫 번째 행은 pivot row이기 때문에 그대로 두고, 첫 번째 행에 3을 곱한 후 두 번째 행에서 이를 제한다(Substration). 식의 오른쪽 부분은 일단 무시한다.
+<strong>[STEP 1] </strong>첫 번째 방정식에 적당한 수를 곱해서(Scaling) 두 번째 방정식과 연립했을 때 x를 소거하게 만들자(행렬 A의 (2,1) 원소를 0으로 만들기). 이때 첫 번째 행은 pivot row이기 때문에 그대로 두고, 첫 번째 행에 3을 곱한 후 두 번째 행에서 이를 제한다(Substration). 식의 오른쪽 부분은 일단 무시한다.
 
 
 
@@ -62,11 +62,11 @@ $$
 
 
 
-**[STEP 2]** 세 번째 방정식의 x자리도 0으로 만들자(행렬 A의 (3,1) 위치). 하지만 이미 0이기 때문에 넘어간다.
+<strong>[STEP 2]</strong> 세 번째 방정식의 x자리도 0으로 만들자(행렬 A의 (3,1) 위치). 하지만 이미 0이기 때문에 넘어간다.
 
 
 
-**[STEP 3]** 이제 A의 (3,2) 위치도 0으로 만들어 주기 위해 두 번째 행에 2을 곱한 후 세 번째 행에서 제한다. 
+<strong>[STEP 3]</strong> 이제 A의 (3,2) 위치도 0으로 만들어 주기 위해 두 번째 행에 2을 곱한 후 세 번째 행에서 제한다. 
 
 
 
@@ -84,17 +84,21 @@ $$
 
 ##  Failure case
 
+<justify>
+
 이런 Elimination으로 연립 일차 방정식의 해를 못 구하는 경우는 Pivot 값을 구할 수 없는 경우이다. Pivot을 못 구하는 상황은  <span style="background:#fff28c">대각선의 값이 0</span>인 경우이고, 이는 <span style="background:#fff28c">not invertible</span>한 것을 의미한다. 그렇다면 언제 Pivot 값을 못 구할까? 
 
-**[Temporary failure]** Pivot 값은 0이 될 수 없기 때문에 대각선에 0이 있을 때는 Elimination으로 해를 구할 수 없다. -> 다른 행, 같은 열에 0이 아닌 수가 있으면 행을 바꿔서(exchange) 해결할 수 있다.
+<strong>[Temporary failure]</strong> Pivot 값은 0이 될 수 없기 때문에 대각선에 0이 있을 때는 Elimination으로 해를 구할 수 없다. -> 다른 행, 같은 열에 0이 아닌 수가 있으면 행을 바꿔서(exchange) 해결할 수 있다.
 
-**[Complete failure]** 다른 행, 같은 열에 0이 아닌 경우가 없으면 Elimination으로 해를 구할 수 없다.
+<strong>[Complete failure]</strong> 다른 행, 같은 열에 0이 아닌 경우가 없으면 Elimination으로 해를 구할 수 없다.
 
-
+</justify>
 
 
 
 # **2. Back-Substitution**
+
+<justify>
 
 이제 식의 오른쪽 부분(b)을 가져와서 A 행렬에 붙이고 이를 <span style="background:#FFD9EC"> Augmented matrix</span>라고 붙인 후에 다시 Elimination 과정을 시행해보자.
 
@@ -130,15 +134,17 @@ $$
 
 식을 풀면 z = -2, y = 1, x = 2가 나온다. 
 
-
+</justify>
 
 # 3. Elimination Matrices
+
+<justify>
 
 위의 연산 과정들(Scaling & Substitution)을 행렬로 표현할 수 있을까?
 
 지난 시간에 우리는 행렬식(Ax)은 Combination of the columns of A라는 개념을 배웠다. 그렇다면 xA는 combination of rows of A라고 볼 수 있을 것이다. 이를 이용해서 Elimination Matrix(혹은 Elementary Matrix)를 구해보자. 
 
-**[STEP 1]** (2,1)위치의 Pivot값을 구하기 위해 행렬 A에 곱해야 하는 Elimination matrix E는 첫 번째 행과 마지막 행은 그대로 유지해야 하기 때문에, 첫 번째 행은 [1, 0, 0]이고 마지막 행은 [0, 0, 1]이다. 두 번째 행은 A행렬의 두 번째 행에서 첫 번째 행\*3한 값을 제거하는 연산을 해야 하기 때문에 (subtract 3 \* row1 from row2) [-3, 1, 0]이다.
+<strong>[STEP 1]</strong> (2,1)위치의 Pivot값을 구하기 위해 행렬 A에 곱해야 하는 Elimination matrix E는 첫 번째 행과 마지막 행은 그대로 유지해야 하기 때문에, 첫 번째 행은 [1, 0, 0]이고 마지막 행은 [0, 0, 1]이다. 두 번째 행은 A행렬의 두 번째 행에서 첫 번째 행\*3한 값을 제거하는 연산을 해야 하기 때문에 (subtract 3 \* row1 from row2) [-3, 1, 0]이다.
 
 
 $$
@@ -156,7 +162,7 @@ $$
 $$
 
 
-**[STEP 2]** 위의 STEP 1처럼 (3,2)위치의 Pivot 값을 구하기 위해 해야 하는 연산은 세 번째 행에서 두 번째 행에 2를 곱한 값을 제거하는 연산을 해야하기 때문에 E32의 세 번째 행은 [0,  -2, 1]이 된다.
+<strong>[STEP 2]</strong> 위의 STEP 1처럼 (3,2)위치의 Pivot 값을 구하기 위해 해야 하는 연산은 세 번째 행에서 두 번째 행에 2를 곱한 값을 제거하는 연산을 해야하기 때문에 E32의 세 번째 행은 [0,  -2, 1]이 된다.
 
 
 $$
@@ -174,7 +180,7 @@ $$
 $$
 
 
-**[STEP 3]** 이렇게 나온 식
+<strong>[STEP 3]</strong> 이렇게 나온 식
 $$
 E_{32}(E_{21}A)=U
 $$
@@ -188,13 +194,15 @@ $$
 
 행렬연산에서 결합 법칙은 성립하지만, 교환 법칙(communitive law)은 성립하지 않는다. 여기서 잠깐 샛길로 새면.. 행렬 내에서 행이나 열을 switch해주는 다른 형태의 elemantary matrix인 치환 행렬이 있다. 
 
-
+</justify>
 
 ## Permutation Matrix(치환 행렬)
 
+<justify>
+
 Permutation matrix은 단위 행렬의 row를 교환한 것으로 행렬의 행이나 열을 교환(exchange)할 수 있게 한다.
 
-Row operation을 위해 치환 행렬은 **왼쪽**에서 곱해준다.  (행 1과 행 2를 바꿔줌) 
+Row operation을 위해 치환 행렬은 <strong>왼쪽</strong>에서 곱해준다.  (행 1과 행 2를 바꿔줌) 
 
 
 $$
@@ -202,7 +210,7 @@ $$
 $$
 
 
-Column operation을 위해 치환 행렬은 **오른쪽**에서 곱해준다. (열 1과 열 2를 바꿔줌)
+Column operation을 위해 치환 행렬은 <strong>오른쪽</strong>에서 곱해준다. (열 1과 열 2를 바꿔줌)
 
 
 $$
@@ -218,7 +226,7 @@ $$
 
 매번 Elimination 행렬들을 곱하기 보다는 역행렬을 U에 곱해서 표현하는 것이 더 깔끔할 것이다. 이를 위해 다음 시간에는 Elimination을 undone하는 행렬을 찾기 위해 역행렬을 찾아볼 것이다.
 
-
+</justify>
 
 
 
