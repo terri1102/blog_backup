@@ -24,7 +24,7 @@ use_math: true
 
 # 1. Elimination으로 해를 구하기
 
-<center>
+<justify>
 
 3개의 미지수와 3개의 방정식이 주어졌을 때 <span style="background:#FFD9EC">가우스-조던 행렬 소거법</span>을 이용해서 해를 구해보자
 
@@ -80,7 +80,7 @@ $$
 
 이제 행렬 A는 upper triangle(상삼각)의 형태의 U행렬이 되었으며, 대각선 원소인 1, 2, 5는 각 행의 pivot 값이 된다. U행렬은 가우시간 소거법에 의한 결과로 Reduced row-echelon form이라고 한다. 
 
-</center>
+</justify>
 
 ##  Failure case
 
