@@ -14,7 +14,7 @@ use_math: true
 
 
 
-# 이번 강의의 목표
+# **이번 강의의 목표**
 
 * Determinant를 사용하지 않고 Elimination을 이용해서 해를 구하는 법
 
@@ -136,7 +136,7 @@ $$
 
 </justify>
 
-# 3. Elimination Matrices
+# **3. Elimination Matrices**
 
 <justify>
 
@@ -196,7 +196,7 @@ $$
 
 </justify>
 
-## Permutation Matrix(치환 행렬)
+## **Permutation Matrix(치환 행렬)**
 
 <justify>
 
@@ -232,7 +232,7 @@ $$
 
 
 
-## Glossary
+## **Glossary**
 
 Reduced row echelon form
 
@@ -240,7 +240,7 @@ Permutation matrix
 
 Elementary matrix:  nxn 크기의 단위행렬(*In*)에서 기본행연산(elementary row operation)을 한 번 실행하여 얻어지는 행렬이다. 또한 기본행연산의 존재여부에 따라 [단위 행렬](https://ko.wikipedia.org/wiki/단위_행렬)과 기본행렬로 구분된다.
 
-# Reference
+# **Reference**
 
 [MIT 18.06 강의](https://www.youtube.com/watch?v=QVKj3LADCnA&list=PLE7DDD91010BC51F8&index=3)
 
