@@ -102,7 +102,11 @@ $$
 1. Column 
 2. Row - dot product의 아이디어
 
-앞으로 Ax의 의미는 Combination of the columns of A로 받아들이기
+**앞으로 Ax의 의미는 Combination of the columns of A로 받아들이기**
+$$
+\begin {bmatrix} a & b & c\\ d & e& f \\ g &h&i \end {bmatrix} \begin {bmatrix} 3\\ 4 \\ 5 \end {bmatrix} = 3 * col1 + 4*col2+5*col3
+$$
+
 
 
 

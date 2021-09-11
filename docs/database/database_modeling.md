@@ -170,3 +170,324 @@ DROP PROCEDURE myProc();
 
 ## SQL 기본 문법
 
+### Use 문
+
+```sql
+USE user_db; --이 데이터베이스 사용할 것
+```
+
+
+
+### Select 문
+
+```sql
+SELECT select_expr
+[FROM table_references]
+[WHERE where_condition]
+[GROUP BY {col_name | expr | position}]
+[HAVING where_condition]
+[ORDER BY {col_name | expr | position}]
+[LIMIT {[offset,] row_count | row_count OFFSET offset}]
+```
+
+
+
+별칭 지정(alias)
+
+```mysql
+SELECT addr 주소, debut_date "데뷔 일자", mem_name FROM member;
+--addr 컬럼은 "주소", debut_date 컬럼은 "데뷔 일자"로 불러와짐
+```
+
+
+
+범위 지정 : AND, BETWEEN ~ AND
+
+```mysql
+SELECT user_name FROM user
+WHERE height >= 163 AND height <= 165
+```
+
+```mysql
+SELECT user_name from user 
+WHERE height BETWEEN 163 AND 165;
+```
+
+
+
+IN() : 어디 하나에 속할 때..
+
+```sql
+SELECT user_name, addr FROM user
+WHERE addr IN("경기", "서울", "충북");
+```
+
+```mysql
+--이렇게 해도 됨
+SELECT user_name, addr FROM user
+WHERE addr = '경기' OR addr = '서울' OR addr = '충북';
+```
+
+
+
+LIKE : 문자열의 일부 글자 검색
+
+```mysql
+SELECT * 
+FROM user
+WHERE user_name LIKE '우%'; --우 뒤엔 아무거나 와도 됨
+```
+
+```mysql
+SELECT * FROM user
+WHERE user_name LIKE '__한';--언더바는 글자 하나 의미. 즉 글자 두 개 + '한'
+```
+
+
+
+서브 쿼리: select 안에 또 select 들어갈 때
+
+```mysql
+SELECT mem_name, height FROM member
+WHERE height > (SELECT height FROM member WHERE mem_name = ‘에이핑크’);
+```
+
+
+
+ORDER BY, LIMIT, DISTINCT, GROUPBY ~ HAVING
+
+```mysql
+SELECT 열_이름
+FROM 테이블_이름
+WHERE 조건식
+GROUP BY 열_이름
+HAVING 조건식
+ORDER BY 열_이름
+LIMIT 숫자
+```
+
+* ORDER BY 절은 WHERE 절 다음에 나와야 함!
+
+```mysql
+SELECT user_id, user_name, user_date, height 
+	FROM user
+	WHERE height >= 164
+	ORDER BY height DESC;
+```
+
+* 여러 조건으로 정렬하기
+
+```mysql
+SELECT user_id, user_name, user_date, height 
+	FROM user
+	WHERE height >= 164
+	ORDER BY height DESC, user_date ASC;
+```
+
+* LIMIT : 출력 개수 제한
+
+```mysql
+SELECT user_id, user_name, user_date, height 
+	FROM user
+	WHERE height >= 164
+	ORDER BY height DESC, user_date ASC
+	LIMIT 3,2;   --세번째부터 2건 조회. LIMIT 3 OFFSET 2와 동일
+	
+```
+
+* DISTINCT
+
+```mysql
+SELECT DISTINCT height FROM user;
+```
+
+* GROUP BY + 집계함수 SUM
+
+```mysql
+SELECT user_id "회원 아이디", SUM(amount)"총 구매 개수" FROM user
+GROUP BY user_id
+ORDER BY user_id;
+```
+
+* GROUP BY + 집계 함수 응용
+
+```mysql
+SELECT mem_id “회원 아이디”, SUM(price*amount) "총 구매 금액"
+FROM buy GROUP BY mem_id;
+```
+
+* 그 외 GROUP BY와 함께 사용되는 집계 함수들
+
+SUM(), AVG(), MIN(), MAX(), COUNT(), COUNT(DISTINCT)
+
+* HAVING
+
+```mysql
+SELECT mem_id "회원 아이디" , SUM(price*amount) "총 구매 금액" from buy 
+GROUP BY mem_id
+HAVING SUM(price*amount) > 1000 --SUM(price*amount) 으로 쓰거나 "총 구매 금액"으로 써도 됨
+ORDER BY "총 구매 금액" DESC;
+```
+
+
+
+## 데이터 변경을 위한 SQL 문
+
+`INSERT`, `AUTO_INCREMENT`, `INSERT INTO ~ SELECT`, `UPDATE`, `DELETE`
+
+
+
+### INSERT
+
+
+
+INSERT문 형식
+
+```mysql
+INSERT INTO 테이블(열1, 열2, ...) VALUES (값1, 값2,...);
+INSERT INTO 테이블 VALUES (값1, 값2,...);
+INSERT INTO 테이블 VALUES (값1, 값2,...), (값1, 값2,...), (값1, 값2,...);
+```
+
+입력 안 한 열은 NULL값이 들어감
+
+
+
+마지막에 insert한 id 보기
+
+```mysql
+SELECT LAST_INSERT_ID();
+```
+
+
+
+다른 테이블의 데이터를 가져와서 한 번에 입력 : INSERT INTO ~SELECT
+
+```mysql
+INSERT INTO 테이블 (열_이름1, 열_이름2, ...)
+	SELECT 문 ;
+```
+
+
+
+테이블 스키마 살펴보기
+
+```mysql
+DESC database_name.table_name;
+```
+
+
+
+다른 테이블의 값을 가져오기. 가져오려는 열의 개수와 새로운 테이블의 스키마가 맞아야 함
+
+```mysql
+INSERT INTO city_popul 
+	SELECT Name, Population FROM world.city;
+```
+
+
+
+
+
+AUTO_INCREMENT 자동으로 증가하는 값이 들어감. AUTO_INCREMENT로 설정한 열은 자료 입력시 NULL값 넣으면 됨
+
+```mysql
+CREATE TABLE toytable (
+	toy_id INT AUTO_INCREMENT PRIMARY KEY,
+	toy_name CHAR(4),
+	age INT);
+```
+
+AUTO_INCREMENT 시작 값 바꾸기
+
+```mysql
+ALTER TABLE toytable AUTO_INCREMENT=100;
+INSERT INTO toytable VALUES (NULL, ‘소희’, 15);
+```
+
+AUTO_INCREMENT 증가 값 바꾸기 : 시스템 변수 변경
+
+```mysql
+CREATE TABLE toytable (
+	toy_id INT AUTO_INCREMENT PRIMARY KEY,
+	toy_name CHAR(4),
+	age INT);
+	ALTER TABLE hongong3 AUTO_INCREMENT=1000; --1000부터 시작
+	SET @@auto_increment_increment=3;	--3씩 증가
+```
+
+* SHOW GLOBAL VARIABLES: 시스템 변수 보기
+* SELECT @@시스템변수 : 시스템 변수의 값 확인
+
+
+
+### UPDATE
+
+```mysql
+UPDATE 테이블이름
+SET 열1=값1, 열2=값2, ...
+WHERE 조건 ;
+```
+
+
+
+```mysql
+USE market_db;
+UPDATE city_popul
+SET city_name = ‘서울’
+WHERE city_name = ‘Seoul’;
+SELECT * FROM city_popul WHERE city_name = ‘서울’;
+```
+
+
+
+여러 열의 값 변경
+
+```mysql
+UPDATE city_popul
+	SET city_name = '뉴욕', population = 0
+	WHERE city_name = 'New York';
+```
+
+WHERE가 없으면 전체 열의 값이 변하니 주의
+
+
+
+```mysql
+UPDATE city_popul
+	SET population = population/ 10000;
+SELECT * FROM city_popul LIMIT 5;
+```
+
+
+
+### DELETE
+
+행 단위로 삭제함
+
+
+
+```mysql
+DELETE FROM 테이블 WHERE 조건;
+```
+
+```mysql
+DELETE FROM city_popul
+	WHERE city_name LIKE 'New%';
+```
+
+
+
+### DROP, DELETE, TRUNCATE
+
+* DELETE: 삭제가 오래 걸림(행 별로 지우는 듯). 빈 테이블이 남음
+* DROP: 테이블 아예 삭제. 순식간에 삭제됨
+* TRUNCATE: DELETE과 같은 효과 내지만 더 빠름
+
+
+
+---
+
+
+
+MYSQL을 사용하면서 겪을 수 있는 세세한 문제도 잘 설명되어 있습니다. UPDATE 및 delete를 허용하지 않는다..
