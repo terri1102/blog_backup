@@ -22,7 +22,7 @@ use_math: true
 
 
 
-# 1. Elimination으로 해를 구하기
+# **1. Elimination으로 해를 구하기**
 
 <justify>
 
@@ -94,7 +94,7 @@ $$
 
 
 
-# 2. Back-Substitution
+# **2. Back-Substitution**
 
 이제 식의 오른쪽 부분(b)을 가져와서 A 행렬에 붙이고 이를 <span style="background:#FFD9EC"> Augmented matrix</span>라고 붙인 후에 다시 Elimination 과정을 시행해보자.
 
