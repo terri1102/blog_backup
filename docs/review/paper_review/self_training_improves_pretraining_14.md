@@ -5,10 +5,15 @@ date: 2021-09-12
 parent: Paper Reviews
 grand_parent: Reviews
 nav_order: 14
+use_math: true
 comments: true
 ---
 
 
+
+# Self-training improves pre-training for natural language understanding
+
+이 논문은 데이터 증강을 하는 괜찮은 방법 같아보이고, pre-training과 더불어서 사용할 수 있을 것 같아서 읽게 된 논문이다.
 
 
 
