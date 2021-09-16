@@ -15,6 +15,8 @@ comments: true
 
 이 논문은 데이터 증강을 하는 괜찮은 방법 같아보이고, pre-training과 더불어서 사용할 수 있을 것 같아서 읽게 된 논문이다.
 
+{:toc}
+
 
 
 # **논문 키워드**
@@ -43,7 +45,7 @@ comments: true
 
 최근 자연어 이해 분야에서의 트랜드는 unsupervised pretraining이다. 이 논문에서는 self-training도 라벨 없는 데이터를 배우는데 효과적인 방법이라는 것을 설명한다. 
 
-많은 연구를 통해 다운스트림 태스크와 훈련 데이터의 도메인을 맞추는 것이 중요하다는 것은 알려져 있다. SentAugment는 task-specific 쿼리 임베딩을 이용해서 open-domain의 unlabeled data를 in-domain labeled data로 만들 수 있게 해준다. 또한 Self-training을 통해서 pre-training을 보완할 수도 있다.. 
+많은 연구를 통해 다운스트림 태스크와 훈련 데이터의 도메인을 맞추는 것이 중요하다는 것은 알려져 있다. SentAugment는 task-specific 쿼리 임베딩을 이용해서 open-domain의 unlabeled data를 in-domain labeled data로 만들 수 있게 해준다. 또한 Self-training을 통해서 pre-training을 보완할 수도 있다.
 
 
 
@@ -78,8 +80,6 @@ comments: true
 
 
 ## SentAugment
-
-(위의 2번에 해당하는 과정)
 
 인터넷에 엄청 많은 정보들이 널려있는데 이를 통으로 모은다음에 필요한 in-domain 데이터들만 모을 수는 없을까?
 
@@ -216,17 +216,17 @@ ICP 모델과 ST모델의 차이를 보면 ST가 더 높은 성능을 보여준�
 
 
 
-**few shot learning**
+**Few-shot learning**
 
 <img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase3.jpg?raw=true" alt="sase3" class="center" style="zoom:110%;" />
 
+40-200개의 샘플만을 이용해서 RoBERTa-Large 모델을 파인튜닝해서 선생 모델로 사용한 경우, Self-training한 경우가 더 좋은 성능(F1 score)을 보였다. 
 
 
 
+**knowledge distillation**
 
-knowledge distillation
-
-![sase4]
+![sase4](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase4.jpg?raw=true)
 
 RD : 랜덤한 문장을 뽑아서 증강시킴
 
@@ -246,7 +246,33 @@ SA : 같은 도메인의 문장을 이용해 증강
 | Continuous labels | Continuous labels(class probabilities), discrete labels |continuous labels|  |
 | Computational cost of self-training | Filter based on classifier confidence, few task-specific query embedding(label-average) |label-average| label-average방법으로 1B 문장 라벨링하는데 1분 걸릴 때 classifier confidence는 86시간 걸림 |
 
+Task specific retreival
 
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase5.jpg?raw=true" alt="sase5" class="center" style="zoom:110%;" />
+
+
+
+Sentence Embedding space
+
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase6.jpg?raw=true" alt="sase6" class="center" style="zoom:110%;" />
+
+
+
+Scaling bank size
+
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase7.jpg?raw=true" alt="sase7" class="center" style="zoom:110%;" />
+
+
+
+Continuous labels
+
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase8.jpg?raw=true" alt="sase8" class="center" style="zoom:110%;" />
+
+
+
+Computational costs
+
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase9.jpg?raw=true" alt="sase9" class="center" style="zoom:100%;" />
 
 
 
@@ -254,7 +280,7 @@ SA : 같은 도메인의 문장을 이용해 증강
 
 STS 벤치마크를 통해 우리의 SASE 방법의 성능을 보여주겠다
 
-
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase10.jpg?raw=true" alt="sase10" class="center" style="zoom:100%;" />
 
 SASE
 
