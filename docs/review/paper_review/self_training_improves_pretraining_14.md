@@ -67,9 +67,7 @@ comments: true
 
 인터넷에 엄청 많은 정보들이 널려있는데 이를 통으로 모은다음에 필요한 in-domain 데이터들만 모을 수는 없을까? 
 
-많은 연구를 통해 다운스트림 태스크와 훈련 데이터의 도메인을 맞추는 것이 중요하다는 것은 알려져 있다. SentAugment는 task-specific 쿼리 임베딩을 이용해서 open-domain의 unlabeled data를 in-domain labeled data로 만들 수 있게 해준다. 
-
-SentAugment 방법: 인터넷에서 스크래핑한 데이터를 통해 "in-domain" 데이터를 만들어냄. 인터넷에서 긁어온 데이터들은 다양한 정보를 포함하고 있는데, 이를 다운스트림 태스크와 같은 도메인의 데이터로 만드는 방법이다. Self-training을 하려면 in-domain의 unlabeled data가 필요하기 때문에 in-domain 데이터를 만들어주기 위해 사용한다.
+많은 연구를 통해 다운스트림 태스크와 훈련 데이터의 도메인을 맞추는 것이 중요하다는 것은 알려져 있다. SentAugment는 task-specific 쿼리 임베딩을 이용해서 open-domain의 unlabeled data를 in-domain labeled data로 만들 수 있게 해준다. 즉, Self-training을 하려면 in-domain의 unlabeled data가 필요하기 때문에 in-domain 데이터를 만들어주기 위해 사용한다.
 
 
 
@@ -106,7 +104,7 @@ $$
 <img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sentaugment.jpg?raw=true" alt="sentaugment" class="center" style="zoom:110%;" />
 
 1. 선생 모델인 RoBERTa-large 모델을 크로스 엔트로피 loss로 레이블링된 다운스트림 태스크에 맞춰서 파인튜닝함
-2. <span style="background:#FFD9EC">Open-domain data 중에서 태스크에 맞는 데이터(in-domain data)를 뽑아서 unannotated 데이터셋을 만듦 (SASE)</span>
+2. <span style="background:#FFD9EC">Open-domain data 중에서 태스크에 맞는 데이터(in-domain data)를 뽑아서 unannotated 데이터셋을 만듦 </span>
 3. 2에서 얻은 데이터를 선생 모델이 레이블링하고, 각 클래스별 top k의 샘플을 뽑아서 final dataset을 구성함
 4. 학생 모델인 RoBERTa-large가 KL-divergence loss로 final dataset에 파인튜닝함.
 
@@ -134,7 +132,7 @@ KL divergence는 위의 CE식과 비슷하지만 최적이 아닌 인코딩(크�
 
 
 $$
-D_{KL}(P||Q) -\sum_{x}P(x)\;log \; Q(x) + \sum_{x}P(x)\;log \; P(x)
+D_{KL}(P||Q) =-\sum_{x}P(x)\;log \; Q(x) + \sum_{x}P(x)\;log \; P(x)
 $$
 
 
@@ -323,3 +321,8 @@ KL divergence: https://stats.stackexchange.com/questions/265966/why-do-we-use-ku
 KL divergence: https://angeloyeo.github.io/2020/10/27/KL_divergence.html
 
 uSIF: https://aclanthology.org/W18-3012/
+
+
+
+
+
