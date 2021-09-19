@@ -1,9 +1,9 @@
 ---
 layout: default
-title: "2. Elimination with Matrices"
-date: 2021-09-10
+title: "3. Multiplication and Inverse Matrices"
+date: 2021-09-13
 comments: true
-nav_order: 2
+nav_order: 3
 parent: Math
 use_math: true
 ---
@@ -165,7 +165,7 @@ $$
 
 즉 
 $$
-AI  
+AI
 $$
 을 
 $$
@@ -209,7 +209,7 @@ AA^{-1}=I
 $$
 이므로 이를 전치해보면
 $$
-(A^{-1})^TA^T=I
+A^T(A^{-1})^T=I
 $$
 이다. 따라서 
 $$
@@ -273,16 +273,7 @@ $$
 
 
 
-
-
-
-
-## **Glossary**
-
-
-
 # **Reference**
 
-[MIT 18.06 강의](https://www.youtube.com/watch?v=QVKj3LADCnA&list=PLE7DDD91010BC51F8&index=3)
+[MIT 18.06 강의](https://www.youtube.com/watch?v=FX4C-JpTFgY&list=PLE7DDD91010BC51F8&index=4)
 
-[가우스 소거법의 기하학적 의미](https://angeloyeo.github.io/2019/09/09/Gauss_Jordan.html )

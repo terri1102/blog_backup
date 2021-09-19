@@ -30,15 +30,18 @@ $$
 A = \begin {bmatrix} 2 & 1 \\
 8 & 7\end {bmatrix}
 $$
-일 때, U는 
+일 때, 
 $$
 U = \begin {bmatrix} 2 & 1 \\
 0 & 3\end {bmatrix}
 $$
 이다. 이를 만족시키는 E21은
+
+
 $$
 E_{21} A = U
 $$
+
 
 $$
 \begin {bmatrix} 1 & 0 \\
@@ -150,14 +153,20 @@ $$
 n^2+(n-1)^2+...+2^2+1^2 
 $$
 는 미적분의 integral을 이용해서 생각해볼 수 있다. (선형대수는 이산적인 세계를 다루고 미적분은 연속적인 세계를 다루긴 하지만)
+
+
 $$
-\int n^2 dx = \frac{1}{3}n^3
+\int n^2 dx = \frac{1}{3}n^3 이기에
 $$
-이기에
+
+
+
 $$
-n^2+(n-1)^2+...+2^2+1^2 \approx \frac{1}{3}n^3
+n^2+(n-1)^2+...+2^2+1^2 \approx \frac{1}{3}n^3 \;이다.
 $$
-이다. 반면 A에 행하는 연산이 아닌 A = LU에서 식의 오른쪽에 수행하는 연산의 비용은 
+
+
+반면 A에 행하는 연산이 아닌 A = LU에서 식의 오른쪽에 수행하는 연산의 비용은 
 $$
 n^2
 $$
@@ -173,28 +182,40 @@ n^2
 $$
 이기에 E를 구하는 것보다 L을 구하는 연산이 더 효율적이다.
 
-(오른쪽 연산을 뭐라고 써야하나...)
 
 
 
-# 2. Permutation
+
+# **2. Permutation**
 
 이제 행렬의 소거를 하는 과정에서 row exchange가 필요한 행렬의 경우에 대해서 생각해보자. 피봇값이 0이면 반드시 행 교환을 해야 한다.
 
 **치환행렬(permutation matrix):** 순서가 부여된 임의의 행렬을 의도된 다른 순서로 뒤섞는 연산 행렬. 즉 치환 행렬 P는 임의의 행렬 A에 대해서 (왼쪽에 곱해지는) PA의 연산을 통해서 A 행렬의 행 또는 열의 순서를 재배열하게 된다. 
 
 3x3 단위 행렬의 행을 교환하는 방법은 몇 가지일까?
+
+
 $$
 \begin {bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end {bmatrix}
 $$
+
+
 의 행을 교환해서 만들 수 있는 행렬들은 행 한 번 교환시
+
+
 $$
 \begin {bmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end {bmatrix}, \begin {bmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end {bmatrix}, \begin {bmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0\end {bmatrix}
 $$
+
+
 3가지, 두 번 교환시
+
+
 $$
 \begin {bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1& 0 & 0 \end {bmatrix}, \begin {bmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end {bmatrix}
 $$
+
+
 2가지이다. 즉 3x3행렬을 행을 교환해서 만들 수 있는 행렬의 개수는 6개이다. 4x4 행렬의 Permutation matrix의 조합은 4x3x2x1로, nxn 행렬의 치환행렬의 개수는 n!이다.
 
 만약 위의 P행렬들을 서로 곱한다면 어떻게 될까? 이 행렬들을 서로 곱하거나 invert해도 P 행렬의 그룹 안에 속하게 된다. 
@@ -219,6 +240,6 @@ $$
 
 [permutation matrix](https://ko.wikipedia.org/wiki/%EC%B9%98%ED%99%98%ED%96%89%EB%A0%AC)
 
-https://twlab.tistory.com/13
+[치환행렬, 전치행렬 설명](https://twlab.tistory.com/13)
 
-https://www.youtube.com/watch?v=MsIvs_6vC38&list=PLE7DDD91010BC51F8&index=5
+[MIT 18.06 강의](https://www.youtube.com/watch?v=MsIvs_6vC38&list=PLE7DDD91010BC51F8&index=5)
