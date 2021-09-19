@@ -163,15 +163,13 @@ $$
 $$
 이다.
 
-즉 
+
 $$
-AI
+즉  \;AI 를 \;IA^{-1}로 \;바꾸는 \; 연산을 \; 해서\; A의\; 역행렬을\; 구했다.
 $$
-을 
-$$
-IA^{-1}
-$$
-로 바꾸는 연산을 해서 A의 역행렬을 구했다.
+
+
+
 $$
 E \begin {bmatrix} AI \end {bmatrix} = \begin {bmatrix} IA^{-1} \end {bmatrix}
 $$
