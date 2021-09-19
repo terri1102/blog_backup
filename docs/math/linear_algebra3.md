@@ -118,8 +118,112 @@ $$
 Gauss-Jordan의 아이디어 : Solve 2 equations at onece
 
 
+$$
+AA^{-1}=I
+$$
+의 식을 두 개의 방정식으로 생각해 보자.
 
 
+$$
+\begin {bmatrix} 1 & 3 \\ 2 & 7\end {bmatrix} \begin {bmatrix} a \\ b \end {bmatrix}= \begin {bmatrix} 1 \\ 0\end {bmatrix}				\quad \quad 방정식 (1)
+$$
+
+$$
+\begin {bmatrix} 1 & 3 \\ 2 & 7\end {bmatrix} \begin {bmatrix} c \\ d \end {bmatrix}= \begin {bmatrix} 0 \\ 1\end {bmatrix}				\quad \quad 방정식 (2)
+$$
+
+
+를 합쳐서 augmented matrix를 만들자.
+
+
+$$
+\begin {bmatrix} 1 & 3 \\ 2 & 7\end {bmatrix} \begin {bmatrix} 1 & 0 \\ 0 & 1 \end {bmatrix}
+$$
+
+
+이때, A행렬이 있는 부분을 단위 행렬로 만드는 연산을 하면 I행렬이 있는 부분은 A의 역행렬이 될 것이다.
+
+
+$$
+elimination \; step \;1 :\quad \quad \quad \begin {bmatrix} 1 & 3 & 1 & 0\\ 0 & 1 & -2 &1  \end {bmatrix}
+$$
+
+
+하삼각행렬이 만들어졌지만 멈추지 않고, 이제 row2 x 3한 것을 row1에서 빼서 단위 행렬로 만들어준다.
+
+
+$$
+elimination \; step \;2 :\quad \quad \quad \begin {bmatrix} 1 & 0 & 7 & -3\\ 0 & 1 & -2 &1  \end {bmatrix}
+$$
+
+
+A의 역행렬은
+$$
+\begin {bmatrix} 7 & -3 \\ -2 & 1 \end {bmatrix}
+$$
+이다.
+
+즉 
+$$
+AI  
+$$
+을 
+$$
+IA^{-1}
+$$
+로 바꾸는 연산을 해서 A의 역행렬을 구했다.
+$$
+E \begin {bmatrix} AI \end {bmatrix} = \begin {bmatrix} IA^{-1} \end {bmatrix}
+$$
+
+
+A의 역행렬을 구하는 방법을 알아봤으니 이제 AB의 역행렬을 구해보자.(A, B는 역행렬을 가진다고 가정)
+$$
+(AB)(B^{-1}A^{-1}) = I
+$$
+
+$$
+(B^{-1}A^{-1})(AB) = I
+$$
+
+
+이기 때문에 AB의 역행렬은 
+$$
+(B^{-1}A^{-1})
+$$
+이다.
+
+
+
+그렇다면 
+$$
+A^T
+$$
+의 역행렬은 어떻게 구할까?
+
+
+
+A_ij = (A_ji)T
+$$
+AA^{-1}=I
+$$
+이므로 이를 전치해보면
+$$
+(A^{-1})^TA^T=I
+$$
+이다. 따라서 
+$$
+A^T
+$$
+의 역행렬은 
+$$
+(A^{-1})^T
+$$
+이고
+$$
+(A^T)^{-1}=(A^{-1})^T
+$$
+이 성립한다.
 
 
 
