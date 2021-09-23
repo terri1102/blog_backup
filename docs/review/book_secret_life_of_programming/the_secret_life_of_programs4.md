@@ -2,7 +2,7 @@
 layout: default
 title: 한 권으로 읽는 컴퓨터 구조와 프로그래밍 4장
 parent: 한 권으로 읽는 컴퓨터 구조와 프로그래밍
-Grand_parent: Book Reviews
+Grand_parent: Reviews
 nav_order: 4
 
 
@@ -12,15 +12,7 @@ nav_order: 4
 
 
 
-![slp1]()
-
-한 권으로 읽는 컴퓨터 구조와 프로그래밍
-
-조너선 스타인하트 지음. 오현석 옮김. 책만
-
-
-
-:toc
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/slp1.jpg?raw=true" class="center" alt="slp1" style="zoom:33%;" />
 
 
 

@@ -2,15 +2,15 @@
 layout: default
 title: 한 권으로 읽는 컴퓨터 구조와 프로그래밍 7장
 parent: 한 권으로 읽는 컴퓨터 구조와 프로그래밍
-Grand_parent: Book Reviews
-nav_order: 7
+Grand_parent: Reviews
+nav_order: 8
 
 
 ---
 
 
 
-
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/slp1.jpg?raw=true" class="center" alt="slp1" style="zoom:33%;" />
 
 {:toc}
 
