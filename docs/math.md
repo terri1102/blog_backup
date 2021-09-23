@@ -6,9 +6,9 @@ has_children: true
 comments: false
 ---
 
-# 
 
-Linear algebra
 
-Calculas
+Introduction to linear algebra : 2021.09 ~ 2021.12
+
+Calculus : 2021.12 ~
 
