@@ -2,7 +2,7 @@
 layout: default
 title: 한 권으로 읽는 컴퓨터 구조와 프로그래밍 3장
 parent: 한 권으로 읽는 컴퓨터 구조와 프로그래밍
-Grand_parent: Reviews
+grand_parent: Reviews
 nav_order: 3
 
 
