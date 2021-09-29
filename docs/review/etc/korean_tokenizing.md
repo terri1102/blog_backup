@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Hyper CLOVA 후기
-date: 2021-05-23
+title: Langcon2021 후기
+date: 2021-09-02
 parent: etc
 nav_order: 11
 comments: true
