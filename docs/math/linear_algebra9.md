@@ -40,17 +40,15 @@ $$
 
 벡터 x1, x2, ..., xn의 결합을 했을 때 영벡터를 가진다면 이는 종속적이다. 
 
-<center>
 
-![vectors](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/math/vectors.jpg?raw=true)
 
-</center>
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/math/vectors.jpg?raw=true" align="center" alt="vectors" style="zoom:110%;" />
 
 
 
 위의 그림에서 두 벡터의 선형결합으로 0을 만들 수 있기 때문에 두 벡터는 선형종속적이다. 
 
-
+만약 V2가 원점일 때 두 벡터는 독립적일까? V1에 0을 곱해서 영벡터를 만들 수 있기 때문에 역시 두벡터는 종속적이다. 
 
 
 
