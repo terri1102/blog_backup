@@ -8,7 +8,7 @@ parent: Math
 use_math: true
 ---
 
-
+<br>
 
 {:toc} 
 
@@ -215,7 +215,9 @@ $$
 $$
 rank(A) = number \; of \;pivot \;columns = dimension \; of \; the \; C(A) = 2
 $$
-이다. 이떄 `행렬 A`의 Rank와 `행렬 A의 부분공간인 열공간`의 dimension을 말하는 것임에 주의하자. 
+
+
+이다. 이때 `행렬 A`의 Rank와 `행렬 A의 부분공간인 열공간`의 dimension을 말하는 것임에 주의하자. 
 
 그럼 column1과 column2 말고 A의 열공간의 다른 기저를 찾아볼 수 있을까? column1과 column3도 기저이고, column2와 column3도 기저이고... 많은 기저가 있을 것이다. 
 
