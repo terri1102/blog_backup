@@ -42,13 +42,27 @@ $$
 
 
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/math/vectors.jpg?raw=true" align="center" alt="vectors" style="zoom:110%;" />
+<p align="center">
+
+<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/math/vectors.jpg?raw=true" alt="vectors" style="zoom:110%;" />
+
+</p>
 
 
 
-위의 그림에서 두 벡터의 선형결합으로 0을 만들 수 있기 때문에 두 벡터는 선형종속적이다. 
+위의 그림에서 두 벡터의 선형결합
+$$
+V2 - 2V1 = 0
+$$
+으로 0을 만들 수 있기 때문에 두 벡터는 선형종속적이다. 
 
 만약 V2가 원점일 때 두 벡터는 독립적일까? V1에 0을 곱해서 영벡터를 만들 수 있기 때문에 역시 두벡터는 종속적이다. 
+$$
+0 * V1 + c * V2 = 0
+$$
+
+
+그럼 이제 2차원 공간에서 벡터가 세 가지인 경우도 생각해보자. 
 
 
 
