@@ -12,7 +12,7 @@ use_math: true
 
 
 
-블로그로 보면 조금 더 깔끔합니다. https://terri1102.github.io/docs/review/paper_review/poly_encoder_13/
+
 
 #  🗝️ 논문 키워드
 
@@ -67,10 +67,10 @@ Pairwise comparison이나 주어진 인풋을 관련 라벨과 매칭하는 테�
 
 ## 2. Related Work
 
-머신러닝에 있어서 다양한 후보들을 스코어링하는 것은 아주 클래식한 문제이다. 이를 이산적인 multi-class 분류라는 특수한 경우로 볼 수도 있지만 이를 일반화하면 응답 후보들은 클래스가 아닌 구조체이다. 이 연구에서 우리는 인풋과 후보 라벨(candidate label)을 텍스트 시퀀스로 고려할 것이다.
+머신러닝에 있어서 다양한 후보들을 스코어링하는 것은 아주 고전적인 문제이다. 이를 이산적인 multi-class 분류의 특수한 경우로 볼 수도 있지만, multi-class 분류를 좀 더 일반화된 형태의 응답 후보들이 클래스가 아닌 구조체인 경우로 볼 수도 있다. 이 연구에서 우리는 인풋과 후보 라벨(candidate label)을 텍스트 시퀀스로 고려할 것이다.
 
 <span style="background:#fff28c">**Bi-encoder**</span> 
-Input과 candidate를 각각 common feature space에 매핑한 후에 이 둘의 유사성을 내적이나 코사인 유사도를 통해서 구한다. 즉 임베딩 벡터가 Input과 candidate에서 각각 나온다. 논문에서 Next utterance prediction task를 위한 Bi-encoder 접근으로 메모리 네트워크, 트랜스포머 메모리 네트워크, LSTM, CNN 등을 고려했었다.(근데 안 쓴 거지? BERT기반 인코더 쓴 거지??)  Bi-encoder의 장점은 크고 고정된 사이즈의 candidate set을 캐싱한 후에 사용하여, input과 독립적이기에 evaluation 과정에서 연산 효율적이다.
+Input과 candidate를 각각 common feature space에 매핑한 후에 이 둘의 유사성을 내적이나 코사인 유사도를 통해서 구한다. 즉 임베딩 벡터가 Input과 candidate에서 각각 나온다. 논문에서 Next utterance prediction task를 위한 Bi-encoder 접근으로 메모리 네트워크, 트랜스포머 메모리 네트워크, LSTM, CNN 등을 고려했었다. Bi-encoder의 장점은 크고 고정된 사이즈의 candidate set을 캐싱한 후에 사용하여, input과 독립적이기에 evaluation 과정에서 연산 효율적이다.
 
 <span style="background:#e8f7ff">**Cross-encoder**</span>
 Input과 candidate를 concat한 후에 self-attention을 적용한다. 따라서 두 문장의 임베딩 간의 관계(유사도)를 구하지 않고 두 문장을 합친 것이 활성화 함수로 들어가서 하나의 임베딩을 얻게 된다. 이 경우 candidate들의 모든 단어와 input의 모든 단어 간의 상호작용을 알 수 있어서 Input sequence와 candidate sequence들의 관계를 잘 나타낼 수 있다. 
@@ -97,7 +97,7 @@ Input과 candidate를 concat한 후에 self-attention을 적용한다. 따라서
 
 * **Transformers**
 
-비교를 위해서 2가지 데이터셋을 이용해 트랜스포머를 훈련함 
+비교를 위해서 2가지 데이터셋을 이용해 트랜스포머를 훈련 
 
 1\) BERT-base와 비슷하게 위키피디아와 토론토 북스 코퍼스에서 추출한 input, label을 스페셜 토큰[S]로 감쌈 <br>
 
@@ -120,21 +120,19 @@ pre-training input은 input과 label의 concat한 것. 모두 스페셜 토큰 [
 
 
 이제 위의 4.1에서 사전학습한 인코더를 Fine-tuning 과정에 대한 설명이다. 
-Bi-encoder의 context embedding
-
-
-$$
-y_{ct xt} = red(T_1(ctxt)) \quad y_{cand}=red(T_2(cand))
-$$
-
-
-
+Bi-encoder의 context embedding인
 
 $$
 y_{ctxt}
 $$
 
 는 Input을 입력받아서 벡터로 인코딩된 후(T1(ctxt))에 red(·) 함수를 거쳐서 하나의 벡터로 축소된 **임베딩 벡터**이다. (그림에서 ctxt Emb)
+
+
+$$
+y_{ct xt} = red(T_1(ctxt)), \quad y_{cand}=red(T_2(cand))
+$$
+
 
 * Context encoder : Bert와 동일하게 3가지의 값을 더해서 임베딩을 구함. 이때 input과 candidate는 각각 인코딩되기 때문에 segment tokens은 모두 0이다. 사전학습에서 비슷한 환경을 모방하기 위해 input과 candidate는 모두 스페셜 토큰 [S]로 둘러 싸인다. 
 
@@ -165,7 +163,7 @@ cand_i의 점수는
 $$
 s(ctxt,cand_i)=y_{ctxt y}· y_{cand_i}
 $$
- 
+
 
 Input의 임베딩과 candidate의 임베딩을 내적한 값이다. 모델은 cross-entropy loss를 최소화하는 방식으로 훈련되었다. 
 

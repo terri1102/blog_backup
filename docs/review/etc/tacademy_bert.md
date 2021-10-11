@@ -295,7 +295,7 @@ Self-Attention의 과정
 
 ![selfattention4](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/selfattention4.jpg?raw=true)
 
-BERT는 multi-head attention: 12개, 앙상블 효과 노림..
+BERT는 multi-head attention: 8개, 앙상블 효과 노림..
 
 Transformer 모델은 multi-head attention으로 이루어진 encoder를 여러 층(6개) 쌓아서 encoding을 수행
 
