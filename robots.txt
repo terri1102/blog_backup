@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://https://terri1102.github.io/sitemap.xml
