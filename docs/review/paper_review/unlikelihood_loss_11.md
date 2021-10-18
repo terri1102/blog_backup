@@ -5,6 +5,8 @@ date: 2021-08-11
 parent: Paper Reviews
 grand_parent: Reviews
 nav_order: 11
+nav_exclude: true
+search_exclude: true
 comments: true
 ---
 
