@@ -8,7 +8,7 @@
 <link>https://terri1102.github.io</link>
 <atom:link href="https://terri1102.github.io/{{ page.path }}" rel="self" type="application/rss+xml" />
 <lastBuildDate>{% for post in site.posts limit:1 %}{{ post.date | date_to_rfc822 }}{% endfor %}</lastBuildDate>
-{% for post in site.posts limit:10 %}
+{% for post in site.docs limit:10 %}
 <item>
 <title>{{ post.title | xml_escape }}</title>
 {% if post.author.name %}
