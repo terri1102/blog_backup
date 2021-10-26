@@ -4,7 +4,7 @@ title: "Multimodal transformer for unaligned multimodal language sequences"
 date: 2021-06-15
 parent: Paper Reviews
 grand_parent: Reviews
-nav_order: 2
+nav_order: 10
 comments: true
 ---
 

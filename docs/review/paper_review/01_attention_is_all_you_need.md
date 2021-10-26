@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Attention is all you need"
+title: "[NLP] Attention is all you need"
 date: 2021-05-16
 parent: Paper Reviews
 grand_parent: Reviews

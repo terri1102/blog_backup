@@ -4,7 +4,7 @@ title: "[NLP] Recipies for building an open-domain chatbot 리뷰"
 date: 2021-08-07
 parent: Paper Reviews
 grand_parent: Reviews
-nav_order: 10
+nav_order: 9
 comments: true
 ---
 

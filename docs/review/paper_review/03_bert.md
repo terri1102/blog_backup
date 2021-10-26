@@ -4,7 +4,7 @@ title: "[NLP] BERT"
 date: 2021-08-11
 parent: Paper Reviews
 grand_parent: Reviews
-nav_order: 13
+nav_order: 3
 comments: true
 use_math: true
 ---
@@ -56,7 +56,6 @@ pre-train에는 두 가지 전략 있음: feature-based 와 fine-tuning. 하지�
 ## 4.4 SWAG
 
 주어진 문장 다음에 이어지는 문장을 4개의 문장 중 선택하는 태스크
-
 
 
 

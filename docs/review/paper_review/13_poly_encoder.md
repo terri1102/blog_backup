@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "[NLP] Poly-encoders: architectures and pre-training
+title: "[NLP] Poly-encoders: Architectures and pre-training
 strategies for fast and accurate multi-sentence scoring 리뷰"
 date: 2021-08-11
 parent: Paper Reviews

@@ -11,7 +11,7 @@ comments: true
 
 
 
-# [**Self-training improves pre-training for natural language understanding**](https://arxiv.org/abs/2010.02194)
+# **Self-training improves pre-training for natural language understanding**
 
 이 논문은 다운스트림 태스크의 도메인에 맞는 데이터 증강을 하는 방법을 제안하고, pre-training과 더불어서 사용할 수 있을 것 같아서 읽게 된 논문이다.
 
@@ -315,6 +315,8 @@ Label-level queries: 라벨 임베딩 쿼리를 통해 가져온 문장들은 �
 
 
 ## **Reference**
+
+논문 : https://arxiv.org/abs/2010.02194
 
 KL divergence: https://stats.stackexchange.com/questions/265966/why-do-we-use-kullback-leibler-divergence-rather-than-cross-entropy-in-the-t-sne
 

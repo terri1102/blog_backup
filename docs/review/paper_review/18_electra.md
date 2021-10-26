@@ -4,7 +4,7 @@ title: "[NLP] ELECTRA"
 date: 2021-10-25
 parent: Paper Reviews
 grand_parent: Reviews
-nav_order: 19
+nav_order: 18
 comments: true
 use_math: true
 ---

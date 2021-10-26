@@ -1,10 +1,10 @@
 ---
 layout: default
-title: "Extracting training data from large language models"
+title: "[NLP] Extracting training data from large language models 리뷰"
 date: 2021-06-15
 parent: Paper Reviews
 grand_parent: Reviews
-nav_order: 3
+nav_order: 7
 comments: true
 ---
 

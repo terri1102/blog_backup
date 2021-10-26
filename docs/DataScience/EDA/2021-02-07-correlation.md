@@ -6,6 +6,7 @@ parent: Data Science
 nav_order: 4
 tags: [상관계수, 피어슨 계수, 스피어만 계수, 파이,biserial, gamma]
 comments: true
+add_math: true
 ---
 
 
