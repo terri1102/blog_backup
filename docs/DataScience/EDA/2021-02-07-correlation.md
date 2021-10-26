@@ -27,11 +27,7 @@ Spearman's r: 서열 척도들 간의 상관계수
 
 
 
-Phi(
-$$
-\Phi
-$$
-) coefficient(Mathew's correlation coefficient)
+Phi coefficient(Mathew's correlation coefficient)
 
 두 범주 변수들간 상관계수
 

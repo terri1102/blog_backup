@@ -4,6 +4,8 @@ title: "[NLP] Contextualizing Hate Speech Classifiers with Post-hoc Explanation 
 date: 2021-06-26
 parent: Paper Reviews
 grand_parent: Reviews
+nav_exclude: true
+search_exclude: true
 nav_order: 2
 comments: true
 ---
