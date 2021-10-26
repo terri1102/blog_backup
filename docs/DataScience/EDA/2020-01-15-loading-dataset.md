@@ -56,11 +56,13 @@ uploaded = files.upload()
 ```
 
 * 로컬에서 업로드한 파일 지우기     
+
 ```python
 !rm file_name.xlsx 
 ```
 
 * xlsx 파일을 sheet별로 불러오기
+
 ```python
 df = pd.read_excel(file_url, sheet_name= ['008770 ', '035250'])
 df = pd.read_excel('users.xlsx', sheet_name = [0,1,2])
@@ -68,6 +70,7 @@ df = pd.read_excel('users.xlsx', sheet_name = None)
 ```
 
 * xlsx 파일을 csv로 바꾸기
+
 ```python
 file_path = 'C:\path1\path2'
 df.to_csv(file_path+'file_name', encoding='utf-8') #한글이면 'CP949'
@@ -103,6 +106,7 @@ frame = pd.concat(li, axis=0, ignore_index=True)
 ## 2. preprocessing
 
 * Transpose하고 첫번째 row를 column_header로 정하기
+
 ```python
 def clean(file_name):
   df = pd.read_csv(Url_head + file_name).transpose()                           #.transpose() 대신 .T 써도 됨
