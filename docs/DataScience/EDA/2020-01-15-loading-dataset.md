@@ -54,6 +54,7 @@ iris = load_iris()
 from google.colab import files
 uploaded = files.upload()
 ```
+
 * 로컬에서 업로드한 파일 지우기     
 ```python
 !rm file_name.xlsx 
@@ -65,6 +66,7 @@ df = pd.read_excel(file_url, sheet_name= ['008770 ', '035250'])
 df = pd.read_excel('users.xlsx', sheet_name = [0,1,2])
 df = pd.read_excel('users.xlsx', sheet_name = None)      
 ```
+
 * xlsx 파일을 csv로 바꾸기
 ```python
 file_path = 'C:\path1\path2'

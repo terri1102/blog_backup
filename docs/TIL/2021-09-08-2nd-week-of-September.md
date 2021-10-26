@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 2021년 9월 첫째주 회고
+title: 2021년 9월 둘째주 회고
 date: 2021-09-01
 comments: true
 nav_order: 16
@@ -20,7 +20,8 @@ use_math: true
 2. SQL 베타리더
 
 4. 책터디 끝내기!
-5. 
+
+   
 
 
 
