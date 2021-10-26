@@ -1,13 +1,8 @@
 ---
 layout: default
 title: "논문리뷰 탬플릿"
-date: 2021-10-26
-parent: Paper Reviews
-grand_parent: Reviews
 nav_exclude: true
 search_exclude: true
-
-
 ---
 
 <details open markdown="block">
