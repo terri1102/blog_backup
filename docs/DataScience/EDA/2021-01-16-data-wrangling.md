@@ -8,22 +8,38 @@ tags: [column, row, index, indexing]
 comments: true
 ---
 
-### Feature Engineering
 
-df: row-observation, column-feature
-tidy: one row, one feature
 
-## 자료 형태(object, float, integer, string)
+## **자료 형태(object, float, integer, string)**
 
-.dtypes: 자료 형태
-Nan ->float타입
+**자료 형태 보기** : 데이터프레임이나 열의 자료 형태를 볼 수 있음
 
-* Object to str : df2=d2_t.astype(float)
 
-#시리즈 형태일 때 split,join 모두 매소드 앞에 str 붙이기 rp = column.str.join(str) 
-#값이 float일 땐 split, join 없이 바로 mean 구할 수 있음
+```python
+df.dtypes
+```
 
----
+**Object to str**
+
+```python
+df2=d2_t.astype(float)
+```
+
+**시리즈 형태일 때 split,join 모두 매소드 앞에 str 붙이기**
+
+```python
+rp = column.str.join(str) 
+```
+
+**값이 float일 땐 split, join 없이 바로 mean 구할 수 있음**
+
+
+
+**Nan값의 데이터타입** -> float타입
+
+
+
+**부동소숫점 표시 형식**
 
 ```python
 pd.set_option('display.float_format', '{:,.1f}'.format)
@@ -37,7 +53,7 @@ pd.set_option('display.float_format', None)
 ```python
 region = df1.groupby('시도').sum()
 ```
-**groupby 함수로 subset 만들기**##자꾸 틀리는 이유: sum 같은 거 안 붙여서
+**groupby 함수로 subset 만들기** -자꾸 틀리는 이유: sum 같은 aggregation function 안 붙여서
 
 ```python
 groupedGenre = df.groupby('Genre')                                                     
@@ -270,7 +286,7 @@ df.NA_Sales = df.NA_Sales.apply(lambda x: 0.001*float(x[:-1]) if 'K' in x else x
 
 
 
-## Column
+## **Column**
 
 **column이름 보기**
 
@@ -356,9 +372,9 @@ rr
 
 
 
-## Index
+## **Index**
 
-### Indexing
+### **Indexing**
 
 ```python
 print(df.iloc[0])                   #0자리 열을 print
@@ -471,7 +487,7 @@ df1
 
 ---
 
-그외..
+## 그 외
 
 ```python
 #유일한 값 찾기
@@ -488,3 +504,10 @@ series.value_counts(bins=[0,1,2 등 값 종류], sort=True)
 
 ```
 
+### Dataframe vs. Tidy
+
+df: row-observation, column-feature
+
+
+
+tidy: one row, one feature

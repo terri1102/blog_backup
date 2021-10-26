@@ -24,6 +24,7 @@ EDA의 목적 및 기능
 ## 1. 데이터 셋 불러오기
 
 * pd.read_csv
+
 ```python
 pd.read_csv()
 ```
