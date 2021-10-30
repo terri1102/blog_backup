@@ -22,12 +22,6 @@ BART 논문 읽기
 
 
 
-팀명 생각해본 거 
-
-MEMMUS : Memorize and Summarize..근데 memorize하는 과정이 없는 거 같음
-
-Pickmus(pickymus/picksum/pickysum) : 중요 문장만 고른다음에 요약함
-
 
 
 해보고 싶은 것
@@ -49,11 +43,13 @@ also, you won’t need to manually call `shift_tokens_right` to prepare `decoder
 
 https://discuss.huggingface.co/t/train-bart-for-conditional-generation-e-g-summarization/1904/2
 
+
+
 ## 나의 진행 흐름
 
 1. PEGASUS 논문 읽음. 읽고 좋은 방법이라고는 생각했는데 한국어 pre-trained 모델이 없어서 패스
 2. BART 논문 읽고 KoBART 돌려봄 -> fine tuning만 했는데 나름 준수한 성적
-3. ROUGE score로 데이터셋을 줄인다음에 돌려봄. 데이터 대략 66%정도로 감소했고, rouge score도 조금 떨어짐
+3. ~~ROUGE score로 데이터셋을 줄인다음에 돌려봄. 데이터 대략 66%정도로 감소했고, rouge score도 조금 떨어짐~~ huggingface dataset의 rouge_score가 한국어는 안 됨...아마 숫자로 인식한 것 같다고 하심.
 4. Pre train 알아보기 (Don't stop pretraining 논문--VAMPIRE 이걸로 임베딩 스페이스 시각화하면 좋을 것 같음. DAPT나 TAPT 둘 다)
 
 - 질문 : 어떤 데이터로 pre-train할 것인가?

@@ -40,11 +40,11 @@ $$
 
 그렇다면 그 부분공간의 basis와 dimension은 뭘까? 위의 original basis 중에 몇 개나 부분 공간의 basis에 들어갈까? 
 
-대칭행렬의 경우 위의 행렬들 중 3개가 basis에 들어간다. 그 외에도 3개 있어서 총 6개 있음. dimension은 6
+대칭행렬의 경우 위의 행렬들 중 3개가 basis에 들어간다. 그 외에도 3개 있어서 총 6개이기에 dimension은 6이다.
 
 3x3 상삼각행렬의 경우 역시 dimension은 6이다.
 
-그럼 대칭행렬이고 상삼각행렬인 경우는 어떨까?
+그럼 대칭행렬이고 상삼각행렬인 경우(두 행렬의 Intersection)는 어떨까?
 $$
 S \cap U = symmetric \; and \; upper \; triangular = diagnoal \; matrix
 $$
@@ -52,6 +52,30 @@ $$
 $$
 dim(S \cap U) = 3
 $$
+
+참고로 두 행렬의 Union인
+$$
+S \cup U
+$$
+는 S와 U의 subspace가 아니기 때문에 알아보지는 않을 것이다. 
+
+두 행렬의 sum인
+$$
+S + U
+$$
+는 S와 U의 combination이다. 
+$$
+S + U = any \; element \; of \; S + any \; element \; of \; U = all \; 3 \times3 \; matrices
+$$
+따라서 dim(S+U)는 9이다. 이를 S, U, Intersection과 관계로 나타내면
+$$
+dim \; S + dim \; U = dim(S\cap U)+dim(S+U)
+$$
+
+
+
+
+
 
 
 
