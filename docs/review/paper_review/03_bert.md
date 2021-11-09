@@ -11,11 +11,9 @@ use_math: true
 
 
 
-
-
 #  🗝️ 논문 키워드
 
-
+`Bidirectional Encoder`, `MLM`, `NSP`,`Pre-training`
 
 
 
