@@ -1,9 +1,9 @@
 ---
 layout: default
-title: "11. Matrix Spaces; Rank 1; Small World Graphs"
+title: "12. Graphs, Networks, Incidence Matrices"
 date: 2021-10-24
 comments: true
-nav_order: 11
+nav_order: 12
 parent: Math
 use_math: true
 ---
@@ -94,10 +94,18 @@ Node potential method (also called nodal analysis)를 단계별로 살펴보자.
 
 
 그럼 이제 다른 부분 공간들을 살펴보자.
+
+### N(A^T)
+
 $$
 A^Ty=0
 $$
-일 때 dim N(A^T)은 무엇일까? m-r = 5-3 = 2이다.
+
+일 때 
+$$
+dim \; N(A^T)
+$$
+은 무엇일까? m-r = 5-3 = 2이다.
 
 
 $$
@@ -105,11 +113,74 @@ A^T = \begin {bmatrix} -1 & 0 & -1 & -1 & 0 \\ 1 & -1 & 0 &0&0\\0&1&1&0&-1 \\0 &
 $$
 
 
-X = x1, x2, x3, x4 
+![cycle1]
+
+
+$$
+A^Ty =0
+$$
+을 다시 살펴보면 
+
+
+$$
+\left\{ \begin {aligned} -y_1 -y_3 -y_4 &=0 \quad node1 \\
+y_1 - y_2 &= 0 \quad node2(current \; in \:  current \: out)\\ 
+y_2+y_3 - y_5 &= 0 \quad node3 \\
+y_4+y_5 &= 0 \quad node4
+\end{aligned}
+\right.
+$$
+
+
+A^T를 소거법으로 정리하면 마지막 행은 어떻게 될까?
+
+모두 0이다. rank가 3이니까(pivot 3개 가짐)
+
+Basis for N(A^T)
 
 
 
+### Row space of A(Column space of A^T)
 
+dim을 구하려면 몇 개의 row가 독립적인지 살펴봐야 한다. 3개가 독립적이기 때문에 rank는 3이다.
+
+
+
+loop가 없는 그래프 = Tree
+
+
+
+dim N(A^T) = m-r 
+
+여기서 rank는 n-1이니까(col 한 개가 종속적이어서) 이는 # loops = # edges - (#nodes - 1)
+
+
+
+오일러의 공식? 강의에서는 formula라고 했는데 Euler characteristic 식이랑 더 비슷한 것 같다...
+$$
+\chi = V - E + F
+$$
+
+
+#nodes - #edges + #loops = 1
+
+아래의 그래프를 보면 노드는 5개, 엣지는 7개, 루프는 3개이다. 따라서 5-7+3=1이니까 오일러 성질? 성립함.
+
+![cycle2]
+
+
+
+앞의 세 방정식을 하나로 묶으면
+$$
+A^TCAX = f
+$$
+basic equation of applied math (in equlibrium- 뉴턴의 법칙 성립x. 시간은 고려x)
+$$
+A^TCA
+$$
+는 항상 대칭.(balance equation)
+
+X에서 시작해서 A 행렬 곱하고 옴의 법칙의 상수인 C를 곱하고 앞에 A^T를 곱하면 f나옴....더 찾아볼 것.
 
 
 
