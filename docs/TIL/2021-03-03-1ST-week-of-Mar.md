@@ -77,7 +77,7 @@ git config --global core.autocrlf true #이 프로젝트에서만 쓸 거면 glo
 바꿨는데도 여전히 서버 구동이 안 되네ㅠㅠㅠ
 
 ```python
- (C:/Users/Boyoon Jang/Desktop/Repository/terri1102.github.io/_config.yml): did not find expected key while parsing a block mapping at line 16 column 1
+ (C:/Users/Boyoon Jang/Desktop/Repository/blog_backup/_config.yml): did not find expected key while parsing a block mapping at line 16 column 1
 ```
 
 https://ychae-leah.tistory.com/14

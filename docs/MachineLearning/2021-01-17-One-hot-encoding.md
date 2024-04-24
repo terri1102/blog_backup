@@ -152,7 +152,7 @@ def scree_plot(pca):
 scree_plot(pca)
 ```
 
-<img src="C:\Users\Boyoon Jang\Desktop\Repository\terri1102.github.io\assets\images\screeplot.PNG" alt="scree plot" style="zoom:67%;" />
+<img src="C:\Users\Boyoon Jang\Desktop\Repository\blog_backup\assets\images\screeplot.PNG" alt="scree plot" style="zoom:67%;" />
 
 category_encoder()
 

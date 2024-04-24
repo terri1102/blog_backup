@@ -101,7 +101,7 @@ $$
 
 ## Self-training 과정
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sentaugment.jpg?raw=true" alt="sentaugment" class="center" style="zoom:110%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/sentaugment.jpg?raw=true" alt="sentaugment" class="center" style="zoom:110%;" />
 
 1. 선생 모델인 RoBERTa-large 모델을 크로스 엔트로피 loss로 레이블링된 다운스트림 태스크에 맞춰서 파인튜닝함
 2. <span style="background:#FFD9EC">Open-domain data 중에서 태스크에 맞는 데이터(in-domain data)를 뽑아서 unannotated 데이터셋을 만듦 </span>
@@ -166,7 +166,7 @@ Few-shot learning은 라벨 데이터가 아주 적을 때 사용하는 방법�
 
 **평가를 위해 사용한 다운스트림 태스크**
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase1.jpg?raw=true" alt="sase1" class="center" style="zoom:110%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/sase1.jpg?raw=true" alt="sase1" class="center" style="zoom:110%;" />
 
 
 
@@ -210,7 +210,7 @@ Few shot learning은 선생 모델이 약하기 때문에 다른 조건을 추�
 
 **Self-training의 결과**
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase2.jpg?raw=true" alt="sase2" class="center" style="zoom:100%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/sase2.jpg?raw=true" alt="sase2" class="center" style="zoom:100%;" />
 
 Self-train이 그저 in-domain 데이터를 늘리는 것과 얼마나 차이가 있을지를 알아보기 위해 ICP 모델과 비교했다.
 
@@ -224,7 +224,7 @@ ICP 모델과 ST모델의 차이를 보면 단순히 in-domain 데이터가 많�
 
 **Few-shot learning**
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase3.jpg?raw=true" alt="sase3" class="center" style="zoom:110%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/sase3.jpg?raw=true" alt="sase3" class="center" style="zoom:110%;" />
 
 40-200개의 샘플만을 이용해서 RoBERTa-Large 모델을 파인튜닝해서 선생 모델로 사용하였고,  Self-training한 경우가 더 좋은 성능(F1 score)과 낮은 variance를 보였다. 
 
@@ -232,7 +232,7 @@ ICP 모델과 ST모델의 차이를 보면 단순히 in-domain 데이터가 많�
 
 **Knowledge distillation의 결과**
 
-![sase4](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase4.jpg?raw=true)
+![sase4](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/sase4.jpg?raw=true)
 
 GT : ground-truth 데이터로 훈련한 distilled RoBERTa(in-domain 데이터)
 
@@ -260,25 +260,25 @@ SA : 평균적으로 ground-truth보다는 못하지만 RD보다는 개선되어
 
 Task specific retreival
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase5.jpg?raw=true" alt="sase5" class="center" style="zoom:110%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/sase5.jpg?raw=true" alt="sase5" class="center" style="zoom:110%;" />
 
 
 
 Sentence Embedding space
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase6.jpg?raw=true" alt="sase6" class="center" style="zoom:110%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/sase6.jpg?raw=true" alt="sase6" class="center" style="zoom:110%;" />
 
 
 
 Scaling bank size
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase7.jpg?raw=true" alt="sase7" class="center" style="zoom:110%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/sase7.jpg?raw=true" alt="sase7" class="center" style="zoom:110%;" />
 
 
 
 Continuous labels
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase8.jpg?raw=true" alt="sase8" class="center" style="zoom:110%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/sase8.jpg?raw=true" alt="sase8" class="center" style="zoom:110%;" />
 
 
 
@@ -298,7 +298,7 @@ STS 벤치마크를 통해 우리의 SASE 모델의 성능을 보여주겠다.
 
 SASE: SentAugment에서 문장 임베딩을 위해 사용한 인코더.
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase10.jpg?raw=true" alt="sase10" class="center" style="zoom:100%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/sase10.jpg?raw=true" alt="sase10" class="center" style="zoom:100%;" />
 
 2012-2016년의 STS 태스크의 평균 f1 score 및 STS-Benchmark 태스크의 f1 score 모두 SASE가 가장 우수하다. 
 
@@ -306,7 +306,7 @@ nearest neighbor를 가져오는 것은 좋은 퀄리티의 paraphrase를 가져
 
 SentAugment는 large-scale similarity search를 임베딩 스페이스를 이용해  몇 십억 개의 문장 중 in-domain 문장을 찾는 데에 이용한다.
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/sase9.jpg?raw=true" alt="sase9" class="center" style="zoom:100%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/sase9.jpg?raw=true" alt="sase9" class="center" style="zoom:100%;" />
 
 Sentence level queries: 문장 레벨의 쿼리를 통해 가져온 문장은 문장의 의미를 유지하거나 의미를 강화하는 좋은 paraphrase 문장 가져옴.
 

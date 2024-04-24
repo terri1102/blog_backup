@@ -30,7 +30,7 @@ ddd
 
 ## 20년간 자연어 처리 문제
 
-![nlp_20_years](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp_20_years.jpg?raw=true)
+![nlp_20_years](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp_20_years.jpg?raw=true)
 
 ######    1강 딥러닝 및 자연어처리 소개 
 
@@ -158,13 +158,13 @@ $$
 
 Seq2Seq: 대표적인 자연어처리의 틀
 
-![seq2seq](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/seq2seq.jpg?raw=true)
+![seq2seq](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/seq2seq.jpg?raw=true)
 
 Sequence Feeding -> model -> Sequence Generation 문제
 
 Seq2Seq의 종류
 
-![seq2seq_cases](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/seq2seq_cases.jpg?raw=true)
+![seq2seq_cases](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/seq2seq_cases.jpg?raw=true)
 
 
 
@@ -200,7 +200,7 @@ fully connected layers들로 이루어진 모델
 
 Context 를 반영
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/projection_w_context.jpg?raw=true" alt="projectionwithcontext" style="zoom:80%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/projection_w_context.jpg?raw=true" alt="projectionwithcontext" style="zoom:80%;" />
 
 입력 데이터를 concatenate 시키고 weight matrix를 하나로 만들어서 처리
 
@@ -236,7 +236,7 @@ Attention without Context
 
 Attention with Context
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/attention_w_context.jpg?raw=true" alt="attentionwithcontext" style="zoom:80%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/attention_w_context.jpg?raw=true" alt="attentionwithcontext" style="zoom:80%;" />
 
 어텐션 셀에 들어온 정보가 C(context) 
 
@@ -244,7 +244,7 @@ context를 반영하는 방법들: concat, dot
 
 보통 concat해서 하긴 하지만 다양한 방법이 있다.
 
-![context](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/context%EB%B0%98%EC%98%81%EB%B0%A9%EB%B2%95.jpg?raw=true)
+![context](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/context%EB%B0%98%EC%98%81%EB%B0%A9%EB%B2%95.jpg?raw=true)
 
 ---
 

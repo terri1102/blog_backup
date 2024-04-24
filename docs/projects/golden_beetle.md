@@ -9,7 +9,7 @@ search_exclude: true
 
 
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/beetle_main.png?raw=true" alt="main" style="zoom:80%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/beetle_main.png?raw=true" alt="main" style="zoom:80%;" />
 
 
 
@@ -47,7 +47,7 @@ search_exclude: true
 
 ## 강화학습
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/mlops/rlprocess.jpg?raw=true" alt="rlprocess" style="zoom:80%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/mlops/rlprocess.jpg?raw=true" alt="rlprocess" style="zoom:80%;" />
 
 
 

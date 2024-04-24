@@ -485,7 +485,7 @@ X에 따른 잔차의 산점도를 x=X, y = e(y-y hat)로 그렸을 때, 어떠�
 
 만약 x 값이 증가할수록 잔차의 분산이 커지는 나팔관 형태라면 오차의 등분산 가정 위배(이분산)하고, 회귀식이 설명변수와 반응변수의 관계를 적절하게 설명하지 못하는 것이다.
 
-![residual_plot](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/residual_plot.png?raw=true)
+![residual_plot](https://github.com/terri1102/blog_backup/blob/master/assets/images/residual_plot.png?raw=true)
 
 ######                                                                                                   [나팔관 형태의 잔차의 분포]
 

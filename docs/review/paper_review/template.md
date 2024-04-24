@@ -89,7 +89,7 @@ Input과 candidate를 concat한 후에 self-attention을 적용한다. 따라서
 
 **Dataset 설명**
 
-![poly2](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/polyencoder2.jpg?raw=true)
+![poly2](https://github.com/terri1102/blog_backup/blob/master/assets/images/review/polyencoder2.jpg?raw=true)
 
 ## 4. Methods
 
@@ -117,7 +117,7 @@ pre-training input은 input과 label의 concat한 것. 모두 스페셜 토큰 [
 
 ### 4.2 Bi-encoder
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/bi-encoder.jpg?raw=true" alt="bi-encoder" style="zoom:100%;" class="center"  />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/review/bi-encoder.jpg?raw=true" alt="bi-encoder" style="zoom:100%;" class="center"  />
 
 
 
@@ -185,7 +185,7 @@ $$
 
 ### 4.3 Cross-encoder
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/cross-encoder.jpg?raw=true" alt="crossencoder" style="zoom:100%;" class="center" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/review/cross-encoder.jpg?raw=true" alt="crossencoder" style="zoom:100%;" class="center" />
 
 
 
@@ -221,7 +221,7 @@ $$
 
 ### 4.4 Poly-encoder
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/poly-encoder.jpg?raw=true" alt="polyencoder" style="zoom:100%;" class="center" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/review/poly-encoder.jpg?raw=true" alt="polyencoder" style="zoom:100%;" class="center" />
 
 Poly-encoder는 Bi-encoder와 Cross-encoder의 장점만을 가져온다. Bi-encoder처럼 Poly-encoder도 Candidate를 하나의 벡터로 표현하며 이를 캐싱해서 빠르게 예측가능하다. 그리고 Cross-encoder처럼 Input이 candidate와 함께 인코딩되어서 더 많은 정보를 추출하는 것이 가능하다. 
 
@@ -332,7 +332,7 @@ Bi-encoder와 Cross-encoder를 먼저 미세조정한 결과에 대해 살펴보
 
 Bi-encoder의 경우 배치의 다른 candidate들의 임베딩을 재사용하기에 학습할 때 많은 negatives를 사용할 수 있다. (배치 사이즈를 크게 할 수 있다) 아래는 ConvAI2의 배치 사이즈를 32, 64, 128, 256, 512으로 훈련한 결과이다.
 
-![polyencoder3](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/polyencoder3.jpg?raw=true)
+![polyencoder3](https://github.com/terri1102/blog_backup/blob/master/assets/images/review/polyencoder3.jpg?raw=true)
 
 위의 표를 보면 배치 사이즈가 커질수록 성능이 좋아지는 것을 알 수 있다. 다른 테스크는 시퀀스가 더 길었기 때문에 (메모리를 더 많이 차지해서) 배치 사이즈를 256으로 설정하였다.
 
@@ -366,13 +366,13 @@ learning rate decay: 한 에포크의 절반 당 valid set의 loss 0.4 이상 �
 
 
 
-![polyencoder4](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/polyencoder4.jpg?raw=true)
+![polyencoder4](https://github.com/terri1102/blog_backup/blob/master/assets/images/review/polyencoder4.jpg?raw=true)
 
 
 
 아래 표는 Bi-encoder, Cross-encoder를 이용해 미세 조정한 결과를 나타낸다. 예상한 것과 같이 Cross-encoder는 기존의 SOTA 모델과 우리의 Bi-encoder를 뛰어넘는 성능을 보여주었다. 
 
-![polyencoder5](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/polyencoder5.jpg?raw=true)
+![polyencoder5](https://github.com/terri1102/blog_backup/blob/master/assets/images/review/polyencoder5.jpg?raw=true)
 
 ### 5.2 <span style="background:#ffe4de">**Poly-encoder**</span>
 
@@ -392,7 +392,7 @@ Poly-encoder는 모든 테스크에서 Bi-encoder보다 좋은 성능을 보여�
 
 Poly-encoder의 초기 목적이 Cross-encoder보다 빠른 예측 시간을 갖게 하는 것이었기에 inference speed을 살펴보면, GPU연산의 경우 100k개의 candidate일 때 Poly-encoder는 Cross-encoder보다 1000배 이상 빠르고, 실시간 예측이 가능한 정도의 시간이었다. 
 
-![polyencoder6](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/polyencoder6.jpg?raw=true)
+![polyencoder6](https://github.com/terri1102/blog_backup/blob/master/assets/images/review/polyencoder6.jpg?raw=true)
 
 또한 Appendix의 Training Time을 보면  Cross-encoder보다 Poly-encoder의 훈련 시간이 3-4배 빠른 것을 확인할 수 있다. (Bi-encoder와 비슷한 수준)
 
@@ -408,11 +408,11 @@ Poly-encoder의 초기 목적이 Cross-encoder보다 빠른 예측 시간을 갖
 
 8 GPU Volta 100을 이용해서 훈련한 4가지의 모델의 훈련 시간
 
-![poly7](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/poly7.jpg?raw=true)
+![poly7](https://github.com/terri1102/blog_backup/blob/master/assets/images/review/poly7.jpg?raw=true)
 
 ### B Reduction layer
 
-![poly8](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/review/poly8.jpg?raw=true)
+![poly8](https://github.com/terri1102/blog_backup/blob/master/assets/images/review/poly8.jpg?raw=true)
 
 Bi-encoder로 ConvAI2를 미세 조정했을 때 reduce 함수의 종류에 따른 성능 차이.
 

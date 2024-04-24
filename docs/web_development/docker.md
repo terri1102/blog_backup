@@ -72,7 +72,7 @@ rm -rf #force 무조건 지우겠다
 *URL(Uniform Resource Locator)
 
 ```html
-http://www.terri1102.github.io/doc/index.html
+http://www.blog_backup/doc/index.html
 접근프로토콜://ip주소 또는 도메인 이름/문서경로/문서이름
 ```
 
@@ -165,7 +165,7 @@ https://www.vmware.com/kr/solutions/virtualization.html
 
 윈도우 파일 탐색기에서 위치 찾아보기: 주소창에  \\WSL$ 치면 나온다.
 
-![wsl2](C:\Users\Boyoon Jang\Desktop\Repository\terri1102.github.io\assets\images\wsl2.png)
+![wsl2](C:\Users\Boyoon Jang\Desktop\Repository\blog_backup\assets\images\wsl2.png)
 
 ## Docker
 

@@ -47,7 +47,7 @@ use_math: true
 
 <p align="center">
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/math/subspace.jpg?raw=true" alt="subspace" style="zoom:100%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/math/subspace.jpg?raw=true" alt="subspace" style="zoom:100%;" />
 
 </p>
 

@@ -13,7 +13,7 @@ comments: true
 
 # Regularized Regression
 
-![regularization1](https://github.com/terri1102/terri1102.github.io/blob/master/assets/img/regularization1.png?raw=true)
+![regularization1](https://github.com/terri1102/blog_backup/blob/master/assets/img/regularization1.png?raw=true)
 
 # Regularized Regression(정규화 선형회귀)
 

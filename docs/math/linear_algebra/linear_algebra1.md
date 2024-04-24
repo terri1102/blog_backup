@@ -44,7 +44,7 @@ $$
 
 ### 1. Row picture의 관점
 
-![rowpicture1](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/math/rowpicture1.jpg?raw=true)
+![rowpicture1](https://github.com/terri1102/blog_backup/blob/master/assets/images/math/rowpicture1.jpg?raw=true)
 
 
 
@@ -54,7 +54,7 @@ Row picture로 두 개의 선형방정식을 푸는 것은 두 선을 그려서 
 
 ### 2. Column picture의 관점
 
-![columnpicture2](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/math/columnpicture2.jpg?raw=true)
+![columnpicture2](https://github.com/terri1102/blog_backup/blob/master/assets/images/math/columnpicture2.jpg?raw=true)
 
 linear combination of the columns
 

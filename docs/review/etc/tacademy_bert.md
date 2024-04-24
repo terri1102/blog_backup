@@ -94,7 +94,7 @@ n개의 단어는 n차원의 벡터로 표현
 
 한 단어의 주변 단어들을 통해 그 단어의 의미를 파악
 
-![bertq](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/bertq.jpg?raw=true)
+![bertq](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/bertq.jpg?raw=true)
 
 Word2vec 알고리즘은 주변부의 단어를 예측하는 방식으로 학습(skip-gram방식)
 
@@ -217,7 +217,7 @@ Word2vec이나 FastText와 같은 word embedding 방식은 동형어, 다의어 
 
 딥러닝 기반의 언어모델은 해당 확률을 최대로 하도록 네트워크를 학습
 
-![markov](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/markov.jpg?raw=true)
+![markov](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/markov.jpg?raw=true)
 
 
 
@@ -285,15 +285,15 @@ RNN을 encoder와 decoder에서 제거
 
 Self-Attention의 과정
 
-![selfattention1](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/selfattention1.jpg?raw=true)
+![selfattention1](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/selfattention1.jpg?raw=true)
 
-![selfattention2](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/selfattention2.jpg?raw=true)
+![selfattention2](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/selfattention2.jpg?raw=true)
 
-![selfattention3](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/selfattention3.jpg?raw=true)
+![selfattention3](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/selfattention3.jpg?raw=true)
 
 이를 정리해서 보면 아래 사진과 같다.
 
-![selfattention4](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/selfattention4.jpg?raw=true)
+![selfattention4](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/selfattention4.jpg?raw=true)
 
 BERT는 multi-head attention: 8개, 앙상블 효과 노림..
 
@@ -323,7 +323,7 @@ WordPiece tokenizing: Byte Pair Encoding(BPE) 알고리즘 이용
 
 * BPE의 순서도
 
-![bpe_process](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/bpe_process.jpg?raw=true)
+![bpe_process](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/bpe_process.jpg?raw=true)
 
 학습 데이터를 이용해서 vocab을 만들기 시작하는데, 빈도수가 많이 등장하는 char들의 묶음을 계속 반복하면서 vocab 후보를 계속 업데이트 함
 
@@ -331,15 +331,15 @@ WordPiece tokenizing: Byte Pair Encoding(BPE) 알고리즘 이용
 
 vocab만드는 과정
 
-![wordpiecetokenizer1](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/wordpiecetokenizer_ex1.jpg?raw=true)
+![wordpiecetokenizer1](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/wordpiecetokenizer_ex1.jpg?raw=true)
 
-![wordpiecetokenizer2](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/wordpiecetokenizer_ex2.jpg?raw=true)
+![wordpiecetokenizer2](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/wordpiecetokenizer_ex2.jpg?raw=true)
 
-![wordpiecetokenizer3](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/wordpiecetokenizer_ex3.jpg?raw=true)
+![wordpiecetokenizer3](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/wordpiecetokenizer_ex3.jpg?raw=true)
 
-![wordpiecetokenizer4](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/wordpiecetokenizer_ex4.jpg?raw=true)
+![wordpiecetokenizer4](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/wordpiecetokenizer_ex4.jpg?raw=true)
 
-![wordpiecetokenizer5](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/nlp/wordpiecetokenizer_ex5.jpg?raw=true)
+![wordpiecetokenizer5](https://github.com/terri1102/blog_backup/blob/master/assets/images/nlp/wordpiecetokenizer_ex5.jpg?raw=true)
 
 
 

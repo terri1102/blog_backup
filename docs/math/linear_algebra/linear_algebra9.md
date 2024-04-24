@@ -44,7 +44,7 @@ $$
 
 <p align="center">
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/math/vectors.jpg?raw=true" alt="vectors" style="zoom:110%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/math/vectors.jpg?raw=true" alt="vectors" style="zoom:110%;" />
 
 </p>
 

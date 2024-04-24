@@ -27,7 +27,7 @@ use_math: true
 
 그래프는 이산적 데이터를 표현하는 데 아주 중요하다. 아래의 유향 그래프를 행렬로 표현해보자.
 
-![graph1](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/math/graph1.jpg?raw=true)
+![graph1](https://github.com/terri1102/blog_backup/blob/master/assets/images/math/graph1.jpg?raw=true)
 $$
 Incidence \; Matrix \; A = \begin {bmatrix} -1 & 1 & 0 & 0 \\0 & -1 & 1 & 0 \\-1 & 0 & 1 & 0 \\-1 & 0 & 0 & 1 \\ 0& 0& -1 & 1 \end {bmatrix} = \begin {bmatrix} edge1 \\ edge2 \\ edge3 \\edge4 \\ edge5 \end {bmatrix}
 $$
@@ -128,7 +128,8 @@ y_1 - y_2 &= 0 \quad node2(current \; in \:  current \: out)\\
 y_2+y_3 - y_5 &= 0 \quad node3 \\
 y_4+y_5 &= 0 \quad node4
 \end{aligned}
-\right.
+\right.
+
 $$
 
 

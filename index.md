@@ -13,4 +13,4 @@ comment: False
 
 <br>
 
-![main_page](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/psd/main_page.png?raw=true)
+![main_page](https://github.com/terri1102/blog_backup/blob/master/assets/images/psd/main_page.png?raw=true)

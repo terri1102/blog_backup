@@ -10,7 +10,7 @@ comments: true
 
 
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/digital_x.jpg?raw=true" alt="ditigal_x" style="zoom:80%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/digital_x.jpg?raw=true" alt="ditigal_x" style="zoom:80%;" />
 
 KT Digital-X Summit을 듣고서 관심있는 분야만 간단히 정리해보았다. 
 
@@ -54,9 +54,9 @@ AICC-기가지니, 온라인 챗봇을 통해 상담 인입콜 감소
 
 금융전용 cloud
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/kt_cloud.jpg?raw=true" alt="kt cloud" style="zoom:80%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/kt_cloud.jpg?raw=true" alt="kt cloud" style="zoom:80%;" />
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/%EA%B8%88%EC%9C%B5%EC%9C%B5%EB%B3%B5%ED%95%A9.jpg?raw=true" alt="금융융복합" style="zoom:80%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/%EA%B8%88%EC%9C%B5%EC%9C%B5%EB%B3%B5%ED%95%A9.jpg?raw=true" alt="금융융복합" style="zoom:80%;" />
 
 KT 잘나가게 앱 -> 소상공인 특화 맞춤 서비스 제공
 
@@ -64,7 +64,7 @@ KT 잘나가게 앱 -> 소상공인 특화 맞춤 서비스 제공
 
 
 
-![불완전판매방지](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/%EB%B6%88%EC%99%84%EC%A0%84%ED%8C%90%EB%A7%A4%EB%B0%A9%EC%A7%80.jpg?raw=true)
+![불완전판매방지](https://github.com/terri1102/blog_backup/blob/master/assets/images/%EB%B6%88%EC%99%84%EC%A0%84%ED%8C%90%EB%A7%A4%EB%B0%A9%EC%A7%80.jpg?raw=true)
 
 실제로 개발된 솔루션 설명을 해주는데 어떤 기술들이 들어갔는지 꽤 자세히 적혀있어서 
 
@@ -72,7 +72,7 @@ KT 잘나가게 앱 -> 소상공인 특화 맞춤 서비스 제공
 
 # KT 금융 DX 플랫폼
 
-![AI개요](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/AI%EA%B0%9C%EC%9A%94.jpg?raw=true)
+![AI개요](https://github.com/terri1102/blog_backup/blob/master/assets/images/AI%EA%B0%9C%EC%9A%94.jpg?raw=true)
 
 하나의 서비스 개발을 위해서는 여러 기술을 융합해야한다. 진짜 AI 모델 만드는 건 아주 작은 부분일 것 같다.
 
@@ -80,13 +80,13 @@ KT 잘나가게 앱 -> 소상공인 특화 맞춤 서비스 제공
 
 KT의 AI 플랫폼: AI Centro
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/ai%EA%B0%9C%EB%B0%9C%ED%94%8C%EB%9E%AB%ED%8F%BCai_centro.jpg?raw=true" alt="kt ai centro" style="zoom:80%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/ai%EA%B0%9C%EB%B0%9C%ED%94%8C%EB%9E%AB%ED%8F%BCai_centro.jpg?raw=true" alt="kt ai centro" style="zoom:80%;" />
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/aicentro2.jpg?raw=true" alt="kt ai centro2" style="zoom:100%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/aicentro2.jpg?raw=true" alt="kt ai centro2" style="zoom:100%;" />
 
 
 
-<img src="https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/centro3_deploy.jpg?raw=true" alt="centro3" style="zoom:80%;" />
+<img src="https://github.com/terri1102/blog_backup/blob/master/assets/images/centro3_deploy.jpg?raw=true" alt="centro3" style="zoom:80%;" />
 
 
 

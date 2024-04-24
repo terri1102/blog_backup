@@ -13,7 +13,7 @@ nav_order: 1
 
 VS Code에서 우분투를 오랜만에 실행하려니 시작부터 에러가 떴다. 도커도 켜져 있는데 왜 안 될까 찾아봤는데 연결이 잘못 되어서 그런 것이었다.
 
-![ubuntu_error](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/errors/ubuntu_errors.jpg?raw=true)
+![ubuntu_error](https://github.com/terri1102/blog_backup/blob/master/assets/images/errors/ubuntu_errors.jpg?raw=true)
 
 ```bash
 [2021-06-01 11:18:20.215] Resolving wsl+docker-desktop-data, resolveAttempt: 1
@@ -41,7 +41,7 @@ VS Code에서 우분투를 오랜만에 실행하려니 시작부터 에러가 �
 wslconfig /L
 ```
 
-![docker-desktop-default](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/errors/docker_desktop_default.jpg?raw=true)
+![docker-desktop-default](https://github.com/terri1102/blog_backup/blob/master/assets/images/errors/docker_desktop_default.jpg?raw=true)
 
 ### 해결
 
@@ -54,7 +54,7 @@ wslconfig /setdefault Ubuntu-20.04
 
 이제 다시 New WSL Window를 열면 제대로 열린다!
 
-![wslubuntu](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/wslubuntu.jpg?raw=true)
+![wslubuntu](https://github.com/terri1102/blog_backup/blob/master/assets/images/wslubuntu.jpg?raw=true)
 
 ## Reference
 

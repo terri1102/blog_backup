@@ -180,7 +180,7 @@ ax = (df['number_of_ppl']/100000).plot.box()
 ax.set_ylabel('Population (millions)')
 ```
 
-![boxplot](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/statistics/boxplot.jpg?raw=true)
+![boxplot](https://github.com/terri1102/blog_backup/blob/master/assets/images/statistics/boxplot.jpg?raw=true)
 
 
 
@@ -222,7 +222,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![hist_kde](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/statistics/hist_kde.jpg?raw=true)
+![hist_kde](https://github.com/terri1102/blog_backup/blob/master/assets/images/statistics/hist_kde.jpg?raw=true)
 
 
 
@@ -334,7 +334,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![heatmap](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/statistics/heatmap.jpg?raw=true)
+![heatmap](https://github.com/terri1102/blog_backup/blob/master/assets/images/statistics/heatmap.jpg?raw=true)
 
 ```python
 #산점도
@@ -346,7 +346,7 @@ ax.axhline(0, color='grey', lw=1);
 ax.axvline(0, color='grey', lw=1);
 ```
 
-![scatter](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/statistics/scatter.jpg?raw=true)
+![scatter](https://github.com/terri1102/blog_backup/blob/master/assets/images/statistics/scatter.jpg?raw=true)
 
 
 
@@ -403,7 +403,7 @@ ax.set_xlabel('Finished Square Feet')
 ax.set_ylabel('Tax-Assessed Value')
 ```
 
-![hexbin](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/statistics/hexbin.jpg?raw=true)
+![hexbin](https://github.com/terri1102/blog_backup/blob/master/assets/images/statistics/hexbin.jpg?raw=true)
 
 
 
@@ -415,7 +415,7 @@ ax.set_xlabel('Finiahed Square Feet');
 ax.set_ylabel('Tax-Assessed Value');
 ```
 
-![contourplot](https://github.com/terri1102/terri1102.github.io/blob/master/assets/images/statistics/contourplot.jpg?raw=true)
+![contourplot](https://github.com/terri1102/blog_backup/blob/master/assets/images/statistics/contourplot.jpg?raw=true)
 
 
 
